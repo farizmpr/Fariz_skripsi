@@ -22,6 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".accountactivity"/>
         <activity
             android:name=".ui.detail.DetailedActivity"
             android:theme="@style/DetailActivityTheme"/>
