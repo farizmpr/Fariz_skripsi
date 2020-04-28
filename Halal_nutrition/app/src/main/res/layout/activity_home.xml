@@ -75,7 +75,6 @@
             app:menu="@menu/bottom_navigation"
             android:background="?android:attr/windowBackground"
             ></com.google.android.material.bottomnavigation.BottomNavigationView>
-
     </RelativeLayout>
     <ProgressBar
         android:id="@+id/progress_bar"
