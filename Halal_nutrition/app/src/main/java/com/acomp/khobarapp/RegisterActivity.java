@@ -15,13 +15,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reg);
-        img = findViewById(R.id.GoBackIcon);
-        btn = findViewById(R.id.joinus);
+//        setContentView(R.layout.activity_reg);
+//        img = findViewById(R.id.GoBackIcon);
+//        btn = findViewById(R.id.btnSaveSignUp);
     }
 
-    public void goback(View view){
-        Intent ic = new Intent(RegisterActivity.this,LoginActivity.class);
-        startActivity(ic);
-    }
 }
