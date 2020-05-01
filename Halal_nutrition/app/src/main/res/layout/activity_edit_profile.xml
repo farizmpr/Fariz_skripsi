@@ -46,7 +46,7 @@
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:hint=" Full Name"
-            android:layout_marginTop="35dp"
+            android:layout_margin="10dp"
             android:paddingLeft="15dp"
             android:inputType="text"
             android:layout_gravity="center"
@@ -56,9 +56,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Full name"/>
+            android:text="Username"/>
         <EditText
             android:layout_width="280dp"
+            android:layout_margin="10dp"
             android:layout_height="45dp"
             android:hint=" Username "
             android:layout_marginTop="10dp"
@@ -71,11 +72,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Full name"/>
+            android:text="Address"/>
         <EditText
             android:layout_width="280dp"
+            android:layout_margin="10dp"
             android:layout_height="45dp"
-            android:hint=" Email "
+            android:hint=" Address "
             android:layout_marginTop="10dp"
             android:paddingLeft="15dp"
             android:layout_gravity="center"
@@ -86,9 +88,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Full name"/>
+            android:text="Password"/>
         <EditText
             android:layout_width="280dp"
+            android:layout_margin="10dp"
             android:layout_height="45dp"
             android:hint=" Password "
             android:layout_marginTop="10dp"
@@ -103,7 +106,6 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
             android:text="Save"
             android:textAllCaps="false"
             android:background="@drawable/btn"
