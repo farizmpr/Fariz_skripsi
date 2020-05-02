@@ -4,32 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@color/white"
-    tools:context=".LoginActivity">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/GoBackIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="goback"
-            android:src="@drawable/ic_arrow_back_black_24dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:onClick="gotoNext"
             android:gravity="end"
+            android:id="@+id/btnSignUp"
+            android:text="Sign Up"
             android:textColor="@color/halal"
-            android:textSize="15dp"/>
+            android:textSize="15dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,41 +33,47 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in"
             android:layout_gravity="center"
             android:fontFamily="sans-serif-medium"
+            android:text="Sign in"
             android:textColor="@color/halal"
             android:textSize="25dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <EditText
+            android:id="@+id/username_login"
             android:layout_width="280dp"
             android:layout_height="45dp"
-            android:hint="Username"
-            android:elevation="5dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:paddingLeft="15dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/tombolbtn"
+            android:elevation="5dp"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:background="@drawable/tombolbtn"/>
+            android:paddingLeft="15dp" />
+
         <EditText
+            android:id="@+id/password_login"
             android:layout_width="280dp"
             android:layout_height="45dp"
-            android:hint="Password"
-            android:elevation="5dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="15dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/tombolbtn"
+            android:elevation="5dp"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:background="@drawable/tombolbtn"/>
+            android:paddingLeft="15dp" />
+
         <Button
+            android:id="@+id/LoginbtnProses"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn"
             android:text="Sign In"
             android:textAllCaps="false"
-            android:background="@drawable/btn"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
     </LinearLayout>
 
 
