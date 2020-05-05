@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/judul"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/halal"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:id="@+id/back"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <ImageView
+                        android:id="@+id/back_food"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_back_white"
+                        android:tint="@color/white" />
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/fontsfreenetproximanovabold"
+                    android:gravity="center"
+                    android:text="Nutrition"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+                <RelativeLayout
+                    android:id="@+id/lnl_share"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <RelativeLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:elevation="2dp">
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/lnl_favorite"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <RelativeLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:elevation="2dp">
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/judul"
+                android:background="@drawable/background_item">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/Nutrition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_nutrition"
+                        android:orientation="horizontal"
+                        android:background="@color/grey_5"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity=""
+                            android:fontFamily="@font/fontsfreenetproximanovabold"
+                            android:text="Amount per Serving"
+                            android:textColor="@color/grey_80"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/Amount_serving"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Nutrition"
+                        android:orientation="horizontal"
+                        android:background="@color/grey_10">
+
+                        <TextView
+                            android:id="@+id/calories_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                            android:text="Calories 50"
+                            android:textColor="@color/grey_80"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/dailyvalues"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Amount_serving"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text=""
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/daily"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="% Daily Values"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/totalfat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/dailyvalues"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_5">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Total Fat 14g"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/totalfat_result"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="0 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/saturatedFat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalfat"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_5">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="35dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Saturated Fat 0g"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/saturatedFatResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="0 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/transFat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/saturatedFat"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_5">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="35dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Trans Fat 0g"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/transFatResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="0 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cholestrol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/transFat"
+                        android:orientation="horizontal"
+                        android:background="@color/grey_80">
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Cholestrol 0mmg"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/cholestrolResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp">
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sodium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cholestrol"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_3">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Sodium 25mg"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/sodiumResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="1 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/carbo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/sodium"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Total Carbohydrates 0g"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/carboResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="0 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/dietaryFiber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/carbo"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_5">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="35dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Dietary Fiber 4g"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/dietaryFiberResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="16 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sugar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/dietaryFiber"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_5">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="35dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Sugars 11g"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/protein"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/sugar"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Protein 0g"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/vitamin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/protein"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Vitamin A"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/vitaminAResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="0 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/vitaminC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vitamin"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Vitamin C"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/vitaminCResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="0 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/calcium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vitaminC"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Calcium"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/calciumResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="2 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/iron"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/calcium"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@color/grey_2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                android:text="Iron"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/grey_80"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ironResult"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/grey_10">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:elevation="2dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                                    android:text="0 %"
+                                    android:gravity="center"
+                                    android:textColor="@color/grey_80"
+                                    android:textSize="16sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

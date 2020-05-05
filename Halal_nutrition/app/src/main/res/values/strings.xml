@@ -9,4 +9,6 @@
     <string name="content">Content</string>
     <string name="tekan_lagi">Tekan lagi untuk Keluar</string>
     <string name="refresh_news">Refresh</string>
+    <string name="text_with_bullet">\u25CF Majelis Ulama Indonesia</string>
+    <string name="calories">140 \n Calories </string>
 </resources>
