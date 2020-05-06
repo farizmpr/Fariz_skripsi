@@ -16,6 +16,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-DEBUG"
+        }
+        pro {
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".pro"
+            versionNameSuffix "-PRO"
+        }
     }
     compileOptions {
         sourceCompatibility = 1.8
@@ -57,4 +67,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
+
+    implementation 'com.balysv:material-ripple:1.0.2'
 }
