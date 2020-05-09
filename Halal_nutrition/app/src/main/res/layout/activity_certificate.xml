@@ -158,11 +158,31 @@
                             android:spinnerMode="dropdown"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/type_certificate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/status"
+                        android:layout_margin="10dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Hello"
+                        >
+
+                        <Spinner
+                            android:id="@+id/spinner_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:drawable/btn_dropdown"
+                            android:spinnerMode="dropdown"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_margin="10dp"
                         android:id="@+id/organization"
-                        android:layout_below="@+id/status"
+                        android:layout_below="@+id/type_certificate"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
