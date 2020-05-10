@@ -26,6 +26,7 @@ import com.acomp.khobarapp.model.BearerTokenModel;
 import com.acomp.khobarapp.model.UserModel;
 import com.acomp.khobarapp.ui.home.HomeActivity;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Map;
 
@@ -98,6 +99,15 @@ public class AccountFragment extends Fragment {
 
         LinearLayout btnChangePassMenu = (LinearLayout) rootView.findViewById(R.id.change_password_menu);
         btnChangePassMenu.setOnClickListener(btnChangePassMenuListener);
+
+        LinearLayout btnAddItems = (LinearLayout) rootView.findViewById(R.id.linear1);
+        btnAddItems.setOnClickListener(btnAddItemsListener);
+
+        LinearLayout btnHistoryItems = (LinearLayout) rootView.findViewById(R.id.historyItems);
+        btnHistoryItems.setOnClickListener(btnHistoryItemsListener);
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.getMenu().findItem(R.id.nav_account).setChecked(true);
         return rootView;
     }
 
@@ -106,6 +116,24 @@ public class AccountFragment extends Fragment {
         super.onResume();
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
+
+    private View.OnClickListener btnAddItemsListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            AddItemsFragment accountFragment1 = new AddItemsFragment();
+            fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
+            fragmentTransaction.commit();
+        }
+    };
+
+    private View.OnClickListener btnHistoryItemsListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            HistoryItemsFragment accountFragment1 = new HistoryItemsFragment();
+            fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
+            fragmentTransaction.commit();
+        }
+    };
 
     private View.OnClickListener btnEditProfileListener = new View.OnClickListener() {
         public void onClick(View v) {

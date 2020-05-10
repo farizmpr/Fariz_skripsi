@@ -73,16 +73,30 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         Context context = getApplicationContext();
         FrameLayout fragmentContent = (FrameLayout) findViewById(R.id.fragment_content);
+//        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Log.d("ITEM", "TEST=" + item.getItemId());
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                HomeFragment homeFragment = new HomeFragment();
                 switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        progressDoalog = new ProgressDialog(HomeActivity.this);
+                        progressDoalog.setMessage("Loading....");
+                        progressDoalog.show();
+//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+                        fragmentTransaction.replace(R.id.fragment_content, homeFragment);
+                        fragmentTransaction.commit();
+                        progressDoalog.dismiss();
+                        break;
                     case R.id.nav_account:
                         progressDoalog = new ProgressDialog(HomeActivity.this);
                         progressDoalog.setMessage("Loading....");
                         progressDoalog.show();
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
                         SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
                         String token = preferences.getString("token", "");
 //                        Log.d("TOKEN", token);
@@ -192,10 +206,21 @@ public class HomeActivity extends AppCompatActivity {
                         rvRegularNews.setHasFixedSize(true);
 //                        rvRegularNews.setAdapter(regularNewsAdapter);
                         break;
+                    default:
+                        progressDoalog = new ProgressDialog(HomeActivity.this);
+                        progressDoalog.setMessage("Loading....");
+                        progressDoalog.show();
+//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_content, homeFragment);
+                        fragmentTransaction.commit();
+                        progressDoalog.dismiss();
+                        break;
                 }
                 return false;
             }
         });
+        View view = bottomNavigationView.findViewById(R.id.nav_home);
+        view.performClick();
     }
 
     private HomeViewModel obtainViewModel(AppCompatActivity activity) {
