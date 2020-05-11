@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:background="@drawable/hamburger_photo"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:alpha="0.3"
+                        android:background="@android:color/black"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/halal"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:id="@+id/back"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_back_white"
+                        android:tint="@color/white" />
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="8"
+                    android:fontFamily="@font/fontsfreenetproximanovabold"
+                    android:gravity="center"
+                    android:text="White Musk deodorant"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+                <RelativeLayout
+                    android:id="@+id/lnl_share"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <RelativeLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:elevation="2dp">
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/lnl_favorite"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <RelativeLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:elevation="2dp">
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/cover"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/background_item">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/item_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="White Musk deodorant"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:textColor="@color/titleColor"
+                        android:textSize="20sp"
+                        />
+                    <LinearLayout
+                        android:id="@+id/certificate_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_name"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                            android:text="Certificate Issuer"
+                            android:textColor="@color/grey_80"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/item_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/text_with_bullet"
+                            android:textColor="@color/grey_40"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="324dp"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/certificate_name"
+                        android:layout_alignStart="@+id/item_name"
+                        android:layout_alignLeft="@+id/item_name"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@color/subtitle"/>
+                    <LinearLayout
+                        android:id="@+id/manufacture_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                            android:text="Manufacture"
+                            android:textColor="@color/grey_80"
+                            android:textSize="16sp"  />
+                        <TextView
+                            android:id="@+id/manufacture"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:text="\u25CF Esteria Cosmetik, CV"
+                            android:textColor="@color/grey_40"
+                            android:textSize="16sp"  />
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/view_food"
+                        android:layout_width="324dp"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/manufacture_list"
+                        android:layout_alignStart="@+id/item_name"
+                        android:layout_alignLeft="@+id/item_name"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@color/subtitle" />
+
+                    <LinearLayout
+                        android:id="@+id/ingredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_food"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                            android:text="Ingredients"
+                            android:textColor="@color/grey_80"
+                            android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/nutritionList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>
