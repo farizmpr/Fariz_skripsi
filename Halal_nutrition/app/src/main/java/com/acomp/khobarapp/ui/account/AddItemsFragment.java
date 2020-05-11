@@ -84,6 +84,7 @@ public class AddItemsFragment extends Fragment {
     private Integer activityRequestCode;
     private String foodCode;
     private String foodName;
+    private Intent activityData;
     private String foodManufacture;
     private String foodIngredient;
     private Integer foodId = 0;
@@ -211,6 +212,7 @@ public class AddItemsFragment extends Fragment {
                                 Integer id = jsonObject.getJSONObject("data").getInt("id");
                                 if (activityRequestCode == PICK_IMAGE_CAMERA) {
                                     foodId = id;
+                                    sendPicturePhotos();
 //                                    return id;
                                 } else {
                                     HistoryItemsFragment accountFragment = new HistoryItemsFragment();
@@ -290,18 +292,21 @@ public class AddItemsFragment extends Fragment {
 //        inputStreamImg = null;
 //        Log.d("Activity Image", "Request Code = " + requestCode);
         activityRequestCode = PICK_IMAGE_CAMERA;
+        activityData = data;
         sendInsertItems(foodCode, foodName, foodManufacture, foodIngredient);
-        if (requestCode == PICK_IMAGE_CAMERA) {
+
+    }
+
+    public void sendPicturePhotos(){
+
+        if (activityRequestCode == PICK_IMAGE_CAMERA) {
             try {
                 if(foodId != 0) {
-                    Uri selectedImage = data.getData();
-                    bitmap = (Bitmap) data.getExtras().get("data");
+                    Uri selectedImage = activityData.getData();
+                    bitmap = (Bitmap) activityData.getExtras().get("data");
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
-//                Log.d("Activity", "Pick from Camera::>>> ");
                     File file = savebitmap(bitmap);
-//                Log.d("FILENAME",file.getAbsolutePath());
-//                Log.d("FILENAME 2",file.getName());
                     RequestBody requestFile =
                             RequestBody.create(MediaType.parse("multipart/form-data"), file);
                     MultipartBody.Part body =
@@ -317,7 +322,7 @@ public class AddItemsFragment extends Fragment {
                     progressDoalog.setMessage("Loading....");
                     progressDoalog.show();
 //                String referenceId = "1";
-
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     Call call = getDataService.uploadAttachment(body, referenceId, referenceTable);
                     call.enqueue(new Callback() {
                         @Override
@@ -328,10 +333,17 @@ public class AddItemsFragment extends Fragment {
                                 try {
                                     JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
                                     if (jsonObject.getBoolean("result")) {
+
+                                        HistoryItemsFragment accountFragment = new HistoryItemsFragment();
+                                        fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+                                        fragmentTransaction.commit();
                                         Toast.makeText(getActivity(), "Upload File Berhasil", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
                                     } else {
                                         Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                     }
+
+                                    progressDoalog.dismiss();
                                 } catch (JSONException e) {
                                     Toast.makeText(getActivity(), "Upload File Failed", Toast.LENGTH_SHORT).show();
                                     e.printStackTrace();
@@ -354,8 +366,8 @@ public class AddItemsFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (requestCode == PICK_IMAGE_GALLERY) {
-            Uri selectedImage = data.getData();
+        } else if (activityRequestCode == PICK_IMAGE_GALLERY) {
+            Uri selectedImage = activityData.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
