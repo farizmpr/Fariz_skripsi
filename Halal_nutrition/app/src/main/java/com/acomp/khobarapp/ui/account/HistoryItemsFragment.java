@@ -82,7 +82,7 @@ public class HistoryItemsFragment extends Fragment {
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
         GetDataService getDataService = RetrofitClientInstance.getRetrofitAuthInstance(token).create(GetDataService.class);
-        Call call = getDataService.getItems();
+        Call call = getDataService.getItemsByUsers();
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {

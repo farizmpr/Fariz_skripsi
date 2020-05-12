@@ -51,6 +51,12 @@ public interface GetDataService {
     @GET("item")
     Call<JsonObject> getItems();
 
+    @GET("item/me")
+    Call<JsonObject> getItemsByUsers();
+
+    @GET("news")
+    Call<JsonObject> getNews();
+
     @Multipart
     @POST("attachment/upload")
     Call<JsonObject> uploadAttachment(@Part MultipartBody.Part files,

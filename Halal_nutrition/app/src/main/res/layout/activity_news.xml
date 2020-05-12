@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_news"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryTernary">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        <androidx.core.widget.NestedScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent">-->
+
+
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+            <!--                android:id="@+id/rv_headline"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="170dp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@id/list_rv_regular"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                tools:listitem="@layout/news_headline" />-->
+
+            <ListView
+                android:id="@+id/list_rv_regular"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadeScrollbars="true"
+                android:nestedScrollingEnabled="true"
+                tools:listitem="@layout/news_regular" />
+            <!--            <ListView-->
+            <!--                android:id="@+id/list_rv_regular"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fadeScrollbars="false"-->
+            <!--                android:nestedScrollingEnabled="false"-->
+            <!--                app:layout_constraintEnd_toEndOf="@id/rv_headline"-->
+            <!--                app:layout_constraintHorizontal_bias="1.0"-->
+            <!--                app:layout_constraintStart_toStartOf="@id/rv_headline"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/rv_headline"-->
+            <!--                tools:listitem="@layout/news_regular" />-->
+
+
+<!--        </androidx.core.widget.NestedScrollView>-->
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

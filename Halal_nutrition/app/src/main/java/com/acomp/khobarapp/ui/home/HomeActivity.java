@@ -37,6 +37,7 @@ import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.account.AccountFragment1;
 import com.acomp.khobarapp.ui.adapter.HeadlineNewsAdapter;
 import com.acomp.khobarapp.ui.adapter.RegularNewsAdapter;
+import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.acomp.khobarapp.utils.SpacesItemDecoration;
 import com.acomp.khobarapp.viewmodel.ViewModelFactory;
@@ -147,64 +148,17 @@ public class HomeActivity extends AppCompatActivity {
 
                         break;
                     case R.id.nav_news:
+                        progressDoalog = new ProgressDialog(HomeActivity.this);
+                        progressDoalog.setMessage("Loading....");
+                        progressDoalog.show();
+//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        NewsFragment newsFragment = new NewsFragment();
+                        fragmentTransaction.replace(R.id.fragment_content, newsFragment);
+                        fragmentTransaction.commit();
+                        progressDoalog.dismiss();
 //                        String token2 = preferences.getString("token",null);
 //                        Log.d("TOKEN NEWS",token2);
-                        RecyclerView rvHeadlineNews = findViewById(R.id.rv_headline);
-                        RecyclerView rvRegularNews = findViewById(R.id.rv_regular);
 
-                        progressBar = findViewById(R.id.progress_bar);
-                        progressBar.setVisibility(View.VISIBLE);
-
-                        headlineNewsAdapter = new HeadlineNewsAdapter(HomeActivity.this);
-                        regularNewsAdapter = new RegularNewsAdapter(HomeActivity.this);
-                        homeViewModel = obtainViewModel(HomeActivity.this);
-
-                        homeViewModel.fetch(false);
-
-                        homeViewModel.headlineNewsList.observe(HomeActivity.this, listResource -> {
-                            if (listResource != null) {
-                                switch (listResource.status) {
-                                    case LOADING:
-                                        break;
-                                    case SUCCESS:
-                                        countLoadedOrFailNews();
-                                        headlineNewsAdapter.setHeadlineNewsList(listResource.data);
-                                        break;
-                                    case ERROR:
-                                        countLoadedOrFailNews();
-                                        Toast.makeText(HomeActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
-                                        break;
-                                }
-                            }
-                        });
-
-                        homeViewModel.regularNewsList.observe(HomeActivity.this, listResource -> {
-                            if (listResource != null) {
-                                switch (listResource.status) {
-                                    case LOADING:
-                                        break;
-                                    case SUCCESS:
-                                        countLoadedOrFailNews();
-                                        regularNewsAdapter.setRegularNewsList(listResource.data);
-                                        break;
-                                    case ERROR:
-                                        countLoadedOrFailNews();
-                                        Toast.makeText(HomeActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
-                                        break;
-                                }
-                            }
-                        });
-
-                        rvHeadlineNews.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
-                        rvHeadlineNews.setHasFixedSize(true);
-
-//                        rvHeadlineNews.setAdapter(headlineNewsAdapter);
-
-                        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.rv_item_margin);
-                        rvRegularNews.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
-                        rvRegularNews.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                        rvRegularNews.setHasFixedSize(true);
-//                        rvRegularNews.setAdapter(regularNewsAdapter);
                         break;
                     default:
                         progressDoalog = new ProgressDialog(HomeActivity.this);

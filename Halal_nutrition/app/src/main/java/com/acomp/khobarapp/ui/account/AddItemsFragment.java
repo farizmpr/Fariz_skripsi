@@ -81,7 +81,7 @@ public class AddItemsFragment extends Fragment {
     private Bitmap bitmap;
     private String imgPath = null;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
-    private Integer activityRequestCode;
+    private Integer activityRequestCode = 0;
     private String foodCode;
     private String foodName;
     private Intent activityData;
@@ -202,6 +202,7 @@ public class AddItemsFragment extends Fragment {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
+                progressDoalog.dismiss();
                 Log.d("TOKEN STRING", response.toString());
                 if (response.body() != null) {
                     Log.e("TAG", "response 33: " + new Gson().toJson(response.body()));
