@@ -36,9 +36,9 @@ public class DetailedActivity extends AppCompatActivity {
 		tvTitle = findViewById(R.id.tv_title);
 		tvTimeStamp = findViewById(R.id.tv_time_stamp);
 		tvDescription = findViewById(R.id.tv_description);
-		tvContent = findViewById(R.id.tv_content);
-		Button btnReadMore = findViewById(R.id.btn_read_more);
-		View viewLoading = findViewById(R.id.view_loading);
+//		tvContent = findViewById(R.id.tv_content);
+//		Button btnReadMore = findViewById(R.id.btn_read_more);
+//		View viewLoading = findViewById(R.id.view_loading);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 
 		DetailedViewModel detailedViewModel = obtainViewModel(this);
@@ -55,33 +55,13 @@ public class DetailedActivity extends AppCompatActivity {
 			}
 		}
 
-		detailedViewModel.news.observe(this, newsEntityResource -> {
-			if (newsEntityResource != null) {
-				switch (newsEntityResource.status) {
-					case LOADING:
-						viewLoading.setVisibility(View.VISIBLE);
-						break;
-					case SUCCESS:
-						viewLoading.setVisibility(View.GONE);
-						if (newsEntityResource.data != null)
-							populateDetailedActivity(newsEntityResource.data);
-						else
-							Toast.makeText(this, "News data is empty!", Toast.LENGTH_SHORT).show();
-						break;
-					case ERROR:
-						viewLoading.setVisibility(View.GONE);
-						Toast.makeText(this, "Cannot get news data", Toast.LENGTH_SHORT).show();
-						break;
-				}
-			}
-		});
 
 		String finalNewsUrl = newsUrl;
-		btnReadMore.setOnClickListener(view -> {
-			Uri linkToArticle = Uri.parse(finalNewsUrl);
-			Intent goToTheLink = new Intent(Intent.ACTION_VIEW, linkToArticle);
-			startActivity(goToTheLink);
-		});
+//		btnReadMore.setOnClickListener(view -> {
+//			Uri linkToArticle = Uri.parse(finalNewsUrl);
+//			Intent goToTheLink = new Intent(Intent.ACTION_VIEW, linkToArticle);
+//			startActivity(goToTheLink);
+//		});
 
 		setSupportActionBar(toolbar);
 

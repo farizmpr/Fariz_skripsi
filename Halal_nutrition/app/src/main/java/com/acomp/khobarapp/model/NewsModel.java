@@ -1,10 +1,21 @@
 package com.acomp.khobarapp.model;
 
+import java.util.ArrayList;
+
 public class NewsModel {
     private String title = "";
     private String strDate = "";
     private String content;
     private String code;
+    private ArrayList<AttachmentModel> attachmentModels = new ArrayList<AttachmentModel>();
+
+    public ArrayList<AttachmentModel> getAttachmentModels() {
+        return attachmentModels;
+    }
+
+    public void setAttachmentModels(ArrayList<AttachmentModel> attachmentModels) {
+        this.attachmentModels = attachmentModels;
+    }
 
     public String getTitle() {
         return title;

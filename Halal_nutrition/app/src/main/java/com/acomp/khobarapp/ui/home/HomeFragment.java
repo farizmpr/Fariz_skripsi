@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.ui.account.AccountFragment;
+import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -65,6 +66,14 @@ public class HomeFragment extends Fragment {
         carouselView.setImageListener(imageListener);
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
+
+
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        NewsFragment newsFragment = new NewsFragment();
+        newsFragment.type = 1;
+        fragmentTransaction.replace(R.id.fragment_content_news_home, newsFragment);
+        fragmentTransaction.commit();
+
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
         return rootView;
     }

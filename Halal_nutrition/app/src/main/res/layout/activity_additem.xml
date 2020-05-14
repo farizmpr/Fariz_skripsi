@@ -5,12 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true">
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -91,7 +86,12 @@
                     </RelativeLayout>
                 </RelativeLayout>
             </LinearLayout>
-
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true">
             <RelativeLayout
                 android:id="@+id/scrollView"
                 android:layout_width="match_parent"
@@ -236,9 +236,9 @@
 
             </RelativeLayout>
 
-
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+
 
 </RelativeLayout>

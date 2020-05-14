@@ -318,7 +318,7 @@ public class AddItemsFragment extends Fragment {
                     String txtRefId = foodId.toString();
                     String txtRefTable = "mst_item";
                     RequestBody referenceId = RequestBody.create(MediaType.parse("text/plain"), txtRefId);
-                    RequestBody referenceTable = RequestBody.create(MediaType.parse("text/plain"), txtRefId);
+                    RequestBody referenceTable = RequestBody.create(MediaType.parse("text/plain"), txtRefTable);
                     progressDoalog = new ProgressDialog(getActivity());
                     progressDoalog.setMessage("Loading....");
                     progressDoalog.show();
@@ -407,11 +407,13 @@ public class AddItemsFragment extends Fragment {
     private File savebitmap(Bitmap bmp) {
         String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
         OutputStream outStream = null;
+        String currentTime = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss", Locale.getDefault()).format(new Date());
+
         // String temp = null;
-        File file = new File(extStorageDirectory, "temp.png");
+        File file = new File(extStorageDirectory, currentTime+".png");
         if (file.exists()) {
             file.delete();
-            file = new File(extStorageDirectory, "temp.png");
+            file = new File(extStorageDirectory, currentTime+".png");
 
         }
         try {
