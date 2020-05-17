@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/historySertif"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Majelis Ulama Indonesia"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/history_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Type : Product"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#8A000000"
+        app:layout_constraintStart_toStartOf="@+id/historySertif"
+        app:layout_constraintTop_toBottomOf="@+id/historySertif" />
+    <TextView
+        android:id="@+id/status_halal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Halal status : Unknown"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#8A000000"
+        app:layout_constraintStart_toStartOf="@+id/history_type"
+        app:layout_constraintTop_toBottomOf="@+id/history_type" />
+    <Button
+        android:id="@+id/edit_sertif"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/status_halal"
+        app:layout_constraintTop_toBottomOf="@+id/status_halal"
+        android:text="Edit"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_border"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Remove"
+        android:background="@drawable/btn_border"
+        app:layout_constraintLeft_toRightOf="@+id/edit_sertif"
+        app:layout_constraintTop_toBottomOf="@+id/status_halal"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@
     <color name="colorPrimary">#FA554F</color>
     <color name="colorPrimaryDark">#FA554F</color>
 
+    <color name="black">#000000</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="titleColor">#262628</color>
