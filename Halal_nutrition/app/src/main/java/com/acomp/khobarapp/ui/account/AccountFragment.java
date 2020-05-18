@@ -64,6 +64,8 @@ public class AccountFragment extends Fragment {
                         fullname = name;
                         email = resEmail;
                         address = resAddress;
+                        TextView fieldEmailText = (TextView) rootView.findViewById(R.id.account_email_text);
+                        fieldEmailText.setText(email);
 //                        AccountFragment accountFragment = new AccountFragment();
 //                        accountFragment.name = name;
 //                        fragmentTransaction.replace(R.id.fragment_content, accountFragment);
@@ -92,7 +94,7 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        LinearLayout b = (LinearLayout) rootView.findViewById(R.id.logoutBtnLinear);
+        Button b = (Button) rootView.findViewById(R.id.logoutBtnLinear);
         b.setOnClickListener(mButtonClickListener);
         LinearLayout btnEditProfile = (LinearLayout) rootView.findViewById(R.id.linear2);
         btnEditProfile.setOnClickListener(btnEditProfileListener);

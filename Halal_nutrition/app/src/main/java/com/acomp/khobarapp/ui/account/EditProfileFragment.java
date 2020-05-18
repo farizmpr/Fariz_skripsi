@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,7 @@ public class EditProfileFragment extends Fragment {
             TextView fieldAddressText = (TextView) rootView.findViewById(R.id.fieldAddress);
             fieldAddressText.setText(this.address);
         }
-        ImageView closeBtn = (ImageView) rootView.findViewById(R.id.GoBackIcon);
+        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener );
 
         Button btnUpdateProfile = (Button) rootView.findViewById(R.id.btnUpdateProfile);

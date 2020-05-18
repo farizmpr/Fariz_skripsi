@@ -229,9 +229,13 @@ public class NewsFragment extends Fragment {
 
                         RecyclerView headRecyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_headline);
                         assert headRecyclerView != null;
-                        headRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        HeadlineNewsBaseAdapter headAdapter = new HeadlineNewsBaseAdapter(getActivity(), headNewsModel);
-                        headRecyclerView.setAdapter(headAdapter);
+                        if(type == 0) {
+                            headRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            HeadlineNewsBaseAdapter headAdapter = new HeadlineNewsBaseAdapter(getActivity(), headNewsModel);
+                            headRecyclerView.setAdapter(headAdapter);
+                        } else {
+                            headRecyclerView.setVisibility(View.GONE);
+                        }
 
                     } catch (JSONException e) {
                         Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();

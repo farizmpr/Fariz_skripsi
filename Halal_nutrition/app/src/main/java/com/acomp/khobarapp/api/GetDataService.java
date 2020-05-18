@@ -52,6 +52,9 @@ public interface GetDataService {
     @GET("item")
     Call<JsonObject> getItems();
 
+    @GET("item")
+    Call<JsonObject> getListFood(@Query("page") Integer page,@Query("search") String search,@Query("status") Integer status);
+
     @GET("item/me")
     Call<JsonObject> getItemsByUsers();
 

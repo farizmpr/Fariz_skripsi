@@ -1,5 +1,7 @@
 package com.acomp.khobarapp.model;
 
+import java.util.ArrayList;
+
 public class ItemsModel {
     private String code = "";
     private String name = "";
@@ -7,6 +9,24 @@ public class ItemsModel {
     private String ingredient = "";
     private String status;
     private String organization = "";
+    private ArrayList<AttachmentModel> attachmentModels = new ArrayList<AttachmentModel>();
+    private ArrayList<CertificateRowModel> certificateRowModels = new ArrayList<CertificateRowModel>();
+
+    public ArrayList<CertificateRowModel> getCertificateRowModels() {
+        return certificateRowModels;
+    }
+
+    public void setCertificateRowModels(ArrayList<CertificateRowModel> certificateRowModels) {
+        this.certificateRowModels = certificateRowModels;
+    }
+
+    public ArrayList<AttachmentModel> getAttachmentModels() {
+        return attachmentModels;
+    }
+
+    public void setAttachmentModels(ArrayList<AttachmentModel> attachmentModels) {
+        this.attachmentModels = attachmentModels;
+    }
 
     public String getOrganization() {
         return organization;

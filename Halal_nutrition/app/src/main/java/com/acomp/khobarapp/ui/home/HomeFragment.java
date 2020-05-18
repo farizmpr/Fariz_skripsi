@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.ui.account.AccountFragment;
+import com.acomp.khobarapp.ui.items.HalalItemsFragment;
 import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         CardView closeBtn = (CardView) rootView.findViewById(R.id.btnSearchItems);
-        closeBtn.setOnClickListener(goBackListener);
+        closeBtn.setOnClickListener(btnSearchItemsListener);
 
 //        Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);
 //        btnUpdatePassword.setOnClickListener(updatePasswordListener);
@@ -101,13 +102,15 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private View.OnClickListener goBackListener = new View.OnClickListener() {
+    private View.OnClickListener btnSearchItemsListener = new View.OnClickListener() {
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            AccountFragment accountFragment = new AccountFragment();
-            fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+            HalalItemsFragment halalItemsFragment = new HalalItemsFragment();
+            fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
             fragmentTransaction.commit();
         }
     };
+
+
 
 }

@@ -98,7 +98,7 @@ public class AddItemsFragment extends Fragment {
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
 
-        LinearLayout btnCertificate = (LinearLayout) rootView.findViewById(R.id.certificate);
+        RelativeLayout btnCertificate = (RelativeLayout) rootView.findViewById(R.id.certificate);
         btnCertificate.setOnClickListener(btnCertificateListener);
 
         ListView lv1 = (ListView) rootView.findViewById(R.id.listItemCertificate);

@@ -53,6 +53,16 @@
         <item name="mrl_rippleHover">true</item>
         <item name="mrl_rippleAlpha">0.2</item>
     </style>
+    <style name="SearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
+        <!-- Gets rid of the search icon -->
+        <!-- Gets rid of the "underline" in the text -->
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:hint">@color/white</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">Please Search Your Items</item>
+    </style>
 
     <style name="Theme.MyApp" parent="Theme.AppCompat">
 
