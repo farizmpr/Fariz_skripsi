@@ -26,6 +26,7 @@ import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.items.HalalItemsFragment;
+import com.acomp.khobarapp.ui.items.ScanItemsDetailFragment;
 import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -56,9 +57,11 @@ public class HomeFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        CardView closeBtn = (CardView) rootView.findViewById(R.id.btnSearchItems);
-        closeBtn.setOnClickListener(btnSearchItemsListener);
+        CardView btnSearchItems = (CardView) rootView.findViewById(R.id.btnSearchItems);
+        btnSearchItems.setOnClickListener(btnSearchItemsListener);
 
+        CardView btnScanItems = (CardView) rootView.findViewById(R.id.btnScanItems);
+        btnScanItems.setOnClickListener(btnScanItemsListener);
 //        Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);
 //        btnUpdatePassword.setOnClickListener(updatePasswordListener);
 
@@ -106,6 +109,15 @@ public class HomeFragment extends Fragment {
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             HalalItemsFragment halalItemsFragment = new HalalItemsFragment();
+            fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
+            fragmentTransaction.commit();
+        }
+    };
+
+    private View.OnClickListener btnScanItemsListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ScanItemsDetailFragment halalItemsFragment = new ScanItemsDetailFragment();
             fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
             fragmentTransaction.commit();
         }

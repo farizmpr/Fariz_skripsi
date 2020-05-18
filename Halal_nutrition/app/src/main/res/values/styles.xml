@@ -82,4 +82,13 @@
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
 
     </style>
+    <style name="allLeftRadiusBtn">
+        <item name="cornerSizeTopLeft">13dp</item>
+        <item name="cornerSizeBottomLeft">13dp</item>
+    </style>
+    <style name="allRightRadiusBtn">
+        <item name="cornerSizeTopRight">13dp</item>
+        <item name="cornerSizeBottomRight">13dp</item>
+
+    </style>
 </resources>

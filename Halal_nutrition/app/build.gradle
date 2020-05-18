@@ -71,5 +71,9 @@ dependencies {
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
     implementation 'com.balysv:material-ripple:1.0.2'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+//    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    implementation 'me.dm7.barcodescanner:core:1.9'
+    implementation 'com.android.support:multidex:1.0.0'
 
 }

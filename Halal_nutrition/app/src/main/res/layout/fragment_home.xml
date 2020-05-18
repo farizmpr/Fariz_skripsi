@@ -57,6 +57,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btnScanItems"
             android:layout_width="0dp"
             android:layout_height="88dp"
             android:layout_weight="5"

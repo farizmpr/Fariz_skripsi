@@ -23,7 +23,7 @@ public class activity_scan extends AppCompatActivity {
 
         //Scanner overlay
         scannerLayout = findViewById(R.id.scannerLayout);
-        scannerBar = findViewById(R.id.scannerBar);
+//        scannerBar = findViewById(R.id.scannerBar);
 
         animator = null;
 
