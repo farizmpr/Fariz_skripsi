@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +46,7 @@ public class ChangePasswordFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.activity_change_password, container, false);
 
-        ImageView closeBtn = (ImageView) rootView.findViewById(R.id.GoBackIcon);
+        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.GoBackIcon);
         closeBtn.setOnClickListener(goBackListener );
 
         Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);

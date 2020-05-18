@@ -5,330 +5,372 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
-        <!--        <ImageView-->
-        <!--            android:id="@+id/GoBackIcon"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:onClick="goback"-->
-        <!--            android:src="@drawable/ic_arrow_back_black_24dp"/>-->
-    </LinearLayout>
-
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewHalalItems"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Dashboard"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"><LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/profile_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/waffle"
-                android:layout_marginTop="26dp"
-                android:layout_marginLeft="10dp"/>
-            <RelativeLayout
-                android:id="@+id/halal_quest"
-                android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <!--        <ImageView-->
+                <!--            android:id="@+id/GoBackIcon"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:onClick="goback"-->
+                <!--            android:src="@drawable/ic_arrow_back_black_24dp"/>-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/profile_image"
-                android:layout_marginLeft="30dp"
-                android:gravity="center">
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Dashboard"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/account_text"
+                    android:layout_height="100dp">
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Your Name"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textSize="25dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:id="@+id/account_email_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Your Email"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textSize="16dp"
-                        android:textColor="@color/black"/>
+                        android:layout_height="wrap_content">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="26dp"
+                            android:src="@drawable/waffle" />
+
+                        <RelativeLayout
+                            android:id="@+id/halal_quest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/profile_image"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/account_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="Your Name"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                                    android:textColor="@color/black"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/account_email_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="Your Email"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
                 </LinearLayout>
+
+
             </RelativeLayout>
-        </RelativeLayout>
-    </LinearLayout>
 
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/pembatas_atas_dashboard"
-        android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:background="@color/grey_certif"
-        android:layout_height="6dp">
-
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/itemsLayout"
-        android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:layout_height="wrap_content">
-    <RelativeLayout
-        android:id="@+id/title_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Account"
-            android:textSize="20dp"
-            android:fontFamily="@font/roboto_medium"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginLeft="10dp"/>
-    </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/linear1"
-            android:layout_below="@+id/title_account"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_height="48.5dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_material_add"/>
-            <TextView
-                android:id="@+id/account_favorite_foods"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Item"
-                android:textSize="16dp"
-                android:layout_gravity="center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold"
-                android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/black"
-                android:layout_marginLeft="19dp"
-                />
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:layout_marginLeft="230dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/viewadd"
-            android:layout_below="@+id/linear1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-        <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey_3" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/historyItems"
-            android:layout_below="@+id/viewadd"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_height="48.5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_awesome_history"/>
-            <TextView
-                android:id="@+id/account_favorite_restaurants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="History Item"
-                android:textSize="16dp"
-                android:layout_gravity="center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold"
-                android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/black"
-                android:layout_marginLeft="19dp"
-                />
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:layout_marginLeft="204.5dp"/>
-        </LinearLayout>
-
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/pembatas_setting_dashboard"
-        android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:background="@color/grey_certif"
-        android:layout_height="6dp">
-
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:id="@+id/title_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Account"
-                android:textSize="20dp"
-                android:fontFamily="@font/roboto_medium"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10dp"/>
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/linear2"
-            android:layout_below="@+id/title_setting"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_height="48.5dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_awesome_user_edit"/>
-            <TextView
-                android:id="@+id/edit_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit Profile"
-                android:textSize="16dp"
-                android:layout_gravity="center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold"
-                android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/black"
-                android:layout_marginLeft="18dp"
-                />
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:layout_marginLeft="215dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/view_setting"
-            android:layout_below="@+id/linear2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-            <View
-                android:id="@+id/view3"
+            <RelativeLayout
+                android:id="@+id/pembatas_atas_dashboard"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/grey_3" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/change_password_menu"
-            android:layout_below="@+id/view_setting"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_height="48.5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="19dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_material_lock"/>
-            <TextView
-                android:id="@+id/change_password_teks"
-                android:layout_width="wrap_content"
+                android:layout_height="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/grey_certif">
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/itemsLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Change Password"
-                android:textSize="16dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/title_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Account"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48.5dp"
+                    android:layout_below="@+id/title_account"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_material_add" />
+
+                    <TextView
+                        android:id="@+id/account_favorite_foods"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="19dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Add Item"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="230dp"
+                        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/viewadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linear1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/historyItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="48.5dp"
+                    android:layout_below="@+id/viewadd"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_awesome_history" />
+
+                    <TextView
+                        android:id="@+id/account_favorite_restaurants"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="19dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="History Item"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="204.5dp"
+                        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/pembatas_setting_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/grey_certif">
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/title_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Account"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48.5dp"
+                    android:layout_below="@+id/title_setting"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_awesome_user_edit" />
+
+                    <TextView
+                        android:id="@+id/edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="18dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Edit Profile"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="215dp"
+                        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/view_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linear2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/change_password_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="48.5dp"
+                    android:layout_below="@+id/view_setting"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="19dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_material_lock" />
+
+                    <TextView
+                        android:id="@+id/change_password_teks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="23.5dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Change Password"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="162dp"
+                        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/logoutBtnLinear"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn"
+                android:backgroundTint="@color/halal"
+                android:text="Log out"
+                android:textAllCaps="false"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold"
-                android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/black"
-                android:layout_marginLeft="23.5dp"
-                />
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:layout_marginLeft="162dp"/>
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
         </LinearLayout>
-
-
-    </RelativeLayout>
-    <Button
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/logoutBtnLinear"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:text="Log out"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:textAllCaps="false"
-        android:background="@drawable/btn"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/halal"
-        />
-
-
-
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
