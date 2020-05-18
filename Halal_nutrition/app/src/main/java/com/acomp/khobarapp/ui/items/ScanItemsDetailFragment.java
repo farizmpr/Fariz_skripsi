@@ -3,6 +3,7 @@ package com.acomp.khobarapp.ui.items;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.ui.adapter.ListFoodBaseAdapter;
 import com.acomp.khobarapp.ui.home.HomeFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.zxing.Result;
 import com.squareup.picasso.Picasso;
@@ -79,8 +82,10 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
         rl.addView(mScannerView);
 
 //        mScannerView.startCamera();
-
-
+        RelativeLayout layFlashCamera = (RelativeLayout) rootView.findViewById(R.id.layFlashCamera);
+layFlashCamera.setOnClickListener(layFlashCameraListener);
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+//        navBar.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -155,6 +160,24 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
         }
     };
 
+    private View.OnClickListener layFlashCameraListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ImageView btnFlashCamera = (ImageView) getActivity().findViewById(R.id.btnFlashCamera);
+//            Drawable getBackG = btnFlashCamera.getBackground();
+//            Log.d("DEBUG DRAW","D="+getBackG.toString());
+
+            if(mScannerView.getFlash() == true){
+                mScannerView.setFlash(false);
+                btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_off_black_24dp));
+            } else {
+                mScannerView.setFlash(true);
+                btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_on_black_24dp));
+            }
+
+        }
+    };
+
 
     @Override
     public void handleResult(Result rawResult) {
@@ -166,13 +189,14 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
 
     }
 
-    public void restartCamera(){
+    public void restartCamera() {
         mScannerView.stopCamera();
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();
         mScannerView.setSoundEffectsEnabled(true);
         mScannerView.setAutoFocus(true);
     }
+
     @Override
     public void onPause() {
         mScannerView.stopCamera();
@@ -297,6 +321,7 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
                 }
                 progressDoalog.dismiss();
             }
+
             @Override
             public void onFailure(Call call, Throwable t) {
                 progressDoalog.dismiss();

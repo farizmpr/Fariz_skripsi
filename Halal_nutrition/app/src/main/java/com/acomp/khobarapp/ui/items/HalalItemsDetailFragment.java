@@ -23,6 +23,7 @@ import com.acomp.khobarapp.model.CertificateRowModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.ui.news.NewsFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -88,7 +89,8 @@ public class HalalItemsDetailFragment extends Fragment {
         txtOrganizationName = txtOrganizationName.replace("\\\n", System.getProperty("line.separator"));
         tvCertificateName.setText(txtOrganizationName);
 
-
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+//        navBar.setVisibility(View.VISIBLE);
         return rootView;
     }
 

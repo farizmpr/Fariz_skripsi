@@ -77,7 +77,8 @@ public class HomeFragment extends Fragment {
         newsFragment.type = 1;
         fragmentTransaction.replace(R.id.fragment_content_news_home, newsFragment);
         fragmentTransaction.commit();
-
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+//        navBar.setVisibility(View.VISIBLE);
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
         return rootView;
     }

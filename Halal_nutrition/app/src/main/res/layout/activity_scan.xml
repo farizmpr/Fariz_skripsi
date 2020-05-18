@@ -78,24 +78,20 @@
 
 
             <RelativeLayout
-                android:id="@+id/lnl_favorite"
+                android:id="@+id/layFlashCamera"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:gravity="end">
+                android:gravity="center_vertical|center">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_centerInParent="true">
 
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/btnViewSearchAllItems"
-                        style="@style/SearchViewStyle"
+
+                    <ImageView
+                        android:id="@+id/btnFlashCamera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:tint="@color/white"
-                        app:searchIcon="@drawable/ic_flash_off_black_24dp" />
+                        android:background="@drawable/ic_flash_off_black_24dp" />
                     <!--                            <ImageView-->
                     <!--                                android:layout_width="20dp"-->
                     <!--                                android:layout_height="20dp"-->
@@ -104,7 +100,6 @@
                     <!--                                android:tint="@color/white" />-->
 
 
-                </RelativeLayout>
 
             </RelativeLayout>
 
