@@ -27,11 +27,10 @@
                 android:layout_weight="2">
 
                 <ImageView
+                    android:id="@+id/GoBackIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
+                    android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
                     android:tint="@color/white" />
 
@@ -46,7 +45,6 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:fontFamily="@font/roboto_bold"
-                android:textStyle="bold"
                 android:textColor="@color/white"/>
 
             <RelativeLayout
@@ -78,7 +76,8 @@
                     android:layout_height="60dp"
                     android:src="@drawable/waffle"
                     android:layout_marginTop="26dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="18dp"/>
                 <RelativeLayout
                     android:id="@+id/halal_quest"
                     android:layout_width="wrap_content"
@@ -100,106 +99,113 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
-            <TextView
+            <RelativeLayout
+                android:id="@+id/name_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Full name"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:fontFamily="@font/roboto_medium"
-                android:textStyle="bold"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:hint=" Full name"
-                android:inputType="text"
-                android:layout_marginLeft="1dp"
-                android:fontFamily="@font/roboto_medium"
-                android:paddingLeft="0dp"
-                android:textSize="16sp"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center"
-                android:id="@+id/fieldFullname"
-                />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Full name"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:hint=" Full name"
+                    android:inputType="text"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="16sp"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/fieldFullname"
+                    />
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <TextView
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/tv_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:fontFamily="@font/roboto_medium"
-                android:textStyle="bold"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:hint=" Email"
-                android:inputType="textEmailAddress"
-                android:layout_marginLeft="1dp"
-                android:fontFamily="@font/roboto_medium"
-                android:paddingLeft="0dp"
-                android:textSize="16sp"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center"
-                android:id="@+id/fieldEmail"
-                />
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/name_text_input"
+                android:layout_marginRight="10dp">
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:hint=" Email"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="16sp"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/fieldEmail"
+                    />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            </RelativeLayout>
 
-            <TextView
+            <RelativeLayout
+                android:id="@+id/addres_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Address"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:fontFamily="@font/roboto_medium"
-                android:textStyle="bold"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:hint=" Address"
-                android:inputType="textEmailAddress"
-                android:layout_marginLeft="1dp"
-                android:fontFamily="@font/roboto_medium"
-                android:paddingLeft="0dp"
-                android:textSize="16sp"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center"
-                android:id="@+id/fieldAddress"
-                />
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/tv_date"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:hint=" Address"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="16sp"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/fieldAddress"
+                    />
+
+            </RelativeLayout>
+
+
+
 
         </RelativeLayout>
 
     </LinearLayout>
     <Button
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:id="@+id/btnUpdateProfile"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -207,6 +213,7 @@
         android:text="Save"
         android:textStyle="bold"
         android:textSize="16dp"
+        android:fontFamily="@font/roboto_mmedium"
         android:textAllCaps="false"
         android:background="@drawable/btn"
         android:textColor="@color/white"

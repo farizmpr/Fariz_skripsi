@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/cover"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/halal"
@@ -27,7 +27,7 @@
                 android:layout_weight="2">
 
                 <ImageView
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
@@ -38,32 +38,13 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="25dp"
                 android:layout_weight="8"
-                android:fontFamily="@font/fontsfreenetproximanovabold"
+                android:textSize="20sp"
+                android:text="Add Items"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Add Item"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <RelativeLayout
-                android:id="@+id/lnl_share"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2">
-
-                <RelativeLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerInParent="true"
-                    android:elevation="2dp">
-
-
-                </RelativeLayout>
-
-            </RelativeLayout>
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/white"/>
 
             <RelativeLayout
                 android:id="@+id/lnl_favorite"
@@ -71,21 +52,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2">
 
-                <RelativeLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                <ImageView
+                    android:id="@+id/btnSendItems"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_centerInParent="true"
-                    android:elevation="2dp">
+                    android:src="@drawable/ic_send_black_24dp"
+                    android:tint="@color/white"/>
 
-                    <ImageView
-                        android:id="@+id/btnSendItems"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_send_black_24dp"
-                        android:tint="@color/white" />
-                </RelativeLayout>
             </RelativeLayout>
+
         </LinearLayout>
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -105,89 +81,147 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/name_text_input"
+                    <RelativeLayout
+                        android:id="@+id/food_code"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintEnabled="false"
-                        >
-                        <com.google.android.material.textfield.TextInputEditText
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Food Code"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="4dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:hint=" e.g. 899299411xxxx "
+                            android:inputType="text"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="16sp"
+                            android:layout_marginTop="25dp"
+                            android:layout_gravity="center"
                             android:id="@+id/foodCodeText"
-                            android:background="@color/white"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="e.g. 899299411xxxx "
-                            />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/food_manufacture"
-                        app:hintEnabled="false"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/food_name"
-                        android:layout_margin="10dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/foodManufactureText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:hint="Food Manufacture"
-
                             />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </RelativeLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/food_ingredients"
-                        app:hintEnabled="false"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/food_manufacture"
-                        android:layout_margin="10dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/foodIngredientText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Food Ingredient"
-                            android:background="@color/white"
-                            />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
+                    <RelativeLayout
                         android:id="@+id/food_name"
-                        app:hintEnabled="false"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/name_text_input"
-                        android:layout_margin="10dp">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/food_code">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/foodNameText"
-                            android:background="@color/white"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Food Name"
-
+                            android:text="Food Name"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="4dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:hint=" ITS Mine "
+                            android:inputType="text"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="16sp"
+                            android:layout_marginTop="25dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/foodNameText"
                             />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </RelativeLayout>
 
+
+                    <RelativeLayout
+                        android:id="@+id/food_manufacture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/food_name">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Food Manufacture"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="4dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:hint=" PT. Utama "
+                            android:inputType="text"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="16sp"
+                            android:layout_marginTop="25dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/foodManufactureText"
+                            />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/food_ingredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/food_manufacture">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Food Ingredient"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="4dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:hint=" Nitrate "
+                            android:inputType="text"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="16sp"
+                            android:layout_marginTop="25dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/foodIngredientText"
+                            />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/input_add">
+                    android:layout_below="@+id/input_add"
+                    android:layout_marginTop="10dp">
                     <RelativeLayout
                         android:id="@+id/pembatas_hasil"
                         android:layout_width="match_parent"
                         android:background="@color/grey_certif"
-                        android:layout_height="16dp"></RelativeLayout>
+                        android:layout_height="16dp"
+                        ></RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/judul_sertif"
                         android:layout_width="match_parent"
@@ -199,7 +233,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Halal Certificate"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
+                            android:layout_marginLeft="10dp"
                             android:textStyle="bold"/>
                     </RelativeLayout>
 
@@ -208,7 +244,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="128dp"
                         android:layout_below="@+id/judul_sertif"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:orientation="vertical">

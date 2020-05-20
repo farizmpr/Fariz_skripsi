@@ -13,7 +13,9 @@
         <view
             android:id="@+id/add_halal"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
+            android:layout_height="2dp"
+            android:background="@color/grey_certif"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,6 +30,7 @@
                 />
             <TextView
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/roboto_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add Halal Certificate"

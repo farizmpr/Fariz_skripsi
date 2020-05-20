@@ -52,6 +52,7 @@
                 android:maxLines="2"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
+                android:fontFamily="@font/roboto_bold"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/tv_source"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +69,7 @@
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/roboto_mmedium"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="CNN Indonesia"/>

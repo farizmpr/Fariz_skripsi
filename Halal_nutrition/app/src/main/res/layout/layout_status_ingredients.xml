@@ -33,6 +33,7 @@
                 android:text="World of Islam"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/desc" />
 
@@ -49,8 +50,8 @@
                     android:id="@+id/lblStatus"
                     android:layout_width="80dp"
                     android:layout_height="30dp"
+                    android:fontFamily="@font/roboto_mmedium"
                     android:text="Mushbooh"
-                    android:textStyle="bold"
                     android:gravity="center" />
 
             </RelativeLayout>
@@ -86,6 +87,7 @@
                         android:textColor="#000"
                         style="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:fontFamily="@font/roboto_mmedium"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toTopOf="@+id/phoneDesc" />
 

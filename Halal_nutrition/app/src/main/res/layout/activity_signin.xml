@@ -8,21 +8,55 @@
     android:orientation="vertical"
     android:padding="10dp"
     >
-
     <LinearLayout
+        android:id="@+id/cover"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_back_white"
+                android:tint="@color/halal" />
+
+        </RelativeLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:id="@+id/btnSignUp"
-            android:text="Sign Up"
-            android:textColor="@color/halal"
-            android:textSize="15dp" />
+            android:layout_weight="8"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/white"/>
+
+        <RelativeLayout
+            android:id="@+id/lnl_favorite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/btnSendItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Sign Up"
+                android:textSize="16dp"
+                android:textColor="@color/halal"
+                android:fontFamily="@font/roboto_medium"/>
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -34,35 +68,73 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_bold"
             android:text="Sign in"
             android:textColor="@color/halal"
             android:textSize="25dp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/username_login"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/tombolbtn"
-            android:elevation="5dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="15dp" />
+        <RelativeLayout
+            android:id="@+id/email_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/name_text_input"
+            android:layout_marginRight="10dp">
 
-        <EditText
-            android:id="@+id/password_login"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/tombolbtn"
-            android:elevation="5dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:paddingLeft="15dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:id="@+id/username_login"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/name_text_input"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:id="@+id/password_login"
+                />
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/LoginbtnProses"
@@ -70,7 +142,13 @@
             android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="16dp"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_mmedium"
             android:background="@drawable/btn"
+            android:backgroundTint="@color/halal"
             android:text="Sign In"
             android:textAllCaps="false"
             android:textColor="@color/white" />
