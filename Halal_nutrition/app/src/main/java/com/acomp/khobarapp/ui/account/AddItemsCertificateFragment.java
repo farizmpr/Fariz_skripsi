@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,17 +69,17 @@ public class AddItemsCertificateFragment extends Fragment {
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
 
-        TextInputEditText date = (TextInputEditText) rootView.findViewById(R.id.Date);
+        EditText date = (EditText) rootView.findViewById(R.id.Date);
         date.setOnClickListener(dateListenerClick);
         date.setOnFocusChangeListener(dateListener);
         Spinner mySpinner = (Spinner) rootView.findViewById(R.id.spinner1);
-        Spinner mySpinner2 = (Spinner) rootView.findViewById(R.id.spinner2);
+        Spinner mySpinner2 = (Spinner) rootView.findViewById(R.id.spinner_type);
 //        Map<String, String> languages = new HashMap<>();
 //        languages.put("hindi", "hi");
 //        languages.put("arabic", "ar");
 //        languages.put("english", "en");
 
-        ImageView btnSendCertificate = (ImageView) rootView.findViewById(R.id.btnSendCertificate);
+        TextView btnSendCertificate = (TextView) rootView.findViewById(R.id.btnSendCertificate);
         btnSendCertificate.setOnClickListener(sendCertificateListener);
         GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call call = getDataService.getCertificateStatus();
@@ -170,13 +171,13 @@ public class AddItemsCertificateFragment extends Fragment {
     private View.OnClickListener sendCertificateListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            TextInputEditText codeCertificate = (TextInputEditText) getActivity().findViewById(R.id.name_edit_text);
+            EditText codeCertificate = (EditText) getActivity().findViewById(R.id.name_edit_text);
             String code = codeCertificate.getText().toString();
             if (code.matches("")) {
                 codeCertificate.requestFocus();
                 return;
             }
-            TextInputEditText dateCertificate = (TextInputEditText) getActivity().findViewById(R.id.Date);
+            EditText dateCertificate = (EditText) getActivity().findViewById(R.id.Date);
             String date = dateCertificate.getText().toString();
             if (date.matches("")) {
                 dateCertificate.requestFocus();
@@ -185,10 +186,10 @@ public class AddItemsCertificateFragment extends Fragment {
             Spinner mySpinner = (Spinner) getActivity().findViewById(R.id.spinner1);
             String selectedStatus = mySpinner.getSelectedItem().toString();
             Integer selectStatus = mapStatusCert.get(selectedStatus);
-            Spinner mySpinner2 = (Spinner) getActivity().findViewById(R.id.spinner2);
+            Spinner mySpinner2 = (Spinner) getActivity().findViewById(R.id.spinner_type);
             String selectedType = mySpinner2.getSelectedItem().toString();
             Integer selectType = mapTypeCert.get(selectedType);
-            TextInputEditText halalCertificate = (TextInputEditText) getActivity().findViewById(R.id.halal_org);
+            EditText halalCertificate = (EditText) getActivity().findViewById(R.id.halal_org);
             String halal = halalCertificate.getText().toString();
             if (halal.matches("")) {
                 halalCertificate.requestFocus();
@@ -228,7 +229,7 @@ public class AddItemsCertificateFragment extends Fragment {
         picker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
             public void onPositiveButtonClick(Long selectedDate) {
-                TextInputEditText date = (TextInputEditText) getActivity().findViewById(R.id.Date);
+                EditText date = (EditText) getActivity().findViewById(R.id.Date);
 
                 // Get the offset from our timezone and UTC.
                 TimeZone timeZoneUTC = TimeZone.getDefault();

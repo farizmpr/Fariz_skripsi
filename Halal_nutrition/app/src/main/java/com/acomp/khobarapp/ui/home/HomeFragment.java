@@ -26,6 +26,7 @@ import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.items.HalalItemsFragment;
+import com.acomp.khobarapp.ui.items.HalalVenuesFragment;
 import com.acomp.khobarapp.ui.items.ScanItemsDetailFragment;
 import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
@@ -62,6 +63,9 @@ public class HomeFragment extends Fragment {
 
         CardView btnScanItems = (CardView) rootView.findViewById(R.id.btnScanItems);
         btnScanItems.setOnClickListener(btnScanItemsListener);
+
+        CardView btnHalalVenues = (CardView) rootView.findViewById(R.id.btnHalalVenues);
+        btnHalalVenues.setOnClickListener(btnHalalVenuesListener);
 //        Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);
 //        btnUpdatePassword.setOnClickListener(updatePasswordListener);
 
@@ -124,6 +128,13 @@ public class HomeFragment extends Fragment {
         }
     };
 
-
+    private View.OnClickListener btnHalalVenuesListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            HalalVenuesFragment halalVenuesFragment = new HalalVenuesFragment();
+            fragmentTransaction.replace(R.id.fragment_content, halalVenuesFragment);
+            fragmentTransaction.commit();
+        }
+    };
 
 }

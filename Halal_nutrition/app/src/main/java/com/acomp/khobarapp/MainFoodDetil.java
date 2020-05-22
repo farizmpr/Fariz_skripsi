@@ -32,7 +32,7 @@ public class MainFoodDetil extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        mList1 = findViewById(R.id.feature_recycler);
+//        mList1 = findViewById(R.id.feature_recycler);
         appList = new ArrayList<>();
 
         appList.add(new fooddetil(R.drawable.waffle_background,"youtube",80));

@@ -23,6 +23,7 @@
                 android:layout_height="220dp">
 
                 <ImageView
+                    android:id="@+id/venuesImageHead"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:src="@drawable/splash6"
@@ -57,6 +58,7 @@
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/venuesTitleHead"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="8"
@@ -122,11 +124,12 @@
                                         android:layout_centerVertical="true"
                                         android:clickable="false"
                                         android:numStars="1"
-                                        android:rating="3.5"
+                                        android:rating="5"
                                         android:stepSize="1"
                                         android:theme="@style/Yellow.Small.AppCompatRatingBar" />
 
                                     <TextView
+                                        android:id="@+id/txtRatingStar"
                                         android:layout_width="wrap_content"
                                         android:layout_centerVertical="true"
                                         android:layout_centerHorizontal="true"
@@ -163,6 +166,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center">
                                     <TextView
+                                        android:id="@+id/strScheduleStatusHead"
                                         android:layout_width="wrap_content"
                                         android:layout_centerVertical="true"
                                         android:layout_centerHorizontal="true"
@@ -214,6 +218,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/venuesTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -234,6 +239,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/venuesAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -255,6 +261,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/venuesCallPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -297,6 +304,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/venuesMaps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -355,6 +363,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/descStatusSchedule"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -388,6 +397,7 @@
                         app:fontFamily="@font/roboto_medium" />
 
                     <TextView
+                        android:id="@+id/strTotalImage"
                         android:layout_width="0dp"
                         android:gravity="right"
                         android:layout_height="wrap_content"
@@ -401,7 +411,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/feature_recycler"
+                    android:id="@+id/listFoodVenues"
                     android:layout_height="160dp"
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"

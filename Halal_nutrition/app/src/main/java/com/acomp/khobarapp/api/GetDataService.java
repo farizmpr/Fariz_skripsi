@@ -5,6 +5,7 @@ import com.acomp.khobarapp.model.UserModel;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface GetDataService {
@@ -54,6 +56,12 @@ public interface GetDataService {
 
     @GET("item")
     Call<JsonObject> getListFood(@Query("page") Integer page,@Query("search") String search,@Query("status") Integer status);
+
+    @GET("venues")
+    Call<JsonObject> getListVenues(@Query("page") Integer page,@Query("search") String search,@Query("status") Integer status);
+
+    @GET("venues/{id}/schedule/now")
+    Call<JsonObject> getVenuesScheduleNow(@Path("id") BigInteger id);
 
     @GET("item")
     Call<JsonObject> getDetailFood(@Query("key") String key,@Query("value") String value);

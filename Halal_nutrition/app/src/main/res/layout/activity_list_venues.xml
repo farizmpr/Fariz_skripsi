@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/acivity_list_food"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryTernary"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/toolbar_items"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/halal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_items">
+
+        <RelativeLayout
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_back_white"
+                android:tint="@color/white" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/titleMenuBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="6"
+            android:fontFamily="@font/fontsfreenetproximanovabold"
+            android:gravity="center"
+            android:text="Halal Venues"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+        <RelativeLayout
+            android:id="@+id/lnl_favorite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="end">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/btnViewSearchAllItems"
+                    style="@style/SearchViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/white"
+                    app:searchIcon="@drawable/ic_search_black_24dp" />
+                <!--                            <ImageView-->
+                <!--                                android:layout_width="20dp"-->
+                <!--                                android:layout_height="20dp"-->
+                <!--                                android:layout_centerInParent="true"-->
+                <!--                                android:src="@drawable/ic_search_black_24dp"-->
+                <!--                                android:tint="@color/white" />-->
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewHalalItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_items"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_venues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar_items"
+            android:layout_marginLeft="10dp"
+            android:fadeScrollbars="false"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintEnd_toEndOf="@id/toolbar_items"
+            app:layout_constraintStart_toStartOf="@id/toolbar_items"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_items"
+            tools:listitem="@layout/halal_venues_item" />
+
+
+    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

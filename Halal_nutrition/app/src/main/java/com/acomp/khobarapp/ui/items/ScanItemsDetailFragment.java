@@ -185,7 +185,7 @@ layFlashCamera.setOnClickListener(layFlashCameraListener);
         Log.v("TEXT_2 CAMERA", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
 //        Toast.makeText(getActivity(), "Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_LONG).show();
 //        mScannerView.resumeCameraPreview(this);
-        getListFood(rawResult.getText());
+        getListVenues(rawResult.getText());
 
     }
 
@@ -210,7 +210,7 @@ layFlashCamera.setOnClickListener(layFlashCameraListener);
 
     }
 
-    public void getListFood(String code) {
+    public void getListVenues(String code) {
         progressDoalog = new ProgressDialog(getActivity());
         progressDoalog.setMessage("Loading....");
         progressDoalog.show();
