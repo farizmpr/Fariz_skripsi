@@ -106,22 +106,22 @@ public class AddItemsFragment extends Fragment {
         ImageView btnSendItems = (ImageView) rootView.findViewById(R.id.btnSendItems);
         btnSendItems.setOnClickListener(sendItemsListener);
 
-        TextInputEditText foodCodeText = (TextInputEditText) rootView.findViewById(R.id.foodCodeText);
+        EditText foodCodeText = (EditText) rootView.findViewById(R.id.foodCodeText);
         String foodCode = foodCodeText.getText().toString();
         if (itemsModel.getCode() != "") {
             foodCodeText.setText(itemsModel.getCode());
         }
-        TextInputEditText foodNameText = (TextInputEditText) rootView.findViewById(R.id.foodNameText);
+        EditText foodNameText = (EditText) rootView.findViewById(R.id.foodNameText);
         String foodName = foodNameText.getText().toString();
         if (itemsModel.getName() != "") {
             foodNameText.setText(itemsModel.getName());
         }
-        TextInputEditText foodManufactureText = (TextInputEditText) rootView.findViewById(R.id.foodManufactureText);
+        EditText foodManufactureText = (EditText) rootView.findViewById(R.id.foodManufactureText);
         String foodManufacture = foodManufactureText.getText().toString();
         if (itemsModel.getManufacture() != "") {
             foodManufactureText.setText(itemsModel.getManufacture());
         }
-        TextInputEditText foodIngredientText = (TextInputEditText) rootView.findViewById(R.id.foodIngredientText);
+        EditText foodIngredientText = (EditText) rootView.findViewById(R.id.foodIngredientText);
         String foodIngredient = foodIngredientText.getText().toString();
         if (itemsModel.getIngredient() != "") {
             foodIngredientText.setText(itemsModel.getIngredient());
@@ -137,25 +137,25 @@ public class AddItemsFragment extends Fragment {
 
     private View.OnClickListener sendItemsListener = new View.OnClickListener() {
         public void onClick(View v) {
-            TextInputEditText foodCodeText = (TextInputEditText) getActivity().findViewById(R.id.foodCodeText);
+            EditText foodCodeText = (EditText) getActivity().findViewById(R.id.foodCodeText);
             String foodCode = foodCodeText.getText().toString();
             if (foodCode.matches("")) {
                 foodCodeText.requestFocus();
                 return;
             }
-            TextInputEditText foodNameText = (TextInputEditText) getActivity().findViewById(R.id.foodNameText);
+            EditText foodNameText = (EditText) getActivity().findViewById(R.id.foodNameText);
             String foodName = foodNameText.getText().toString();
             if (foodName.matches("")) {
                 foodNameText.requestFocus();
                 return;
             }
-            TextInputEditText foodManufactureText = (TextInputEditText) getActivity().findViewById(R.id.foodManufactureText);
+            EditText foodManufactureText = (EditText) getActivity().findViewById(R.id.foodManufactureText);
             String foodManufacture = foodManufactureText.getText().toString();
             if (foodManufacture.matches("")) {
                 foodManufactureText.requestFocus();
                 return;
             }
-            TextInputEditText foodIngredientText = (TextInputEditText) getActivity().findViewById(R.id.foodIngredientText);
+            EditText foodIngredientText = (EditText) getActivity().findViewById(R.id.foodIngredientText);
             String foodIngredient = foodIngredientText.getText().toString();
             if (foodIngredient.matches("")) {
                 foodIngredientText.requestFocus();

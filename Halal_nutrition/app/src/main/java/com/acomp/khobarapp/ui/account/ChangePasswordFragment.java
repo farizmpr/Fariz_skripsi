@@ -46,7 +46,7 @@ public class ChangePasswordFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.activity_change_password, container, false);
 
-        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.GoBackIcon);
+        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener );
 
         Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);
