@@ -38,6 +38,7 @@ import com.acomp.khobarapp.ui.adapter.ListFoodBaseAdapter;
 import com.acomp.khobarapp.ui.home.HomeFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.zxing.Result;
 import com.squareup.picasso.Picasso;
@@ -81,9 +82,11 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
         RelativeLayout rl = (RelativeLayout) rootView.findViewById(R.id.scannerLayout);
         rl.addView(mScannerView);
 
+        MaterialButton tabsOCRBtn = (MaterialButton) rootView.findViewById(R.id.tabsOCR);
+        tabsOCRBtn.setOnClickListener(tabsOCRBtnListener);
 //        mScannerView.startCamera();
         RelativeLayout layFlashCamera = (RelativeLayout) rootView.findViewById(R.id.layFlashCamera);
-layFlashCamera.setOnClickListener(layFlashCameraListener);
+        layFlashCamera.setOnClickListener(layFlashCameraListener);
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
 //        navBar.setVisibility(View.GONE);
         return rootView;
@@ -159,6 +162,15 @@ layFlashCamera.setOnClickListener(layFlashCameraListener);
             fragmentTransaction.commit();
         }
     };
+    private View.OnClickListener tabsOCRBtnListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ScanOCRItemsDetailFragment accountFragment = new ScanOCRItemsDetailFragment();
+            fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+            fragmentTransaction.commit();
+        }
+    };
 
     private View.OnClickListener layFlashCameraListener = new View.OnClickListener() {
         @Override
@@ -167,7 +179,7 @@ layFlashCamera.setOnClickListener(layFlashCameraListener);
 //            Drawable getBackG = btnFlashCamera.getBackground();
 //            Log.d("DEBUG DRAW","D="+getBackG.toString());
 
-            if(mScannerView.getFlash() == true){
+            if (mScannerView.getFlash() == true) {
                 mScannerView.setFlash(false);
                 btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_off_black_24dp));
             } else {

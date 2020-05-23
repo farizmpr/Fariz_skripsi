@@ -68,7 +68,7 @@ dependencies {
 
 //google analytics
     implementation 'com.google.android.gms:play-services-analytics:16.0.6'
-
+    implementation 'com.google.android.gms:play-services-vision:11.0.4'
 //map utils
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     testImplementation 'junit:junit:4.12'

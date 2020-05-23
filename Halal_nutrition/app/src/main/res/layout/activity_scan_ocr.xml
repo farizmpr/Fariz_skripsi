@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/toolbar_items"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/halal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_items">
+
+            <RelativeLayout
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_back_white"
+                    android:tint="@color/white" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tabsBarcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/halal"
+                    app:strokeColor="@color/white"
+                    android:textColor="@color/white"
+                    app:cardElevation="2dp"
+                    app:shapeAppearance="@style/allLeftRadiusBtn"
+                    android:text="Barcode" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tabsOCR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_bg_stroke"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/halal"
+                    app:strokeColor="@color/halal"
+                    app:shapeAppearance="@style/allRightRadiusBtn"
+                    android:text="Product" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layFlashCamera"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_vertical|center">
+
+
+
+                    <ImageView
+                        android:id="@+id/btnFlashCamera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/white"
+                        android:background="@drawable/ic_flash_off_black_24dp" />
+                    <!--                            <ImageView-->
+                    <!--                                android:layout_width="20dp"-->
+                    <!--                                android:layout_height="20dp"-->
+                    <!--                                android:layout_centerInParent="true"-->
+                    <!--                                android:src="@drawable/ic_search_black_24dp"-->
+                    <!--                                android:tint="@color/white" />-->
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="5"
+            tools:context="com.tuts.prakash.simpleocr.MainActivity">
+            <SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4" />
+            <TextView
+                android:id="@+id/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>
