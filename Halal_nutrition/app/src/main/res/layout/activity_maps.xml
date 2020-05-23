@@ -59,6 +59,7 @@
 
         <LinearLayout
             android:id="@+id/layBottomMaps"
+            android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="123dp"
             android:orientation="vertical">
@@ -71,6 +72,23 @@
                 android:gravity="center"
                 android:text="Halal Venues"
                 android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/goToMaps"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn"
+                android:backgroundTint="@color/halal"
+                android:fontFamily="@font/roboto_mmedium"
+                android:text="Open Maps"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
