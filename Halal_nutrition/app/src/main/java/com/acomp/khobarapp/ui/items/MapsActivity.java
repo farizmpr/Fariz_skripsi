@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.acomp.khobarapp.model.VenuesModel;
 import com.acomp.khobarapp.ui.adapter.DirectionsJSONParser;
+import com.acomp.khobarapp.utils.GPSTracker;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -163,7 +164,6 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         goToMapsBTN.setOnClickListener(goToMapsListener);
 
 
-
     }
 
     public void openWebURL(String inURL) {
@@ -210,14 +210,14 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         // get the best provider depending on the criteria
         provider = mLocationManager.getBestProvider(criteria, false);
 
-        /*
+
         mLocationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 Log.d("MORIGIN START", "OK");
                 mOrigin = new LatLng(location.getLatitude(), location.getLongitude());
                 Log.d("MORIGIN START", "OK 2");
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 12));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 10));
 
 
                 if (mOrigin != null && mDestination != null) {
@@ -244,43 +244,60 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                         Toast.LENGTH_SHORT).show();
             }
         };
-*/
+
         int currentApiVersion = Build.VERSION.SDK_INT;
 //        if (currentApiVersion >= Build.VERSION_CODES.M) {
 
         if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_DENIED) {
 //                mMap.setMyLocationEnabled(true);
             Log.d("MORIGIN START", "SECOND");
-//                mLocationManager.requestLocationUpdates(provider, 2000, 0, mLocationListener);
+            mLocationManager.requestLocationUpdates(provider, 2000, 0, mLocationListener);
 /*
-                mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-                    @Override
-                    public void onMapLongClick(LatLng latLng) {
-                        mDestination = latLng;
-                        mMap.clear();
-                        mMarkerOptions = new MarkerOptions().position(mDestination).title("Destination");
-                        mMap.addMarker(mMarkerOptions);
-                        if (mOrigin != null && mDestination != null)
-                            drawRoute();
-                    }
-                });
-*/
+            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                @Override
+                public void onMapLongClick(LatLng latLng) {
+                    mDestination = latLng;
+                    mMap.clear();
+                    mMarkerOptions = new MarkerOptions().position(mDestination).title("Destination");
+                    mMap.addMarker(mMarkerOptions);
+                    if (mOrigin != null && mDestination != null)
+                        drawRoute();
+                }
+            });
+
+ */
+
         } else {
             requestPermissions(new String[]{
                     android.Manifest.permission.ACCESS_FINE_LOCATION
             }, 100);
         }
 //        }
-        Location location = mLocationManager.getLastKnownLocation(provider);
-        mOrigin = new LatLng(location.getLatitude(), location.getLongitude());
-//        Log.d("MORIGIN START", "OK 2");
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 9));
+        GPSTracker gpsTracker = new GPSTracker(getActivity());
 
-
-        if (mOrigin != null && mDestination != null) {
+        if (gpsTracker.getIsGPSTrackingEnabled()) {
+//            String stringLatitude = String.valueOf(gpsTracker.latitude);
+//            textview = (TextView) findViewById(R.id.fieldLatitude);
+//            textview.setText(stringLatitude);
+//
+//            String stringLongitude = String.valueOf(gpsTracker.longitude);
+//            textview = (TextView) findViewById(R.id.fieldLongitude);
+//            textview.setText(stringLongitude);
+            mOrigin = new LatLng(gpsTracker.latitude, gpsTracker.longitude);
+        Log.d("LONGLAT", "LAT="+gpsTracker.getLatitude()+"&LONG="+gpsTracker.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 9));
+//
+//
+            if (mOrigin != null && mDestination != null) {
 //            Log.d("MORIGIN START", "OK NEXT");
-            drawRoute();
+                drawRoute();
+            }
         }
+//        Location location = mLocationManager.getLastKnownLocation(provider);
+//        if(location != null){
+//
+//        }
+
 //        String a=""+location.getLatitude();
 //        Toast.makeText(getActivity().getApplicationContext(), a,  Toast.LENGTH_SHORT).show();
 

@@ -2,9 +2,14 @@ package com.acomp.khobarapp.ui.items;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,6 +69,8 @@ public class HalalVenuesDetailFragment extends Fragment {
     private static final int PERMISSION_REQUEST_CODE = 200;
     ListFoodVenuesBaseAdapter listFoodVenuesBaseAdapter = null;
     ArrayList<AttachmentModel> listVenuesFoodModel = null;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -270,11 +277,49 @@ public class HalalVenuesDetailFragment extends Fragment {
     }
 
     private View.OnClickListener venuesMapsListener = new View.OnClickListener() {
+
         @Override
         public void onClick(View v) {
-            venuesGoMaps();
+            final LocationManager manager = (LocationManager) getActivity().getSystemService( Context.LOCATION_SERVICE );
+            if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+                buildAlertMessageNoGps();
+            } else {
+                venuesGoMaps();
+            }
+
         }
     };
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        final LocationManager manager = (LocationManager) getActivity().getSystemService( Context.LOCATION_SERVICE );
+                        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+                            getActivity().startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        } else {
+                            venuesGoMaps();
+                        }
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener( new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
+                alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
+            }
+        });
+        alert.show();
+    }
 
     public void venuesGoMaps(){
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
