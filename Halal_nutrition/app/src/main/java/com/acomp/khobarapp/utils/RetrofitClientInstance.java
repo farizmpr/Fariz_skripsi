@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
 //    private static final String BASE_URL = "http://192.168.42.165/skripsi/purnomo/halal-nutrition-api/public/api/"; //LOCAL
-    private static final String BASE_URL = "http://smkpgri35.sch.id/halal_nutrition/public/api/";
+    public static final String BASE_URL = "http://smkpgri35.sch.id/halal_nutrition/public/api/";
 
 
     public static Retrofit getRetrofitInstance() {

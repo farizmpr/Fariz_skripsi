@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.acomp.khobarapp.model.VenuesModel;
 import com.acomp.khobarapp.ui.adapter.DirectionsJSONParser;
+import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,7 +42,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.acomp.khobarapp.R;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.button.MaterialButton;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -53,6 +56,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
@@ -68,7 +72,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     ArrayList<LatLng> markerPoints;
     private Criteria criteria;
     private String provider;
-
+    private View rootViews = null;
+    private String subTime = "";
+    private String subDistance = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +91,10 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
 
 //        map = mapFragment.getMap();
+        this.rootViews = rootView;
+//        if (rootViews != null) {
 
+//        }
         return rootView;
     }
 
@@ -107,7 +116,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
             // Destination of route
             String str_dest = mDestination.latitude + "," + mDestination.longitude;
-            String url = "https://www.google.com/maps/dir/"+str_origin+"/"+str_dest;
+            String url = "https://www.google.com/maps/dir/" + str_origin + "/" + str_dest;
             openWebURL(url);
         }
     };
@@ -147,18 +156,22 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         LatLng sydney = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(sydney).title(venuesModel.getName()));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12.0f));
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12.0f));
 
 
-        Button closeBtn = (Button) getActivity().findViewById(R.id.goToMaps);
-        closeBtn.setOnClickListener(goToMapsListener);
+        MaterialButton goToMapsBTN = (MaterialButton) getActivity().findViewById(R.id.goToMaps);
+        goToMapsBTN.setOnClickListener(goToMapsListener);
+
+
 
     }
-    public void openWebURL( String inURL ) {
-        Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse( inURL ) );
 
-        startActivity( browse );
+    public void openWebURL(String inURL) {
+        Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(inURL));
+
+        startActivity(browse);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
@@ -192,10 +205,11 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         criteria.setAccuracy(Criteria.ACCURACY_COARSE);   //default
 
         // user defines the criteria
-
+        mMap.setMyLocationEnabled(true);
         criteria.setCostAllowed(false);
         // get the best provider depending on the criteria
         provider = mLocationManager.getBestProvider(criteria, false);
+
         /*
         mLocationListener = new LocationListener() {
             @Override
@@ -234,9 +248,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         int currentApiVersion = Build.VERSION.SDK_INT;
 //        if (currentApiVersion >= Build.VERSION_CODES.M) {
 
-            if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_DENIED) {
+        if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_DENIED) {
 //                mMap.setMyLocationEnabled(true);
-                Log.d("MORIGIN START", "SECOND");
+            Log.d("MORIGIN START", "SECOND");
 //                mLocationManager.requestLocationUpdates(provider, 2000, 0, mLocationListener);
 /*
                 mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
@@ -251,22 +265,22 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                     }
                 });
 */
-            } else {
-                requestPermissions(new String[]{
-                        android.Manifest.permission.ACCESS_FINE_LOCATION
-                }, 100);
-            }
+        } else {
+            requestPermissions(new String[]{
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+            }, 100);
+        }
 //        }
         Location location = mLocationManager.getLastKnownLocation(provider);
         mOrigin = new LatLng(location.getLatitude(), location.getLongitude());
 //        Log.d("MORIGIN START", "OK 2");
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 9));
 
 
-//        if (mOrigin != null && mDestination != null) {
-////            Log.d("MORIGIN START", "OK NEXT");
-//            drawRoute();
-//        }
+        if (mOrigin != null && mDestination != null) {
+//            Log.d("MORIGIN START", "OK NEXT");
+            drawRoute();
+        }
 //        String a=""+location.getLatitude();
 //        Toast.makeText(getActivity().getApplicationContext(), a,  Toast.LENGTH_SHORT).show();
 
@@ -294,17 +308,17 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
 
         // Key
-        String key = "key=" + getString(R.string.google_maps_key);
-
+//        String key = "key=" + getString(R.string.google_maps_key);
+        String key = "key=" + getString(R.string.google_maps_key_2);
         // Building the parameters to the web service
-        String parameters = str_origin + "&" + str_dest + "&" + key+"&sensor=true";
+        String parameters = str_origin + "&" + str_dest + "&" + key + "&sensor=true";
 
         // Output format
         String output = "json";
 
         // Building the url to the web service
-        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
-
+//        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
+        String url = RetrofitClientInstance.BASE_URL + "venues/directions?" + parameters;
         return url;
     }
 
@@ -394,13 +408,36 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
 
             JSONObject jObject;
+            JSONArray jsonArray;
+            JSONArray jsonArray2;
             List<List<HashMap<String, String>>> routes = null;
 
             try {
                 jObject = new JSONObject(jsonData[0]);
                 DirectionsJSONParser parser = new DirectionsJSONParser();
-
+                String distanceText = "";
+                Integer distanceTimeVal = 0;
+                for (int i = 0; i < jObject.getJSONArray("routes").length(); i++) {
+//                    jsonArray = jObject.getJSONArray("routes");
+                    JSONObject objects = jObject.getJSONArray("routes").optJSONObject(i);
+                    for (int j = 0; j < objects.getJSONArray("legs").length(); j++) {
+                        JSONObject objects2 = objects.getJSONArray("legs").optJSONObject(i);
+                        distanceText = objects2.getJSONObject("distance").getString("text");
+                        distanceTimeVal = objects2.getJSONObject("duration").getInt("value");
+                        Log.d("distanceText", distanceText + "=" + distanceTimeVal);
+                    }
+                }
+//                long minutes = TimeUnit.MILLISECONDS
+//                        .toMinutes(distanceTimeVal);
+                Integer numberOfMinutes = 0;
+                if (distanceTimeVal > 0) {
+                    numberOfMinutes = ((distanceTimeVal % 86400) % 3600) / 60;
+                }
+                subDistance = distanceText;
+                subTime = numberOfMinutes.toString();
                 // Starts parsing data
+
+
                 routes = parser.parse(jObject);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -429,8 +466,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                     double lat = Double.parseDouble(point.get("lat"));
                     double lng = Double.parseDouble(point.get("lng"));
                     LatLng position = new LatLng(lat, lng);
-
+//                    double lng = point.get("").j;
                     points.add(position);
+
                 }
 
                 // Adding all the points in the route to LineOptions
@@ -445,7 +483,11 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                     mPolyline.remove();
                 }
                 mPolyline = mMap.addPolyline(lineOptions);
+                TextView txtSubTime = (TextView) getActivity().findViewById(R.id.txtSubTime);
+                txtSubTime.setText(subTime + " min");
 
+                TextView txtSubDistance = (TextView) getActivity().findViewById(R.id.txtSubDistance);
+                txtSubDistance.setText(subDistance);
             } else
                 Toast.makeText(getActivity().getApplicationContext(), "No route is found", Toast.LENGTH_LONG).show();
         }

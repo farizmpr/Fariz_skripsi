@@ -59,10 +59,10 @@
 
         <LinearLayout
             android:id="@+id/layBottomMaps"
-            android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="123dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/addressOnMaps"
@@ -70,25 +70,140 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fontsfreenetproximanovabold"
                 android:gravity="center"
-                android:text="Halal Venues"
+                android:text="Address"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/goToMaps"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/btn"
-                android:backgroundTint="@color/halal"
-                android:fontFamily="@font/roboto_mmedium"
-                android:text="Open Maps"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtHeadTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:gravity="left"
+                        android:text="TIME"
+                        android:paddingBottom="10dp"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/txtSubTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:gravity="left"
+                        android:layout_below="@+id/txtHeadTime"
+                        android:text="25 MIN"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtHeadDistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:gravity="left"
+                        android:text="DISTANCE"
+                        android:paddingBottom="10dp"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/txtSubDistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:gravity="left"
+                        android:layout_below="@+id/txtHeadDistance"
+                        android:text="9.4 mi"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtHeadMethod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:gravity="left"
+                        android:text="METHOD"
+                        android:paddingBottom="10dp"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/txtSubMethod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:gravity="left"
+                        android:layout_below="@+id/txtHeadMethod"
+                        android:text="Car"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:paddingLeft="10dp">
+                    <!--                    <com.google.android.material.button.MaterialButton-->
+                    <!--                        android:layout_width="50dp"-->
+                    <!--                        android:layout_height="50dp"-->
+                    <!--                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"-->
+                    <!--                        app:icon="@drawable/ic_arrow_forward_black_24dp"-->
+                    <!--                        app:iconSize="24dp"-->
+                    <!--                        app:iconGravity="textStart"-->
+                    <!--                        android:padding="0dp"-->
+                    <!--                        app:iconPadding="0dp"-->
+                    <!--                        android:insetLeft="0dp"-->
+                    <!--                        android:insetTop="0dp"-->
+                    <!--                        android:insetRight="0dp"-->
+                    <!--                        android:insetBottom="0dp"-->
+                    <!--&lt;!&ndash;                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"&ndash;&gt;-->
+                    <!--                        />-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/goToMaps"
+                        style="@style/AppTheme.RoundedCornerMaterialButton"
+                        android:layout_width="55dp"
+                        android:layout_height="65dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/btn_oval_bg"
+                        android:backgroundTint="@color/halal"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        app:cornerRadius="30dp"
+                        app:icon="@drawable/ic_arrow_forward_black_24dp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
