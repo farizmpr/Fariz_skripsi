@@ -60,8 +60,10 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:src="@drawable/product"/>
+                    android:src="@drawable/search_new"/>
                 <TextView
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -89,10 +91,12 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:src="@drawable/scan"/>
+                    android:src="@drawable/scan_new"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
                     android:text="Scan Product"/>
             </LinearLayout>
@@ -118,11 +122,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:src="@drawable/location"/>
+                    android:src="@drawable/location_new"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Halal Venues"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
