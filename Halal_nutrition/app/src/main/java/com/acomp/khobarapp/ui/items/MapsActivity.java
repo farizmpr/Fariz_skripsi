@@ -1,6 +1,7 @@
 package com.acomp.khobarapp.ui.items;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
+import com.google.android.gms.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -33,6 +34,12 @@ import com.acomp.khobarapp.model.VenuesModel;
 import com.acomp.khobarapp.ui.adapter.DirectionsJSONParser;
 import com.acomp.khobarapp.utils.GPSTracker;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.internal.ConnectionCallbacks;
+import com.google.android.gms.common.api.internal.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -59,7 +66,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class MapsActivity extends Fragment implements OnMapReadyCallback {
+public class MapsActivity extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
     private GoogleMap mMap;
     private GoogleMap map;
@@ -76,6 +85,11 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     private View rootViews = null;
     private String subTime = "";
     private String subDistance = "";
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
+    private double currentLatitude;
+    private double currentLongitude;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,9 +101,25 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         TextView addressOnMaps = (TextView) rootView.findViewById(R.id.addressOnMaps);
         addressOnMaps.setText(venuesModel.getAddress());
 
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                // The next two lines tell the new client that “this” current class will handle connection stuff
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                //fourth line adds the LocationServices API endpoint from GooglePlayServices
+                .addApi(LocationServices.API)
+                .build();
+
+        // Create the LocationRequest object
+        mLocationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(10 * 1000)        // 10 seconds, in milliseconds
+                .setFastestInterval(1 * 1000); // 1 second, in milliseconds
+
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
 
 //        map = mapFragment.getMap();
         this.rootViews = rootView;
@@ -98,6 +128,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 //        }
         return rootView;
     }
+
 
     private View.OnClickListener goBackListener = new View.OnClickListener() {
         @Override
@@ -210,7 +241,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         // get the best provider depending on the criteria
         provider = mLocationManager.getBestProvider(criteria, false);
 
-
+/*
         mLocationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -244,14 +275,14 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                         Toast.LENGTH_SHORT).show();
             }
         };
-
+*/
         int currentApiVersion = Build.VERSION.SDK_INT;
 //        if (currentApiVersion >= Build.VERSION_CODES.M) {
 
         if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_DENIED) {
 //                mMap.setMyLocationEnabled(true);
             Log.d("MORIGIN START", "SECOND");
-            mLocationManager.requestLocationUpdates(provider, 2000, 0, mLocationListener);
+//            mLocationManager.requestLocationUpdates(provider, 2000, 0, mLocationListener);
 /*
             mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                 @Override
@@ -275,23 +306,8 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 //        }
         GPSTracker gpsTracker = new GPSTracker(getActivity());
 
-        if (gpsTracker.getIsGPSTrackingEnabled()) {
-//            String stringLatitude = String.valueOf(gpsTracker.latitude);
-//            textview = (TextView) findViewById(R.id.fieldLatitude);
-//            textview.setText(stringLatitude);
-//
-//            String stringLongitude = String.valueOf(gpsTracker.longitude);
-//            textview = (TextView) findViewById(R.id.fieldLongitude);
-//            textview.setText(stringLongitude);
-            mOrigin = new LatLng(gpsTracker.latitude, gpsTracker.longitude);
-        Log.d("LONGLAT", "LAT="+gpsTracker.getLatitude()+"&LONG="+gpsTracker.getLongitude());
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 9));
-//
-//
-            if (mOrigin != null && mDestination != null) {
-//            Log.d("MORIGIN START", "OK NEXT");
-                drawRoute();
-            }
+        if (gpsTracker.getIsGPSTrackingEnabled())   {
+
         }
 //        Location location = mLocationManager.getLastKnownLocation(provider);
 //        if(location != null){
@@ -378,6 +394,51 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
             urlConnection.disconnect();
         }
         return data;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d("LONGLAT2", "LAT="+location.getLatitude()+"&LONG="+location.getLongitude());
+        Toast.makeText(getActivity(), location.getLatitude() + " WORKS " + location.getLongitude() + "", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+        if (location == null) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, (com.google.android.gms.location.LocationListener) getActivity());
+
+        } else {
+            //If everything went fine lets get latitude and longitude
+            currentLatitude = location.getLatitude();
+            currentLongitude = location.getLongitude();
+            mOrigin = new LatLng(currentLatitude, currentLongitude);
+//            Log.d("LONGLAT", "LAT="+gpsTracker.getLatitude()+"&LONG="+gpsTracker.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 9));
+            if (mOrigin != null && mDestination != null) {
+                drawRoute();
+            }
+//            Toast.makeText(getActivity(), currentLatitude + " WORKS " + currentLongitude + "", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Now lets connect to the API
+        mGoogleApiClient.connect();
     }
 
     /**
