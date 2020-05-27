@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="name_transprant">#8F000000</color>
     <color name="semitransparent">#9A000000</color>
     <color name="status">#994FBA6E</color>
     <color name="status_d">#FF1818</color>
