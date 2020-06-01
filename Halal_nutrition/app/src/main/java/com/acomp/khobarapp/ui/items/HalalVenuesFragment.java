@@ -54,6 +54,7 @@ public class HalalVenuesFragment extends Fragment {
     public Integer type = 0;
     public Integer total = 0;
     BottomNavigationView bottomNavigationView = null;
+    RelativeLayout layItemsNotFound;
 
     ListVenuesBaseAdapter listVenuesBaseAdapter = null;
     ArrayList<VenuesModel> listVenuesModel = null;
@@ -145,6 +146,8 @@ public class HalalVenuesFragment extends Fragment {
                 }
             }
         });
+        layItemsNotFound = (RelativeLayout) rootView.findViewById(R.id.layItemsNotFound);
+        layItemsNotFound.setVisibility(View.GONE);
         getListVenues(this.page, this.querySearch);
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
         navBar.setVisibility(View.GONE);
@@ -177,16 +180,17 @@ public class HalalVenuesFragment extends Fragment {
             listVenuesModel = new ArrayList<VenuesModel>();
         }
         GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call call = getDataService.getListVenues(page, search,1);
+        Call call = getDataService.getListVenues(page, search, 1);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 if (response.body() != null) {
+                    layItemsNotFound.setVisibility(View.GONE);
                     try {
                         JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
                         VenuesModel sr1 = null;
                         Integer totalData = jsonObject.getInt("total");
-//                        Log.d("TOTAL JSON",String.valueOf(totalData));
+                        Log.d("TOTAL JSON", String.valueOf(totalData));
                         total = totalData;
                         for (int i = 0; i < jsonObject.getJSONArray("data").length(); i++) {
                             JSONObject objects = jsonObject.getJSONArray("data").optJSONObject(i);
@@ -198,11 +202,11 @@ public class HalalVenuesFragment extends Fragment {
                             String restaurantStatusId = objects.getString("restaurant_status_id");
                             String address = objects.getString("address");
                             String longitude = "";
-                            if(!objects.isNull("longitude")){
-                                 longitude = objects.getString("longitude");
+                            if (!objects.isNull("longitude")) {
+                                longitude = objects.getString("longitude");
                             }
                             String latitude = "";
-                            if(!objects.isNull("latitude")) {
+                            if (!objects.isNull("latitude")) {
                                 latitude = objects.getString("latitude");
                             }
                             String phoneNumber = objects.getString("phone_number");
@@ -270,15 +274,20 @@ public class HalalVenuesFragment extends Fragment {
                             sr1.setAttachmentModels(attachmentModels);
                             listVenuesModel.add(sr1);
                         }
+                        if (totalData == 0) {
+                            layItemsNotFound.setVisibility(View.VISIBLE);
+                        }
                         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_list_venues);
                         assert recyclerView != null;
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                         recyclerView.setLayoutManager(mLayoutManager);
                         listVenuesBaseAdapter = new ListVenuesBaseAdapter(getActivity(), listVenuesModel);
+                        listVenuesBaseAdapter.notifyDataSetChanged();
                         recyclerView.setAdapter(listVenuesBaseAdapter);
 
 
                     } catch (JSONException e) {
+                        layItemsNotFound.setVisibility(View.VISIBLE);
                         Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }

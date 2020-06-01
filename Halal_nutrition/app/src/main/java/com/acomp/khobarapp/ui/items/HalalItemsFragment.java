@@ -68,6 +68,7 @@ public class HalalItemsFragment extends Fragment {
     public Integer type = 0;
     public Integer total = 0;
     BottomNavigationView bottomNavigationView = null;
+    RelativeLayout layItemsNotFound;
 
     ListFoodBaseAdapter listFoodBaseAdapter = null;
     ArrayList<ItemsModel> listFoodModel = null;
@@ -159,7 +160,10 @@ public class HalalItemsFragment extends Fragment {
                 }
             }
         });
+        layItemsNotFound = (RelativeLayout) rootView.findViewById(R.id.layItemsNotFound);
+        layItemsNotFound.setVisibility(View.GONE);
         getListFood(this.page, this.querySearch);
+
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
         navBar.setVisibility(View.GONE);
         return rootView;
@@ -191,7 +195,8 @@ public class HalalItemsFragment extends Fragment {
             listFoodModel = new ArrayList<ItemsModel>();
         }
         GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call call = getDataService.getListFood(page, search,1);
+        Call call = getDataService.getListFood(page, search, 1);
+        layItemsNotFound.setVisibility(View.GONE);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
@@ -200,7 +205,7 @@ public class HalalItemsFragment extends Fragment {
                         JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
                         ItemsModel sr1 = null;
                         Integer totalData = jsonObject.getInt("total");
-//                        Log.d("TOTAL JSON",String.valueOf(totalData));
+                        Log.d("TOTAL JSON", String.valueOf(totalData));
                         total = totalData;
                         for (int i = 0; i < jsonObject.getJSONArray("data").length(); i++) {
                             JSONObject objects = jsonObject.getJSONArray("data").optJSONObject(i);
@@ -454,10 +459,16 @@ public class HalalItemsFragment extends Fragment {
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                         recyclerView.setLayoutManager(mLayoutManager);
                         listFoodBaseAdapter = new ListFoodBaseAdapter(getActivity(), listFoodModel);
+                        listFoodBaseAdapter.notifyDataSetChanged();
                         recyclerView.setAdapter(listFoodBaseAdapter);
+
+                        if (totalData == 0) {
+                            layItemsNotFound.setVisibility(View.VISIBLE);
+                        }
 
 
                     } catch (JSONException e) {
+                        layItemsNotFound.setVisibility(View.VISIBLE);
                         Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
