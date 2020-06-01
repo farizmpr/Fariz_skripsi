@@ -93,6 +93,9 @@ public class AddItemsFragment extends Fragment {
     private String foodIngredient;
     private Integer foodId = 0;
     private NachoTextView mChipsView;
+    private RelativeLayout layAddSuccessItems;
+    private RelativeLayout btnBackAddSuccessItems;
+    private LinearLayout layAddItems;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,6 +105,14 @@ public class AddItemsFragment extends Fragment {
 
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
+
+        layAddSuccessItems = (RelativeLayout) rootView.findViewById(R.id.layAddSuccess);
+        layAddItems = (LinearLayout) rootView.findViewById(R.id.layAddItems);
+//        layAddSuccessItems.setOnClickListener(layAddSuccessItemsListener);
+
+        btnBackAddSuccessItems = (RelativeLayout) rootView.findViewById(R.id.backAddSuccessItems);
+        btnBackAddSuccessItems.setOnClickListener(btnBackAddSuccessItemsListener);
+
 
         RelativeLayout btnCertificate = (RelativeLayout) rootView.findViewById(R.id.certificate);
         btnCertificate.setOnClickListener(btnCertificateListener);
@@ -294,6 +305,18 @@ public class AddItemsFragment extends Fragment {
         }
     };
 
+    private View.OnClickListener btnBackAddSuccessItemsListener = new View.OnClickListener() {
+        public void onClick(View v) {
+//            HistoryItemsFragment accountFragment = new HistoryItemsFragment();
+//            fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+//            fragmentTransaction.commit();
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            HistoryItemsFragment historyItemsFragment = new HistoryItemsFragment();
+            fragmentTransaction.replace(R.id.fragment_content, historyItemsFragment);
+            fragmentTransaction.commit();
+        }
+    };
+
 
     private void DialogForm(String foodCode, String foodName, String foodManufacture, String foodIngredient) {
         this.foodCode = foodCode;
@@ -374,10 +397,9 @@ public class AddItemsFragment extends Fragment {
                                 try {
                                     JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
                                     if (jsonObject.getBoolean("result")) {
+                                        layAddSuccessItems.setVisibility(View.VISIBLE);
+                                        layAddItems.setVisibility(View.GONE);
 
-                                        HistoryItemsFragment accountFragment = new HistoryItemsFragment();
-                                        fragmentTransaction.replace(R.id.fragment_content, accountFragment);
-                                        fragmentTransaction.commit();
                                         Toast.makeText(getActivity(), "Upload File Berhasil", Toast.LENGTH_SHORT).show();
                                         dialog.dismiss();
                                     } else {
