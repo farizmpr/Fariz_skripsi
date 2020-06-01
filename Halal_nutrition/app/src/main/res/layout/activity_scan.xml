@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--    <me.dm7.barcodescanner.zxing.ZXingScannerView-->
@@ -106,7 +107,6 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/scannerLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
@@ -116,6 +116,22 @@
             android:layout_toRightOf="@id/left"
             android:background="@drawable/ic_viewfinder"
             android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/scannerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_viewfinder"
+            android:orientation="horizontal">
+
+        </RelativeLayout>
+            <include
+                layout="@layout/layout_bottom_sheet_scan"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="8dp"
+                tools:layout_editor_absoluteX="8dp" />
 
             <!--            <View-->
             <!--                android:id="@+id/scannerBar"-->
@@ -125,6 +141,7 @@
 
 
         </RelativeLayout>
+
 
     </LinearLayout>
 

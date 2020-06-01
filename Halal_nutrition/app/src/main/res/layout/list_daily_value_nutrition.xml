@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/layDailyValueNutrition"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/dailyvalues"
+
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/grey_5">
+
+        <TextView
+            android:id="@+id/txtDailyValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+            android:text="Total Fat 14g"
+            android:textColor="@color/grey_80"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/totalfat_result"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/grey_10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:id="@+id/txtPercentageDailyValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
+                android:gravity="center"
+                android:text="0 %"
+                android:textColor="@color/grey_80"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
