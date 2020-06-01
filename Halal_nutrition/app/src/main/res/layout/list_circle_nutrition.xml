@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layCircleNutrition"
+    android:layout_width="100dp"
+    android:layout_height="match_parent"
+
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sodium \n 1%"
+        android:textSize="12sp"
+        android:background="@drawable/rounded_textview_gray"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:id="@+id/txtCircleNutrition" />
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="25.0 mmg"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:id="@+id/txtSubCircleNutrition"
+        android:layout_below="@+id/txtCircleNutrition"
+         />
+</RelativeLayout>

@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -51,6 +52,8 @@ public class ChangePasswordFragment extends Fragment {
 
         Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);
         btnUpdatePassword.setOnClickListener(updatePasswordListener);
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
     @Override

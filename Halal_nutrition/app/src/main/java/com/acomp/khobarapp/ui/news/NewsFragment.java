@@ -117,6 +117,8 @@ public class NewsFragment extends Fragment {
         }
         getListNews(this.page);
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.VISIBLE);
         return rootView;
     }
 

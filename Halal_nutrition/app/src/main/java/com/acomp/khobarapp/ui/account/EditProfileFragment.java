@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -63,6 +64,9 @@ public class EditProfileFragment extends Fragment {
 
         Button btnUpdateProfile = (Button) rootView.findViewById(R.id.btnUpdateProfile);
         btnUpdateProfile.setOnClickListener(updateProfileListener);
+
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
     @Override

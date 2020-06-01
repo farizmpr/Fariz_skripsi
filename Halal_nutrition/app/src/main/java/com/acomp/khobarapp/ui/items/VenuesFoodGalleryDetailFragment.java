@@ -71,7 +71,7 @@ public class VenuesFoodGalleryDetailFragment extends Fragment implements Adapter
             viewPager.setCurrentItem(positionIndex);
         }
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-//        navBar.setVisibility(View.VISIBLE);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 

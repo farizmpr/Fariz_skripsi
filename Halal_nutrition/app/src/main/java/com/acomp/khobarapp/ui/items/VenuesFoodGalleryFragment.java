@@ -64,7 +64,7 @@ public class VenuesFoodGalleryFragment extends Fragment {
 
 
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-//        navBar.setVisibility(View.VISIBLE);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 

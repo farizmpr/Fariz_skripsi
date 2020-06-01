@@ -34,7 +34,7 @@ public class NutritionFact extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        mList1 = findViewById(R.id.nutritionList);
+//        mList1 = findViewById(R.id.nutritionList);
         appList = new ArrayList<>();
 
         appList.add(new Food(R.drawable.halal_info_news,"youtube",80));

@@ -50,6 +50,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.acomp.khobarapp.R;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONArray;
@@ -126,6 +127,8 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
 //        if (rootViews != null) {
 
 //        }
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -236,7 +239,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
         criteria.setAccuracy(Criteria.ACCURACY_COARSE);   //default
 
         // user defines the criteria
-        mMap.setMyLocationEnabled(true);
+
         criteria.setCostAllowed(false);
         // get the best provider depending on the criteria
         provider = mLocationManager.getBestProvider(criteria, false);
@@ -280,8 +283,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
 //        if (currentApiVersion >= Build.VERSION_CODES.M) {
 
         if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_DENIED) {
+            mMap.setMyLocationEnabled(true);
 //                mMap.setMyLocationEnabled(true);
-            Log.d("MORIGIN START", "SECOND");
+//            Log.d("MORIGIN START", "SECOND");
 //            mLocationManager.requestLocationUpdates(provider, 2000, 0, mLocationListener);
 /*
             mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
@@ -304,11 +308,11 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
             }, 100);
         }
 //        }
-        GPSTracker gpsTracker = new GPSTracker(getActivity());
-
-        if (gpsTracker.getIsGPSTrackingEnabled())   {
-
-        }
+//        GPSTracker gpsTracker = new GPSTracker(getActivity());
+//
+//        if (gpsTracker.getIsGPSTrackingEnabled())   {
+//
+//        }
 //        Location location = mLocationManager.getLastKnownLocation(provider);
 //        if(location != null){
 //

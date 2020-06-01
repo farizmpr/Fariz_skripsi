@@ -11,6 +11,15 @@ public class ItemsModel {
     private String organization = "";
     private ArrayList<AttachmentModel> attachmentModels = new ArrayList<AttachmentModel>();
     private ArrayList<CertificateRowModel> certificateRowModels = new ArrayList<CertificateRowModel>();
+    private NutritionModel nutrition = new NutritionModel();
+
+    public NutritionModel getNutrition() {
+        return nutrition;
+    }
+
+    public void setNutrition(NutritionModel nutrition) {
+        this.nutrition = nutrition;
+    }
 
     public ArrayList<CertificateRowModel> getCertificateRowModels() {
         return certificateRowModels;

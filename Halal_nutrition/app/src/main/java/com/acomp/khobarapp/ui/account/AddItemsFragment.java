@@ -43,6 +43,9 @@ import com.acomp.khobarapp.ui.home.HomeActivity;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
+import com.hootsuite.nachos.NachoTextView;
+import com.hootsuite.nachos.chip.Chip;
+import com.hootsuite.nachos.terminator.ChipTerminatorHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +60,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
@@ -88,6 +92,7 @@ public class AddItemsFragment extends Fragment {
     private String foodManufacture;
     private String foodIngredient;
     private Integer foodId = 0;
+    private NachoTextView mChipsView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,6 +105,10 @@ public class AddItemsFragment extends Fragment {
 
         RelativeLayout btnCertificate = (RelativeLayout) rootView.findViewById(R.id.certificate);
         btnCertificate.setOnClickListener(btnCertificateListener);
+
+        Button btnAddCertificate = (Button) rootView.findViewById(R.id.btnAddCertificate);
+        btnAddCertificate.setOnClickListener(btnCertificateListener);
+
 
         ListView lv1 = (ListView) rootView.findViewById(R.id.listItemCertificate);
         lv1.setAdapter(new MyCustomBaseAdapter(getActivity(), listCertificateRowModel));
@@ -121,13 +130,32 @@ public class AddItemsFragment extends Fragment {
         if (itemsModel.getManufacture() != "") {
             foodManufactureText.setText(itemsModel.getManufacture());
         }
-        EditText foodIngredientText = (EditText) rootView.findViewById(R.id.foodIngredientText);
-        String foodIngredient = foodIngredientText.getText().toString();
+//        String foo = "This,that,other";
+//        String[] split = foo.split(",");
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < split.length; i++) {
+//            sb.append(split[i]);
+//            if (i != split.length - 1) {
+//                sb.append(" ");
+//            }
+//        }
+
+        mChipsView = (NachoTextView) rootView.findViewById(R.id.foodIngredientText);
+//        mChipsView.setText();
+        mChipsView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
+        mChipsView.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
+        mChipsView.enableEditChipOnTouch(true, true);
+
+
+//        String foodIngredient = foodIngredientText.getText().toString();
         if (itemsModel.getIngredient() != "") {
-            foodIngredientText.setText(itemsModel.getIngredient());
+            String[] splitIngredient = itemsModel.getIngredient().split(";");
+            mChipsView.setText(Arrays.asList(splitIngredient));
+//            foodIngredientText.setText(itemsModel.getIngredient());
         }
         return rootView;
     }
+
 
     @Override
     public void onResume() {
@@ -155,12 +183,23 @@ public class AddItemsFragment extends Fragment {
                 foodManufactureText.requestFocus();
                 return;
             }
-            EditText foodIngredientText = (EditText) getActivity().findViewById(R.id.foodIngredientText);
-            String foodIngredient = foodIngredientText.getText().toString();
-            if (foodIngredient.matches("")) {
-                foodIngredientText.requestFocus();
+//            NachoTextView foodIngredientText = (NachoTextView) getActivity().findViewById(R.id.foodIngredientText);
+//            String foodIngredient = foodIngredientText.getText().toString();
+//            if (foodIngredient.matches("")) {
+//                foodIngredientText.requestFocus();
+//                return;
+//            }
+            String ingredientTxt = "";
+            for (Chip chip : mChipsView.getAllChips()) {
+                CharSequence text = chip.getText();
+                ingredientTxt += text.toString() + ";";
+                Object data = chip.getData();
+            }
+            if(ingredientTxt == ""){
+                mChipsView.requestFocus();
                 return;
             }
+            foodIngredient = method(ingredientTxt);
             if (listCertificateRowModel.size() == 0) {
                 Toast.makeText(getActivity(), "Please Add Certificate", Toast.LENGTH_SHORT).show();
                 return;
@@ -269,6 +308,7 @@ public class AddItemsFragment extends Fragment {
             public void onClick(View v) {
 
                 verifyStoragePermissions(getActivity());
+                Log.d("CHOOSE CAMERA","OK");
                 Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(takePicture, PICK_IMAGE_CAMERA);
             }
@@ -291,18 +331,18 @@ public class AddItemsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //        inputStreamImg = null;
-//        Log.d("Activity Image", "Request Code = " + requestCode);
+        Log.d("Activity Image", "Request Code = " + requestCode);
         activityRequestCode = PICK_IMAGE_CAMERA;
         activityData = data;
         sendInsertItems(foodCode, foodName, foodManufacture, foodIngredient);
 
     }
 
-    public void sendPicturePhotos(){
+    public void sendPicturePhotos() {
 
         if (activityRequestCode == PICK_IMAGE_CAMERA) {
             try {
-                if(foodId != 0) {
+                if (foodId != 0) {
                     Uri selectedImage = activityData.getData();
                     bitmap = (Bitmap) activityData.getExtras().get("data");
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -410,10 +450,10 @@ public class AddItemsFragment extends Fragment {
         String currentTime = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss", Locale.getDefault()).format(new Date());
 
         // String temp = null;
-        File file = new File(extStorageDirectory, currentTime+".png");
+        File file = new File(extStorageDirectory, currentTime + ".png");
         if (file.exists()) {
             file.delete();
-            file = new File(extStorageDirectory, currentTime+".png");
+            file = new File(extStorageDirectory, currentTime + ".png");
 
         }
         try {
@@ -435,17 +475,29 @@ public class AddItemsFragment extends Fragment {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             AddItemsCertificateFragment accountFragment = new AddItemsCertificateFragment();
             accountFragment.listCertificateRowModel = listCertificateRowModel;
-            TextInputEditText foodCodeText = (TextInputEditText) getActivity().findViewById(R.id.foodCodeText);
+            EditText foodCodeText = (EditText) getActivity().findViewById(R.id.foodCodeText);
             String foodCode = foodCodeText.getText().toString();
 
-            TextInputEditText foodNameText = (TextInputEditText) getActivity().findViewById(R.id.foodNameText);
+            EditText foodNameText = (EditText) getActivity().findViewById(R.id.foodNameText);
             String foodName = foodNameText.getText().toString();
 
-            TextInputEditText foodManufactureText = (TextInputEditText) getActivity().findViewById(R.id.foodManufactureText);
+            EditText foodManufactureText = (EditText) getActivity().findViewById(R.id.foodManufactureText);
             String foodManufacture = foodManufactureText.getText().toString();
-
-            TextInputEditText foodIngredientText = (TextInputEditText) getActivity().findViewById(R.id.foodIngredientText);
-            String foodIngredient = foodIngredientText.getText().toString();
+            String ingredientTxt = "";
+            for (Chip chip : mChipsView.getAllChips()) {
+                // Do something with the text of each chip
+                CharSequence text = chip.getText();
+//                Log.d("CHIPS TEXT FIRST",text.toString());
+                ingredientTxt += text.toString() + ";";
+                // Do something with the data of each chip (this data will be set if the chip was created by tapping a suggestion)
+                Object data = chip.getData();
+            }
+            String ingredientTxt2 = method(ingredientTxt);
+//            Characters.valueOf(ingredientTxt).rightTrim( ... );
+//            ChipsView foodIngredientText = (ChipsView) getActivity().findViewById(R.id.foodIngredientText);
+//            String foodIngredient = foodIngredientText.getText().toString();
+            foodIngredient = ingredientTxt2;
+//            Log.d("CHIPS TEXT",foodIngredient);
             accountFragment.itemsModel.setCode(foodCode);
             accountFragment.itemsModel.setName(foodName);
             accountFragment.itemsModel.setIngredient(foodIngredient);
@@ -454,6 +506,13 @@ public class AddItemsFragment extends Fragment {
             fragmentTransaction.commit();
         }
     };
+
+    public String method(String str) {
+        if (str != null && str.length() > 0 && str.charAt(str.length() - 1) == ';') {
+            str = str.substring(0, str.length() - 1);
+        }
+        return str;
+    }
 
     private ArrayList<CertificateRowModel> GetSearchResults() {
         ArrayList<CertificateRowModel> results = new ArrayList<CertificateRowModel>();

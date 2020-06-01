@@ -100,7 +100,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
         RelativeLayout layFlashCamera = (RelativeLayout) rootView.findViewById(R.id.layFlashCamera);
         layFlashCamera.setOnClickListener(layFlashCameraListener);
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-//        navBar.setVisibility(View.GONE);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 

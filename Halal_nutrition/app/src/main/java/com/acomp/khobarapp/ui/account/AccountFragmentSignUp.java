@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,11 +53,13 @@ public class AccountFragmentSignUp extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_reg, container, false);
-        ImageView b = (ImageView) rootView.findViewById(R.id.GoBackIcon);
+        RelativeLayout b = (RelativeLayout) rootView.findViewById(R.id.back);
         b.setOnClickListener(mButtonClickListener);
 
         Button btnSaveSignUp = (Button) rootView.findViewById(R.id.btnSaveSignUp);
         btnSaveSignUp.setOnClickListener(btnSaveSignUpListener);
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
 
 

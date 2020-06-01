@@ -55,6 +55,7 @@ public class AccountFragment1 extends Fragment {
         btnSignUp.setOnClickListener(mClickSignUp);
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.nav_account).setChecked(true);
+        bottomNavigationView.setVisibility(View.VISIBLE);
         return rootView;
     }
 

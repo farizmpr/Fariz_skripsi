@@ -74,14 +74,14 @@ public class HomeFragment extends Fragment {
         carouselView.setImageListener(imageListener);
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-
+        bottomNavigationView.setVisibility(View.VISIBLE);
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         NewsFragment newsFragment = new NewsFragment();
         newsFragment.type = 1;
         fragmentTransaction.replace(R.id.fragment_content_news_home, newsFragment);
         fragmentTransaction.commit();
-        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+//        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
 //        navBar.setVisibility(View.VISIBLE);
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
         return rootView;

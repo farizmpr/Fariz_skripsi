@@ -110,6 +110,8 @@ public class AccountFragment extends Fragment {
 
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.nav_account).setChecked(true);
+//        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.VISIBLE);
         return rootView;
     }
 

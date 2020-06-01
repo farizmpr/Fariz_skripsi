@@ -29,6 +29,7 @@ import com.acomp.khobarapp.model.StringWithTag;
 import com.acomp.khobarapp.ui.adapter.HistoryItemsBaseAdapter;
 import com.acomp.khobarapp.ui.adapter.MyCustomBaseAdapter;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -74,6 +75,9 @@ public class HistoryItemsFragment extends Fragment {
         });
 
         getHistoryItems();
+
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 

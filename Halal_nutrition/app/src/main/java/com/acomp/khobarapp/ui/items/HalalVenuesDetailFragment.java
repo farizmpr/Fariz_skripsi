@@ -145,7 +145,7 @@ public class HalalVenuesDetailFragment extends Fragment {
         getListFoodVenues(rootView);
         getVenuesScheduleNow(rootView);
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-//        navBar.setVisibility(View.VISIBLE);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 

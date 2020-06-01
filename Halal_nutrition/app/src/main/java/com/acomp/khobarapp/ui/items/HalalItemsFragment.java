@@ -34,6 +34,8 @@ import com.acomp.khobarapp.model.AttachmentModel;
 import com.acomp.khobarapp.model.CertificateRowModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NewsModel;
+import com.acomp.khobarapp.model.NutritionDetailModel;
+import com.acomp.khobarapp.model.NutritionModel;
 import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.adapter.HeadlineNewsBaseAdapter;
 import com.acomp.khobarapp.ui.adapter.ListFoodBaseAdapter;
@@ -158,6 +160,8 @@ public class HalalItemsFragment extends Fragment {
             }
         });
         getListFood(this.page, this.querySearch);
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -260,6 +264,170 @@ public class HalalItemsFragment extends Fragment {
                                     certificateRowModels.add(certMod);
                                 }
                             }
+
+                            JSONObject jsObjNutri = objects.getJSONObject("nutrition");
+
+                            //GET NUTRITION SERVING
+                            JSONArray jsObjNutriServ = jsObjNutri.getJSONArray("serving");
+                            NutritionModel nutritionModel = new NutritionModel();
+                            ArrayList<NutritionDetailModel> nutritionDetailModelsServ = new ArrayList<NutritionDetailModel>();
+                            if (jsObjNutriServ.length() > 0) {
+                                NutritionDetailModel nuDeModServ = null;
+                                for (int i2 = 0; i2 < jsObjNutriServ.length(); i2++) {
+                                    JSONObject objectServ = jsObjNutriServ.optJSONObject(i2);
+                                    String codeServ = null;
+                                    if (!objectServ.isNull("code")) {
+                                        codeServ = objectServ.getString("code");
+                                    }
+                                    String nameServ = null;
+                                    if (!objectServ.isNull("name")) {
+                                        nameServ = objectServ.getString("name");
+                                    }
+                                    Double valueServ = null;
+                                    if (!objectServ.isNull("value")) {
+                                        valueServ = objectServ.getDouble("value");
+                                    }
+                                    String unitCodeServ = null;
+                                    if (!objectServ.isNull("unit_code")) {
+                                        unitCodeServ = objectServ.getString("unit_code");
+                                    }
+                                    Double percentageServ = null;
+                                    if (!objectServ.isNull("percentage")) {
+                                        percentageServ = objectServ.getDouble("percentage");
+                                    }
+
+                                    nuDeModServ = new NutritionDetailModel();
+                                    nuDeModServ.setCode(codeServ);
+                                    nuDeModServ.setName(nameServ);
+                                    nuDeModServ.setValue(valueServ);
+                                    nuDeModServ.setUnitCode(unitCodeServ);
+                                    nuDeModServ.setPercentage(percentageServ);
+
+                                    JSONArray jsObjNutriChildServ = objectServ.getJSONArray("child");
+                                    ArrayList<NutritionDetailModel> nutritionDetailModelsChildServ = new ArrayList<NutritionDetailModel>();
+                                    if (jsObjNutriChildServ.length() > 0) {
+                                        NutritionDetailModel nuDeModChildServ = null;
+                                        for (int i22 = 0; i22 < jsObjNutriChildServ.length(); i22++) {
+                                            JSONObject objectChildServ = jsObjNutriChildServ.optJSONObject(i22);
+                                            String codeChildServ = null;
+                                            if (!objectChildServ.isNull("code")) {
+                                                codeChildServ = objectChildServ.getString("code");
+                                            }
+                                            String nameChildServ = null;
+                                            if (!objectChildServ.isNull("name")) {
+                                                nameChildServ = objectChildServ.getString("name");
+                                            }
+                                            Double valueChildServ = null;
+                                            if (!objectChildServ.isNull("value")) {
+                                                valueChildServ = objectChildServ.getDouble("value");
+                                            }
+                                            String unitCodeChildServ = null;
+                                            if (!objectChildServ.isNull("unit_code")) {
+                                                unitCodeChildServ = objectChildServ.getString("unit_code");
+                                            }
+                                            Double percentageChildServ = null;
+                                            if (!objectChildServ.isNull("percentage")) {
+                                                percentageChildServ = objectChildServ.getDouble("percentage");
+                                            }
+
+                                            nuDeModChildServ = new NutritionDetailModel();
+                                            nuDeModChildServ.setCode(codeChildServ);
+                                            nuDeModChildServ.setName(nameChildServ);
+                                            nuDeModChildServ.setValue(valueChildServ);
+                                            nuDeModChildServ.setUnitCode(unitCodeChildServ);
+                                            nuDeModChildServ.setPercentage(percentageChildServ);
+                                            nutritionDetailModelsChildServ.add(nuDeModChildServ);
+                                        }
+
+                                    }
+                                    nuDeModServ.setChild(nutritionDetailModelsChildServ);
+                                    nutritionDetailModelsServ.add(nuDeModServ);
+                                }
+                            }
+                            nutritionModel.setServing(nutritionDetailModelsServ);
+
+                            //GET NUTRITION DAILY VALUE
+                            JSONArray jsObjNutriDai = jsObjNutri.getJSONArray("daily_value");
+                            NutritionModel nutritionModelDai = new NutritionModel();
+                            ArrayList<NutritionDetailModel> nutritionDetailModelsDai = new ArrayList<NutritionDetailModel>();
+                            if (jsObjNutriDai.length() > 0) {
+                                NutritionDetailModel nuDeModDai = null;
+                                for (int i2 = 0; i2 < jsObjNutriDai.length(); i2++) {
+                                    JSONObject objectDai = jsObjNutriDai.optJSONObject(i2);
+                                    String codeDai = null;
+                                    if (!objectDai.isNull("code")) {
+                                        codeDai = objectDai.getString("code");
+                                    }
+                                    String nameDai = null;
+                                    if (!objectDai.isNull("name")) {
+                                        nameDai = objectDai.getString("name");
+                                    }
+                                    Double valueDai = null;
+                                    if (!objectDai.isNull("value")) {
+                                        valueDai = objectDai.getDouble("value");
+                                    }
+                                    String unitCodeDai = null;
+                                    if (!objectDai.isNull("unit_code")) {
+                                        unitCodeDai = objectDai.getString("unit_code");
+                                    }
+                                    Double percentageDai = null;
+                                    if (!objectDai.isNull("percentage")) {
+                                        percentageDai = objectDai.getDouble("percentage");
+                                    }
+
+                                    nuDeModDai = new NutritionDetailModel();
+                                    nuDeModDai.setCode(codeDai);
+                                    nuDeModDai.setName(nameDai);
+                                    nuDeModDai.setValue(valueDai);
+                                    nuDeModDai.setUnitCode(unitCodeDai);
+                                    nuDeModDai.setPercentage(percentageDai);
+                                    nutritionDetailModelsDai.add(nuDeModDai);
+                                    JSONArray jsObjNutriChildDai = objectDai.getJSONArray("child");
+                                    ArrayList<NutritionDetailModel> nutritionDetailModelsChildDai = new ArrayList<NutritionDetailModel>();
+                                    if (jsObjNutriChildDai.length() > 0) {
+                                        NutritionDetailModel nuDeModChildDai = null;
+                                        for (int i22 = 0; i22 < jsObjNutriChildDai.length(); i22++) {
+                                            JSONObject objectChildDai = jsObjNutriChildDai.optJSONObject(i22);
+                                            String codeChildDai = null;
+                                            if (!objectChildDai.isNull("code")) {
+                                                codeChildDai = objectChildDai.getString("code");
+                                            }
+                                            String nameChildDai = null;
+                                            if (!objectChildDai.isNull("name")) {
+                                                nameChildDai = objectChildDai.getString("name");
+                                            }
+                                            Double valueChildDai = null;
+                                            if (!objectChildDai.isNull("value")) {
+                                                valueChildDai = objectChildDai.getDouble("value");
+                                            }
+                                            String unitCodeChildDai = null;
+                                            if (!objectChildDai.isNull("unit_code")) {
+                                                unitCodeChildDai = objectChildDai.getString("unit_code");
+                                            }
+                                            Double percentageChildDai = null;
+                                            if (!objectChildDai.isNull("percentage")) {
+                                                percentageChildDai = objectChildDai.getDouble("percentage");
+                                            }
+
+                                            nuDeModChildDai = new NutritionDetailModel();
+                                            nuDeModChildDai.setCode(codeChildDai);
+                                            nuDeModChildDai.setName(nameChildDai);
+                                            nuDeModChildDai.setValue(valueChildDai);
+                                            nuDeModChildDai.setUnitCode(unitCodeChildDai);
+                                            nuDeModChildDai.setUrutChild(2);
+                                            nuDeModChildDai.setPercentage(percentageChildDai);
+                                            nutritionDetailModelsChildDai.add(nuDeModChildDai);
+                                            nutritionDetailModelsDai.add(nuDeModChildDai);
+                                        }
+//                                        nutritionDetailModelsDai.add(nuDeModChildDai);
+                                    }
+                                    nuDeModDai.setChild(nutritionDetailModelsChildDai);
+
+                                }
+                            }
+                            nutritionModel.setDailyValue(nutritionDetailModelsDai);
+
+
                             sr1 = new ItemsModel();
                             sr1.setName(name);
                             sr1.setCode(code);
@@ -268,6 +436,7 @@ public class HalalItemsFragment extends Fragment {
                             sr1.setOrganization(manufacture);
                             sr1.setAttachmentModels(attachmentModels);
                             sr1.setCertificateRowModels(certificateRowModels);
+                            sr1.setNutrition(nutritionModel);
 //                            if(objects.getJSONArray("certificate").length() >= 1){
 //                                String organization = objects.getJSONArray("certificate").optJSONObject(0).getString("organization_name");
 ////                                sr1.setOrganization(organization);

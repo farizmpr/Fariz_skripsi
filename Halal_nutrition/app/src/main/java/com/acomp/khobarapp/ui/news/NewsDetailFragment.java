@@ -77,7 +77,8 @@ public class NewsDetailFragment extends Fragment {
             Picasso.get().load(imageUrl).fit()
                     .centerCrop().into(imgPoster);
         }
-
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
 
         return rootView;
     }

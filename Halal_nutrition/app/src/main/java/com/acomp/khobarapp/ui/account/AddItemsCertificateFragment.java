@@ -28,6 +28,7 @@ import com.acomp.khobarapp.model.CertificateRowModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.StringWithTag;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -153,6 +154,8 @@ public class AddItemsCertificateFragment extends Fragment {
 //                Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 

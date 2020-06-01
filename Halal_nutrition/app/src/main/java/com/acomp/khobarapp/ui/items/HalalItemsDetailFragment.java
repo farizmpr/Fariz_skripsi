@@ -9,19 +9,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.acomp.khobarapp.NutritionFact;
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.model.AttachmentModel;
 import com.acomp.khobarapp.model.CertificateRowModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NewsModel;
+import com.acomp.khobarapp.model.NutritionDetailModel;
+import com.acomp.khobarapp.ui.adapter.ListCircleNutritionAdapter;
+import com.acomp.khobarapp.ui.adapter.ListFoodVenuesBaseAdapter;
 import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
@@ -38,6 +45,8 @@ public class HalalItemsDetailFragment extends Fragment {
     CarouselView carouselView;
     String[] sampleImages;
     List<String> mImages = new ArrayList<String>();
+    ListCircleNutritionAdapter listCircleNutritionAdapter = null;
+    ArrayList<NutritionDetailModel> nutritionDetailModels = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +59,7 @@ public class HalalItemsDetailFragment extends Fragment {
         tvTitle.setText(itemsModel.getName());
         TextView tvManufacture = (TextView) rootView.findViewById(R.id.manufacture);
         tvManufacture.setText("\u25CF " + itemsModel.getManufacture());
-        TextView tvIngredient = (TextView) rootView.findViewById(R.id.list_ingredient_food);
+        TextView tvIngredient = (TextView) rootView.findViewById(R.id.ingredient_list);
         String ingredient = itemsModel.getIngredient();
         ingredient = ingredient.replace("\\\n", System.getProperty("line.separator"));
         tvIngredient.setText("\u25CF " + ingredient);
@@ -77,6 +86,9 @@ public class HalalItemsDetailFragment extends Fragment {
 //            Picasso.get().load(imageUrl).fit()
 //                    .centerCrop().into(imgPoster);
         }
+
+
+
         Log.d("TOTAL IMAGES","SIZE="+mImages.size());
         carouselView.setPageCount(mImages.size());
         carouselView.setImageListener(imageListener);
@@ -89,8 +101,13 @@ public class HalalItemsDetailFragment extends Fragment {
         txtOrganizationName = txtOrganizationName.replace("\\\n", System.getProperty("line.separator"));
         tvCertificateName.setText(txtOrganizationName);
 
+        getListCircleNutrition(rootView);
+
+        TextView btnViewMore = (TextView) rootView.findViewById(R.id.btnViewMore);
+        btnViewMore.setOnClickListener(btnViewMoreListener);
+
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-//        navBar.setVisibility(View.VISIBLE);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -132,6 +149,32 @@ public class HalalItemsDetailFragment extends Fragment {
             fragmentTransaction.commit();
         }
     };
+
+    private View.OnClickListener btnViewMoreListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            NutritionFragment nutritionFragment = new NutritionFragment();
+            nutritionFragment.setItemsModel(itemsModel);
+            fragmentTransaction.replace(R.id.fragment_content, nutritionFragment);
+            fragmentTransaction.commit();
+        }
+    };
+
+    public void getListCircleNutrition(View view) {
+//        if (listVenuesFoodModel == null) {
+//            listVenuesFoodModel = new ArrayList<AttachmentModel>();
+//        }
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.listCircleNutrition);
+        assert recyclerView != null;
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        listCircleNutritionAdapter = new ListCircleNutritionAdapter(getActivity(), itemsModel.getNutrition().getDailyValue());
+
+        recyclerView.setAdapter(listCircleNutritionAdapter);
+    }
 
 
 }

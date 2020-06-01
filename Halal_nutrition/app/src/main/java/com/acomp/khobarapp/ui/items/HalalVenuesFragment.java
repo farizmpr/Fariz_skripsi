@@ -146,6 +146,8 @@ public class HalalVenuesFragment extends Fragment {
             }
         });
         getListVenues(this.page, this.querySearch);
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
         return rootView;
     }
 
