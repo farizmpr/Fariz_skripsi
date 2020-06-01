@@ -284,31 +284,13 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="15dp"
                                 android:background="@color/subtitle" />
-
-                            <LinearLayout
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/listDetailIngredient"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
-                                android:layout_marginTop="10dp">
+                                android:layout_below="@+id/view_ingredient"
+                                tools:listitem="@layout/list_detail_ingredient" />
 
-                                <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:src="@drawable/ic_ingredients" />
-
-                                <TextView
-                                    android:id="@+id/ingredient_list"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginEnd="20dp"
-                                    android:fontFamily="@font/roboto_regular"
-                                    android:maxLines="1"
-                                    android:paddingStart="10dp"
-                                    android:text="Esteria Cosmetik, CV"
-                                    android:textColor="@color/name_transprant"
-                                    android:textSize="16dp" />
-                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -325,6 +307,17 @@
                                     android:fontFamily="@font/roboto_regular"
                                     android:maxLines="1"
                                     android:text="Show More Ingredients"
+                                    android:textColor="@color/halal"
+                                    android:textSize="16dp" />
+                                <TextView
+                                    android:id="@+id/Hide_More_Ingredients"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="20dp"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:maxLines="1"
+                                    android:text="Hide More Ingredients"
                                     android:textColor="@color/halal"
                                     android:textSize="16dp" />
                             </LinearLayout>
@@ -368,9 +361,9 @@
                                 android:orientation="horizontal">
 
                                 <RelativeLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="5">
+                                    >
 
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:id="@+id/listCircleNutrition"
@@ -379,23 +372,7 @@
                                         android:layout_below="@+id/featured"
                                         tools:listitem="@layout/list_circle_nutrition" />
                                 </RelativeLayout>
-                                <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="2">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="View More"
-                                        android:textSize="16sp"
-                                        android:background="@drawable/rounded_textview_black"
-                                        android:textColor="@android:color/white"
-                                        android:gravity="center"
-                                        android:layout_margin="10dp"
-                                        android:id="@+id/btnViewMore" />
-
-                                </RelativeLayout>
 
                             </LinearLayout>
 

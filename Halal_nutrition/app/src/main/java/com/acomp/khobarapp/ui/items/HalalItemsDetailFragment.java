@@ -27,7 +27,9 @@ import com.acomp.khobarapp.model.CertificateRowModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.model.NutritionDetailModel;
+import com.acomp.khobarapp.model.NutritionModel;
 import com.acomp.khobarapp.ui.adapter.ListCircleNutritionAdapter;
+import com.acomp.khobarapp.ui.adapter.ListDetailIngredientAdapter;
 import com.acomp.khobarapp.ui.adapter.ListFoodVenuesBaseAdapter;
 import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,6 +49,9 @@ public class HalalItemsDetailFragment extends Fragment {
     List<String> mImages = new ArrayList<String>();
     ListCircleNutritionAdapter listCircleNutritionAdapter = null;
     ArrayList<NutritionDetailModel> nutritionDetailModels = null;
+    ListDetailIngredientAdapter listDetailIngredientAdapter = null;
+    TextView btnShowMoreIngredient, btnHideMoreIngredient;
+    RecyclerView recyclerViewIngredient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,16 +64,16 @@ public class HalalItemsDetailFragment extends Fragment {
         tvTitle.setText(itemsModel.getName());
         TextView tvManufacture = (TextView) rootView.findViewById(R.id.manufacture);
         tvManufacture.setText("\u25CF " + itemsModel.getManufacture());
-        TextView tvIngredient = (TextView) rootView.findViewById(R.id.ingredient_list);
-        String ingredient = itemsModel.getIngredient();
-        ingredient = ingredient.replace("\\\n", System.getProperty("line.separator"));
-        tvIngredient.setText("\u25CF " + ingredient);
+//        TextView tvIngredient = (TextView) rootView.findViewById(R.id.ingredient_list);
+//        String ingredient = itemsModel.getIngredient();
+//        ingredient = ingredient.replace("\\\n", System.getProperty("line.separator"));
+//        tvIngredient.setText("\u25CF " + ingredient);
 //        ImageView imgPoster = (ImageView) rootView.findViewById(R.id.img_poster);
         carouselView = rootView.findViewById(R.id.carouselViewDetailFood);
 
         String imageUrl = null;
         Integer no = 0;
-        if(itemsModel.getAttachmentModels().size() > 0) {
+        if (itemsModel.getAttachmentModels().size() > 0) {
             for (AttachmentModel attachmentModel : itemsModel.getAttachmentModels()) {
                 imageUrl = attachmentModel.getUrl();
                 if (imageUrl == null) {
@@ -88,8 +93,7 @@ public class HalalItemsDetailFragment extends Fragment {
         }
 
 
-
-        Log.d("TOTAL IMAGES","SIZE="+mImages.size());
+        Log.d("TOTAL IMAGES", "SIZE=" + mImages.size());
         carouselView.setPageCount(mImages.size());
         carouselView.setImageListener(imageListener);
         TextView tvCertificateName = (TextView) rootView.findViewById(R.id.item_description);
@@ -101,10 +105,35 @@ public class HalalItemsDetailFragment extends Fragment {
         txtOrganizationName = txtOrganizationName.replace("\\\n", System.getProperty("line.separator"));
         tvCertificateName.setText(txtOrganizationName);
 
-        getListCircleNutrition(rootView);
+//        NutritionDetailModel nuDeModChildDaiMore = new NutritionDetailModel();
+////        ArrayList<NutritionDetailModel> nutritionDetailModelsDai = new ArrayList<NutritionDetailModel>();
+//        nuDeModChildDaiMore.setType("more");
+//        ArrayList<NutritionDetailModel> nutritionDetailModelsDai = itemsModel.getNutrition().getDailyValue();
+//        nutritionDetailModelsDai.add(nuDeModChildDaiMore);
 
-        TextView btnViewMore = (TextView) rootView.findViewById(R.id.btnViewMore);
-        btnViewMore.setOnClickListener(btnViewMoreListener);
+//        ArrayList<NutritionDetailModel> nutritionDetailModelsServ = itemsModel.getNutrition().getServing();
+//        NutritionModel nuModel = new NutritionModel();
+//        nuModel.setServing(nutritionDetailModelsServ);
+//        nuModel.setDailyValue(nutritionDetailModelsDai);
+//        itemsModel.setNutrition(nuModel);
+//        itemsModel.getNutrition().setDailyValue(nutritionDetailModelsDai);
+
+        getListCircleNutrition(rootView);
+        getListDetailIngredient(rootView);
+
+//        TextView btnViewMore = (TextView) rootView.findViewById(R.id.btnViewMore);
+//        btnViewMore.setOnClickListener(btnViewMoreListener);
+
+        btnShowMoreIngredient = (TextView) rootView.findViewById(R.id.Show_More_Ingredients);
+        btnShowMoreIngredient.setOnClickListener(btnShowMoreIngredientListener);
+
+        btnHideMoreIngredient = (TextView) rootView.findViewById(R.id.Hide_More_Ingredients);
+        btnHideMoreIngredient.setVisibility(View.GONE);
+        btnHideMoreIngredient.setOnClickListener(btnHideMoreIngredientListener);
+
+
+//        nutritionDetailModelsDai.add(nuDeModChildDaiMore);
+
 
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
         navBar.setVisibility(View.GONE);
@@ -161,19 +190,58 @@ public class HalalItemsDetailFragment extends Fragment {
         }
     };
 
+    private View.OnClickListener btnShowMoreIngredientListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String ingredient = itemsModel.getIngredient();
+            String[] splitIngredient = ingredient.split(";");
+            listDetailIngredientAdapter = new ListDetailIngredientAdapter(getActivity(), splitIngredient, null);
+            listDetailIngredientAdapter.notifyDataSetChanged();
+            recyclerViewIngredient.setAdapter(listDetailIngredientAdapter);
+            btnHideMoreIngredient.setVisibility(View.VISIBLE);
+            btnShowMoreIngredient.setVisibility(View.GONE);
+        }
+    };
+
+    private View.OnClickListener btnHideMoreIngredientListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String ingredient = itemsModel.getIngredient();
+            String[] splitIngredient = ingredient.split(";");
+            listDetailIngredientAdapter = new ListDetailIngredientAdapter(getActivity(), splitIngredient, 3);
+            listDetailIngredientAdapter.notifyDataSetChanged();
+            recyclerViewIngredient.setAdapter(listDetailIngredientAdapter);
+            btnHideMoreIngredient.setVisibility(View.GONE);
+            btnShowMoreIngredient.setVisibility(View.VISIBLE);
+        }
+    };
+
     public void getListCircleNutrition(View view) {
 //        if (listVenuesFoodModel == null) {
 //            listVenuesFoodModel = new ArrayList<AttachmentModel>();
 //        }
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.listCircleNutrition);
         assert recyclerView != null;
-//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        LinearLayoutManager mLayoutManager
-                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        listCircleNutritionAdapter = new ListCircleNutritionAdapter(getActivity(), itemsModel.getNutrition().getDailyValue());
+        listCircleNutritionAdapter = new ListCircleNutritionAdapter(getActivity(), itemsModel.getNutrition().getDailyValue(),itemsModel);
 
         recyclerView.setAdapter(listCircleNutritionAdapter);
+    }
+
+    public void getListDetailIngredient(View view) {
+
+        String ingredient = itemsModel.getIngredient();
+        String[] splitIngredient = ingredient.split(";");
+        recyclerViewIngredient = (RecyclerView) view.findViewById(R.id.listDetailIngredient);
+        assert recyclerViewIngredient != null;
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewIngredient.setLayoutManager(mLayoutManager);
+        listDetailIngredientAdapter = new ListDetailIngredientAdapter(getActivity(), splitIngredient, 3);
+
+        recyclerViewIngredient.setAdapter(listDetailIngredientAdapter);
     }
 
 

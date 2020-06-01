@@ -485,6 +485,9 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
 
                                 }
                             }
+                            NutritionDetailModel nuDeModChildDaiMore = new NutritionDetailModel();
+                            nuDeModChildDaiMore.setType("more");
+                            nutritionDetailModelsDai.add(nuDeModChildDaiMore);
                             nutritionModel.setDailyValue(nutritionDetailModelsDai);
 
                             sr1 = new ItemsModel();

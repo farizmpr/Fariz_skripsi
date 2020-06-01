@@ -425,6 +425,9 @@ public class HalalItemsFragment extends Fragment {
 
                                 }
                             }
+                            NutritionDetailModel nuDeModChildDaiMore = new NutritionDetailModel();
+                            nuDeModChildDaiMore.setType("more");
+                            nutritionDetailModelsDai.add(nuDeModChildDaiMore);
                             nutritionModel.setDailyValue(nutritionDetailModelsDai);
 
 
