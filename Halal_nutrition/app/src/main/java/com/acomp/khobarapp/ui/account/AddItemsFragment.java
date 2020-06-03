@@ -266,9 +266,11 @@ public class AddItemsFragment extends Fragment {
                                     sendPicturePhotos();
 //                                    return id;
                                 } else {
-                                    HistoryItemsFragment accountFragment = new HistoryItemsFragment();
-                                    fragmentTransaction.replace(R.id.fragment_content, accountFragment);
-                                    fragmentTransaction.commit();
+                                    layAddSuccessItems.setVisibility(View.VISIBLE);
+                                    layAddItems.setVisibility(View.GONE);
+//                                    HistoryItemsFragment accountFragment = new HistoryItemsFragment();
+//                                    fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+//                                    fragmentTransaction.commit();
                                     Toast.makeText(getActivity(), "Insert Items Success", Toast.LENGTH_SHORT).show();
                                 }
                             }

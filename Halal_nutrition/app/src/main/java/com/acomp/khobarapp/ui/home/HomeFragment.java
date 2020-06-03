@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.ArrayMap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -52,6 +54,7 @@ public class HomeFragment extends Fragment {
     CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner_home_1};
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,10 +84,64 @@ public class HomeFragment extends Fragment {
         newsFragment.type = 1;
         fragmentTransaction.replace(R.id.fragment_content_news_home, newsFragment);
         fragmentTransaction.commit();
+
+        SearchView searchView =
+                (SearchView) rootView.findViewById(R.id.btnSearchAllHome);
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //do what you want when search view expended
+//                paramsBack.weight = 1.0f;
+//                paramsLnlFav.weight = 8.0f;
+//                closeBtn.setLayoutParams(paramsBack);
+//                lnlFav.setLayoutParams(paramsLnlFav);
+//                titleMenuBar.setVisibility(View.GONE);
+//                closeBtn.setGravity();
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+//                paramsBack.weight = 2.0f;
+//                paramsLnlFav.weight = 4.0f;
+//                closeBtn.setLayoutParams(paramsBack);
+//                lnlFav.setLayoutParams(paramsLnlFav);
+//                titleMenuBar.setVisibility(View.VISIBLE);
+                //do what you want  searchview is not expanded
+                return false;
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+//                querySearch = s;
+//                page = 1;
+//                listVenuesModel.clear();
+//                getListVenues(page, querySearch);
+                searchHomeAll();
+                Log.d("QUERY Submit", "QueryTextSubmit: " + s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d("QUERY CHANGE", "QueryTextChange: " + newText);
+                return false;
+            }
+        });
+
 //        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
 //        navBar.setVisibility(View.VISIBLE);
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
         return rootView;
+    }
+
+    public void searchHomeAll(){
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        TabHomeSearchAllFragment halalItemsFragment = new TabHomeSearchAllFragment();
+        fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
+        fragmentTransaction.commit();
     }
 
     ImageListener imageListener = new ImageListener() {

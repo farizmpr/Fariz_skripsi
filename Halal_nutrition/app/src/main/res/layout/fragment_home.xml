@@ -5,7 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/toolbar_items"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_items">
 
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/lnl_favorite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="end">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/btnSearchAllHome"
+                    style="@style/SearchViewStyleColorHalal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/halal"
+                    app:searchIcon="@drawable/ic_search_color_halal_24dp" />
+                <!--                            <ImageView-->
+                <!--                                android:layout_width="20dp"-->
+                <!--                                android:layout_height="20dp"-->
+                <!--                                android:layout_centerInParent="true"-->
+                <!--                                android:src="@drawable/ic_search_black_24dp"-->
+                <!--                                android:tint="@color/white" />-->
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselView"
         android:layout_width="match_parent"
