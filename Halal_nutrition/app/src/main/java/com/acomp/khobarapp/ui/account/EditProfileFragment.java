@@ -1,9 +1,16 @@
 package com.acomp.khobarapp.ui.account;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,41 +33,70 @@ import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditProfileFragment extends Fragment {
     ProgressDialog progressDoalog;
+    public Integer userId = null;
     public String fullname = null;
     public String email = null;
     public String address = null;
+    Integer attachmentId = 0;
+    String attachmentUrl = "";
+    Bitmap bitmap = null;
+    CircularImageView circularImageView = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_edit_profile, container, false);
-        if(this.fullname != null){
+        if (this.fullname != null) {
             TextView fieldNameText = (TextView) rootView.findViewById(R.id.fieldFullname);
             fieldNameText.setText(this.fullname);
         }
-        if(this.email != null){
+        if (this.email != null) {
             TextView fieldEmailText = (TextView) rootView.findViewById(R.id.fieldEmail);
             fieldEmailText.setText(this.email);
         }
-        if(this.address != null){
+        if (this.address != null) {
             TextView fieldAddressText = (TextView) rootView.findViewById(R.id.fieldAddress);
             fieldAddressText.setText(this.address);
         }
+        circularImageView = (CircularImageView) rootView.findViewById(R.id.profile_image);
+        circularImageView.setImageDrawable(getResources().getDrawable(R.drawable.sample_avatar));
+        circularImageView.setImageResource(R.drawable.sample_avatar);
+        if (attachmentId != 0) {
+            Picasso.get().load(attachmentUrl).fit().centerCrop().into(circularImageView);
+        }
+
+        RelativeLayout layUpdatePhotoProfile = (RelativeLayout) rootView.findViewById(R.id.layUpdatePhotoProfile);
+        layUpdatePhotoProfile.setOnClickListener(layUpdatePhotoProfileListener);
+//        circularImageView.
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
-        closeBtn.setOnClickListener(goBackListener );
+        closeBtn.setOnClickListener(goBackListener);
 
         Button btnUpdateProfile = (Button) rootView.findViewById(R.id.btnUpdateProfile);
         btnUpdateProfile.setOnClickListener(updateProfileListener);
@@ -69,10 +105,42 @@ public class EditProfileFragment extends Fragment {
         navBar.setVisibility(View.GONE);
         return rootView;
     }
+
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+    }
+
+    private final int SELECT_IMAGE = 200;
+    private View.OnClickListener layUpdatePhotoProfileListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE);
+        }
+    };
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SELECT_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
+                        Drawable d = new BitmapDrawable(getResources(), bitmap);
+                        circularImageView.setImageDrawable(d);
+                        circularImageView.setImageBitmap(bitmap);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(getActivity(), "Canceled", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private View.OnClickListener goBackListener = new View.OnClickListener() {
@@ -117,15 +185,21 @@ public class EditProfileFragment extends Fragment {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                Log.d("RESULT TOKEN",response.toString());
+                Log.d("RESULT TOKEN", response.toString());
                 if (response.body() != null) {
                     try {
                         JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
 
                         if (!jsonObject.has("error")) {
                             Boolean result = jsonObject.getBoolean("result");
-                            if(result == true){
-                                Toast.makeText(getActivity(), "Update Profile Success", Toast.LENGTH_SHORT).show();
+                            if (result == true) {
+                                if (bitmap == null) {
+                                    Toast.makeText(getActivity(), "Update Profile Success", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    progressDoalog.hide();
+                                    sendPhotoProfile();
+                                }
+
                             } else {
 //                                String message =  jsonObject.getString("message");
                                 Toast.makeText(getActivity(), "Update Profile Success", Toast.LENGTH_SHORT).show();
@@ -152,4 +226,97 @@ public class EditProfileFragment extends Fragment {
         });
     }
 
+    public void sendPhotoProfile() {
+//        AddItemsFragment addItemsFragment = new AddItemsFragment();
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+        File file = savebitmap(bitmap);
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("files", file.getName(), requestFile);
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String token = preferences.getString("token", "");
+        GetDataService getDataService = RetrofitClientInstance.getRetrofitAuthInstance(token).create(GetDataService.class);
+        String txtRefId = userId.toString();
+        String txtRefTable = "users";
+        RequestBody referenceId = RequestBody.create(MediaType.parse("text/plain"), txtRefId);
+        RequestBody referenceTable = RequestBody.create(MediaType.parse("text/plain"), txtRefTable);
+        RequestBody rAttachmentId = RequestBody.create(MediaType.parse("text/plain"), attachmentId.toString());
+        progressDoalog = new ProgressDialog(getActivity());
+        progressDoalog.setMessage("Loading....");
+        progressDoalog.show();
+        Call call = getDataService.uploadAttachmentById(body, rAttachmentId, referenceId, referenceTable);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+//                        Log.d("TOKEN STRING", response.toString());
+                if (response.body() != null) {
+//                            Log.e("TAG", "response 33: " + new Gson().toJson(response.body()));
+                    try {
+                        JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
+                        if (jsonObject.getBoolean("result")) {
+//                            layAddSuccessItems.setVisibility(View.VISIBLE);
+//                            layAddItems.setVisibility(View.GONE);
+
+                            Toast.makeText(getActivity(), "Update Profile Success", Toast.LENGTH_SHORT).show();
+                            progressDoalog.dismiss();
+                        } else {
+                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+
+                        progressDoalog.dismiss();
+                    } catch (JSONException e) {
+                        Toast.makeText(getActivity(), "Upload File Failed", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                        progressDoalog.dismiss();
+                    }
+
+                } else {
+                    Toast.makeText(getActivity(), "Upload File Failed", Toast.LENGTH_SHORT).show();
+                }
+                progressDoalog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                t.printStackTrace();
+                progressDoalog.dismiss();
+                Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public File savebitmap(Bitmap bmp) {
+        String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+        OutputStream outStream = null;
+        String currentTime = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss", Locale.getDefault()).format(new Date());
+
+        // String temp = null;
+        char randChar = randomSeriesForThreeCharacter();
+        File file = new File(extStorageDirectory, email + ".png?r=" + randChar);
+        if (file.exists()) {
+            file.delete();
+            file = new File(extStorageDirectory, email + ".png?r=" + randChar);
+
+        }
+        try {
+
+            outStream = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+            outStream.flush();
+            outStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return file;
+    }
+
+    public static char randomSeriesForThreeCharacter() {
+        Random r = new Random();
+        char random_3_Char = (char) (97 + r.nextInt(10));
+        return random_3_Char;
+    }
 }

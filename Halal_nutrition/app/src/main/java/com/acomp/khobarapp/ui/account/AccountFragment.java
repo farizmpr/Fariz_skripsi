@@ -27,6 +27,8 @@ import com.acomp.khobarapp.model.UserModel;
 import com.acomp.khobarapp.ui.home.HomeActivity;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.Map;
 
@@ -36,9 +38,12 @@ import retrofit2.Response;
 
 public class AccountFragment extends Fragment {
     ProgressDialog progressDoalog;
+    Integer userId = null;
     String fullname = null;
     String email = null;
     String address = null;
+    Integer attachmentId = 0;
+    String attachmentUrl = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,14 +61,28 @@ public class AccountFragment extends Fragment {
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
+                        CircularImageView circularImageView = (CircularImageView) rootView.findViewById(R.id.profile_image);
+                        circularImageView.setImageDrawable(getResources().getDrawable(R.drawable.sample_avatar));
+                        circularImageView.setImageResource(R.drawable.sample_avatar);
+                        Integer id = response.body().getId();
                         String name = response.body().getName();
                         String resEmail = response.body().getEmail();
                         String resAddress = response.body().getAddress();
+                        Integer resAttachmentId = response.body().getAttachmentId();
+                        String resAttachmentUrl = response.body().getAttachmentUrl();
                         TextView fieldNameText = (TextView) rootView.findViewById(R.id.account_text);
                         fieldNameText.setText(name);
+                        userId = id;
                         fullname = name;
                         email = resEmail;
                         address = resAddress;
+                        attachmentId = resAttachmentId;
+                        attachmentUrl = resAttachmentUrl;
+                        if(attachmentId != 0){
+//                            Picasso.get().load(mImages.get(position)).into(circularImageView);
+                            Picasso.get().load(resAttachmentUrl).fit().centerCrop().into(circularImageView);
+                        }
+
                         TextView fieldEmailText = (TextView) rootView.findViewById(R.id.account_email_text);
                         fieldEmailText.setText(email);
 //                        AccountFragment accountFragment = new AccountFragment();
@@ -143,9 +162,12 @@ public class AccountFragment extends Fragment {
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             EditProfileFragment accountFragment1 = new EditProfileFragment();
+            accountFragment1.userId = userId;
             accountFragment1.fullname = fullname;
             accountFragment1.email = email;
             accountFragment1.address = address;
+            accountFragment1.attachmentId = attachmentId;
+            accountFragment1.attachmentUrl = attachmentUrl;
             fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
             fragmentTransaction.commit();
         }

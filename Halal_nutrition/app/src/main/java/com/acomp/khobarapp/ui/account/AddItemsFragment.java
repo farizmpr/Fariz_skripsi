@@ -468,7 +468,7 @@ public class AddItemsFragment extends Fragment {
         }
     }
 
-    private File savebitmap(Bitmap bmp) {
+    public File savebitmap(Bitmap bmp) {
         String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
         OutputStream outStream = null;
         String currentTime = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss", Locale.getDefault()).format(new Date());

@@ -76,5 +76,14 @@ public interface GetDataService {
     @POST("attachment/upload")
     Call<JsonObject> uploadAttachment(@Part MultipartBody.Part files,
                                       @Part("referenceId") RequestBody referenceId,
-                                      @Part("referenceTable") RequestBody referenceTable);
+                                      @Part("referenceTable") RequestBody referenceTable
+    );
+
+    @Multipart
+    @POST("attachment/upload")
+    Call<JsonObject> uploadAttachmentById(@Part MultipartBody.Part files,
+                                          @Part("attachmentId") RequestBody attachmentId,
+                                          @Part("referenceId") RequestBody referenceId,
+                                          @Part("referenceTable") RequestBody referenceTable
+    );
 }
