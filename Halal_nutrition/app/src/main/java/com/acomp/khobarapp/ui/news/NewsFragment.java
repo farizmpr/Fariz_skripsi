@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,6 +71,7 @@ public class NewsFragment extends Fragment {
 
     ListNewsBaseAdapter listNewsBaseAdapter = null;
     ArrayList<NewsModel> listNewsModel = null;
+    RelativeLayout layItemsNotFound;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -121,6 +123,8 @@ public class NewsFragment extends Fragment {
             bottomNavigationView.getMenu().findItem(R.id.nav_news).setChecked(true);
             bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(false);
         }
+        layItemsNotFound = (RelativeLayout) rootView.findViewById(R.id.layItemsNotFound);
+        layItemsNotFound.setVisibility(View.GONE);
         getListNews(this.page);
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
@@ -237,6 +241,9 @@ public class NewsFragment extends Fragment {
                             headRecyclerView.setAdapter(headAdapter);
                         } else {
                             headRecyclerView.setVisibility(View.GONE);
+                        }
+                        if (totalData == 0) {
+                            layItemsNotFound.setVisibility(View.VISIBLE);
                         }
 
                     } catch (JSONException e) {

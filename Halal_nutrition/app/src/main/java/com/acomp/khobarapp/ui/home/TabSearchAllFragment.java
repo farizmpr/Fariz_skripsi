@@ -34,6 +34,7 @@ public class TabSearchAllFragment extends Fragment {
                 newsFragment.type = 1;
                 newsFragment.isScrollChanged = false;
                 newsFragment.limitNews = 3;
+                newsFragment.searchValue = defaultTextSearch;
                 fragmentTransaction.replace(R.id.fragment_search_all_news, newsFragment);
                 fragmentTransaction.commit();
 
@@ -41,6 +42,7 @@ public class TabSearchAllFragment extends Fragment {
                 halalItemsFragment.isScrollChanged = false;
                 halalItemsFragment.limitItems = 3;
                 halalItemsFragment.querySearch = defaultTextSearch;
+
                 fragmentTransactionItems.replace(R.id.fragment_search_all_items, halalItemsFragment);
                 fragmentTransactionItems.commit();
             }
