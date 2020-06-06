@@ -269,10 +269,16 @@ public class HalalItemsFragment extends Fragment {
                                         organizationName = objectCert.getString("organization_name");
                                     }
 
+                                    String expiredDate = null;
+                                    if (!objectCert.isNull("expired_date")) {
+                                        expiredDate = objectCert.getString("expired_date");
+                                    }
+
 
                                     certMod = new CertificateRowModel();
                                     certMod.setCode(codeCert);
                                     certMod.setTitle(organizationName);
+                                    certMod.setExpiredDate(expiredDate);
 //                                    attach.setType(type);
 //                                    attach.setMime(mime);
 //                                    attach.setUrl(url);

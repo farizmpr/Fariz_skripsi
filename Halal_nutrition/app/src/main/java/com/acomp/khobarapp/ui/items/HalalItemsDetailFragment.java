@@ -28,6 +28,7 @@ import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.model.NutritionDetailModel;
 import com.acomp.khobarapp.model.NutritionModel;
+import com.acomp.khobarapp.ui.adapter.ListCertificateIssuerAdapter;
 import com.acomp.khobarapp.ui.adapter.ListCircleNutritionAdapter;
 import com.acomp.khobarapp.ui.adapter.ListDetailIngredientAdapter;
 import com.acomp.khobarapp.ui.adapter.ListFoodVenuesBaseAdapter;
@@ -51,7 +52,8 @@ public class HalalItemsDetailFragment extends Fragment {
     ArrayList<NutritionDetailModel> nutritionDetailModels = null;
     ListDetailIngredientAdapter listDetailIngredientAdapter = null;
     TextView btnShowMoreIngredient, btnHideMoreIngredient;
-    RecyclerView recyclerViewIngredient;
+    RecyclerView recyclerViewIngredient, recyclerViewCertificateIssuer;
+    ListCertificateIssuerAdapter listCertificateIssuerAdapter = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +64,10 @@ public class HalalItemsDetailFragment extends Fragment {
 
         TextView tvTitle = (TextView) rootView.findViewById(R.id.tv_title);
         tvTitle.setText(itemsModel.getName());
+
+        TextView txtItemName = (TextView) rootView.findViewById(R.id.item_name);
+        txtItemName.setText(itemsModel.getName());
+
         TextView tvManufacture = (TextView) rootView.findViewById(R.id.manufacture);
         tvManufacture.setText("\u25CF " + itemsModel.getManufacture());
 //        TextView tvIngredient = (TextView) rootView.findViewById(R.id.ingredient_list);
@@ -96,14 +102,14 @@ public class HalalItemsDetailFragment extends Fragment {
         Log.d("TOTAL IMAGES", "SIZE=" + mImages.size());
         carouselView.setPageCount(mImages.size());
         carouselView.setImageListener(imageListener);
-        TextView tvCertificateName = (TextView) rootView.findViewById(R.id.item_description);
-        String txtOrganizationName = "";
-        for (CertificateRowModel certificateRowModel : itemsModel.getCertificateRowModels()) {
-            String organiName = certificateRowModel.getTitle();
-            txtOrganizationName = "\u25CF " + organiName + "\n";
-        }
-        txtOrganizationName = txtOrganizationName.replace("\\\n", System.getProperty("line.separator"));
-        tvCertificateName.setText(txtOrganizationName);
+//        TextView tvCertificateName = (TextView) rootView.findViewById(R.id.item_description);
+//        String txtOrganizationName = "";
+//        for (CertificateRowModel certificateRowModel : itemsModel.getCertificateRowModels()) {
+//            String organiName = certificateRowModel.getTitle();
+//            txtOrganizationName = "\u25CF " + organiName + "\n";
+//        }
+//        txtOrganizationName = txtOrganizationName.replace("\\\n", System.getProperty("line.separator"));
+//        tvCertificateName.setText(txtOrganizationName);
 
 //        NutritionDetailModel nuDeModChildDaiMore = new NutritionDetailModel();
 ////        ArrayList<NutritionDetailModel> nutritionDetailModelsDai = new ArrayList<NutritionDetailModel>();
@@ -120,7 +126,7 @@ public class HalalItemsDetailFragment extends Fragment {
 
         getListCircleNutrition(rootView);
         getListDetailIngredient(rootView);
-
+        getListCertificateIssuer(rootView);
 //        TextView btnViewMore = (TextView) rootView.findViewById(R.id.btnViewMore);
 //        btnViewMore.setOnClickListener(btnViewMoreListener);
 
@@ -224,7 +230,7 @@ public class HalalItemsDetailFragment extends Fragment {
         assert recyclerView != null;
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        listCircleNutritionAdapter = new ListCircleNutritionAdapter(getActivity(), itemsModel.getNutrition().getDailyValue(),itemsModel);
+        listCircleNutritionAdapter = new ListCircleNutritionAdapter(getActivity(), itemsModel.getNutrition().getDailyValue(), itemsModel);
 
         recyclerView.setAdapter(listCircleNutritionAdapter);
     }
@@ -242,6 +248,21 @@ public class HalalItemsDetailFragment extends Fragment {
         listDetailIngredientAdapter = new ListDetailIngredientAdapter(getActivity(), splitIngredient, 3);
 
         recyclerViewIngredient.setAdapter(listDetailIngredientAdapter);
+    }
+
+    public void getListCertificateIssuer(View view) {
+
+//        String ingredient = itemsModel.getIngredient();
+//        String[] splitIngredient = ingredient.split(";");
+        recyclerViewCertificateIssuer = (RecyclerView) view.findViewById(R.id.listCertificateIssuer);
+        assert recyclerViewCertificateIssuer != null;
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewCertificateIssuer.setLayoutManager(mLayoutManager);
+        listCertificateIssuerAdapter = new ListCertificateIssuerAdapter(getActivity(), itemsModel.getCertificateRowModels(), null);
+
+        recyclerViewCertificateIssuer.setAdapter(listCertificateIssuerAdapter);
     }
 
 

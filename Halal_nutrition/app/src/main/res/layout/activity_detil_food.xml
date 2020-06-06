@@ -148,46 +148,12 @@
                                 android:layout_marginTop="15dp"
                                 android:background="@color/subtitle" />
 
-                            <RelativeLayout
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/listCertificateIssuer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
-                                android:layout_marginTop="10dp">
-
-                                <ImageView
-                                    android:id="@+id/mtrl_list_item_icon"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:src="@drawable/ic_certif" />
-
-                                <TextView
-                                    android:id="@+id/item_description"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="20dp"
-                                    android:layout_toEndOf="@id/mtrl_list_item_icon"
-                                    android:fontFamily="@font/roboto_regular"
-                                    android:maxLines="1"
-                                    android:paddingStart="10dp"
-                                    android:text="Halal Food Authority"
-                                    android:textColor="@color/name_transprant"
-                                    android:textSize="16dp" />
-
-                                <TextView
-                                    android:id="@+id/mtrl_list_item_secondary_text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/item_description"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginEnd="20dp"
-                                    android:layout_toEndOf="@id/mtrl_list_item_icon"
-                                    android:fontFamily="@font/roboto_regular"
-                                    android:maxLines="2"
-                                    android:paddingStart="10dp"
-                                    android:text="Due Sep 10, 2022"
-                                    android:textColor="@color/name_transprant"
-                                    android:textSize="12dp" />
-                            </RelativeLayout>
+                                android:layout_below="@+id/view_ingredient"
+                                tools:listitem="@layout/list_certificate_issuer" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -284,6 +250,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="15dp"
                                 android:background="@color/subtitle" />
+
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/listDetailIngredient"
                                 android:layout_width="match_parent"
@@ -309,6 +276,7 @@
                                     android:text="Show More Ingredients"
                                     android:textColor="@color/halal"
                                     android:textSize="16dp" />
+
                                 <TextView
                                     android:id="@+id/Hide_More_Ingredients"
                                     android:layout_width="match_parent"
@@ -362,8 +330,7 @@
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    >
+                                    android:layout_height="match_parent">
 
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:id="@+id/listCircleNutrition"
