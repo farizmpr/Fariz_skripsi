@@ -219,7 +219,10 @@ public class AddItemsCertificateFragment extends Fragment {
     private View.OnFocusChangeListener dateListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
-            showDatePicker();
+            if(hasFocus){
+                showDatePicker();
+            }
+
         }
     };
 

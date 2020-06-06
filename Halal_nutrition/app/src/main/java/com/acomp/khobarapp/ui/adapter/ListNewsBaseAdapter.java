@@ -30,9 +30,12 @@ public class ListNewsBaseAdapter extends RecyclerView.Adapter<ListNewsBaseAdapte
 
     private LayoutInflater mInflater;
     FragmentActivity context;
-    public ListNewsBaseAdapter(FragmentActivity c, ArrayList<NewsModel> arrayList) {
+    private Integer limit = 3;
+
+    public ListNewsBaseAdapter(FragmentActivity c, ArrayList<NewsModel> arrayList,Integer limitData) {
         context = c;
         searchArrayList = arrayList;
+        limit = limitData;
     }
 
     public void addListNews(FragmentActivity c, ArrayList<NewsModel> arrayList) {
@@ -41,8 +44,16 @@ public class ListNewsBaseAdapter extends RecyclerView.Adapter<ListNewsBaseAdapte
     }
 
     @Override
-    public int getItemCount() {
-        return searchArrayList.size();
+    public int getItemCount()
+    {
+//        return searchArrayList.size();
+        if (limit == null) {
+            return searchArrayList.size();
+        } else if (searchArrayList.size() > limit) {
+            return limit;
+        } else {
+            return searchArrayList.size();
+        }
     }
 
     @Override

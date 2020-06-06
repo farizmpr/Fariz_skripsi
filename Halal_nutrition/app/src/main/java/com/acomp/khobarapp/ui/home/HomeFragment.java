@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment {
 //                page = 1;
 //                listVenuesModel.clear();
 //                getListVenues(page, querySearch);
-                searchHomeAll();
+                searchHomeAll(s);
                 Log.d("QUERY Submit", "QueryTextSubmit: " + s);
                 return false;
             }
@@ -137,9 +137,10 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-    public void searchHomeAll(){
+    public void searchHomeAll(String text){
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         TabHomeSearchAllFragment halalItemsFragment = new TabHomeSearchAllFragment();
+        halalItemsFragment.setDefaultTextSearch(text);
         fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
         fragmentTransaction.commit();
     }

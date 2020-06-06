@@ -55,22 +55,22 @@ public interface GetDataService {
     Call<JsonObject> getItems();
 
     @GET("item")
-    Call<JsonObject> getListFood(@Query("page") Integer page,@Query("search") String search,@Query("status") Integer status);
+    Call<JsonObject> getListFood(@Query("page") Integer page, @Query("search") String search, @Query("status") Integer status);
 
     @GET("venues")
-    Call<JsonObject> getListVenues(@Query("page") Integer page,@Query("search") String search,@Query("status") Integer status);
+    Call<JsonObject> getListVenues(@Query("page") Integer page, @Query("search") String search, @Query("status") Integer status);
 
     @GET("venues/{id}/schedule/now")
     Call<JsonObject> getVenuesScheduleNow(@Path("id") BigInteger id);
 
     @GET("item")
-    Call<JsonObject> getDetailFood(@Query("key") String key,@Query("value") String value);
+    Call<JsonObject> getDetailFood(@Query("key") String key, @Query("value") String value);
 
     @GET("item/me")
     Call<JsonObject> getItemsByUsers();
 
     @GET("news")
-    Call<JsonObject> getNews(@Query("page") Integer page);
+    Call<JsonObject> getNews(@Query("page") Integer page, @Query("search") String search);
 
     @Multipart
     @POST("attachment/upload")

@@ -67,6 +67,8 @@ public class HalalItemsFragment extends Fragment {
     public Integer page = 1;
     public Integer type = 0;
     public Integer total = 0;
+    public Boolean isScrollChanged = true;
+    public Integer limitItems = null;
     BottomNavigationView bottomNavigationView = null;
     RelativeLayout layItemsNotFound;
 
@@ -120,11 +122,13 @@ public class HalalItemsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
-                querySearch = s;
-                page = 1;
-                listFoodModel.clear();
-                getListFood(page, querySearch);
-                Log.d("QUERY Submit", "QueryTextSubmit: " + s);
+                if(isScrollChanged == true) {
+                    querySearch = s;
+                    page = 1;
+                    listFoodModel.clear();
+                    getListFood(page, querySearch);
+                    Log.d("QUERY Submit", "QueryTextSubmit: " + s);
+                }
                 return false;
             }
 
@@ -163,6 +167,12 @@ public class HalalItemsFragment extends Fragment {
         layItemsNotFound = (RelativeLayout) rootView.findViewById(R.id.layItemsNotFound);
         layItemsNotFound.setVisibility(View.GONE);
         getListFood(this.page, this.querySearch);
+
+        LinearLayout headLineItems = (LinearLayout) rootView.findViewById(R.id.toolbar_items);
+        if(this.type == 1){
+            headLineItems.setVisibility(View.GONE);
+        }
+
 
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
         navBar.setVisibility(View.GONE);
@@ -458,7 +468,7 @@ public class HalalItemsFragment extends Fragment {
                         assert recyclerView != null;
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                         recyclerView.setLayoutManager(mLayoutManager);
-                        listFoodBaseAdapter = new ListFoodBaseAdapter(getActivity(), listFoodModel);
+                        listFoodBaseAdapter = new ListFoodBaseAdapter(getActivity(), listFoodModel,limitItems);
                         listFoodBaseAdapter.notifyDataSetChanged();
                         recyclerView.setAdapter(listFoodBaseAdapter);
 

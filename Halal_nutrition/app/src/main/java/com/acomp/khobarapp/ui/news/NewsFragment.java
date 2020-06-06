@@ -57,9 +57,12 @@ public class NewsFragment extends Fragment {
     public String fullname = null;
     public String email = null;
     public String address = null;
+    public String searchValue = "";
     public Integer page = 1;
     public Integer type = 0;
     public Integer total = 0;
+    public Boolean isScrollChanged = true;
+    public Integer limitNews = null;
     CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner_home_1};
     public SwipeRefreshLayout pullToRefresh;
@@ -67,6 +70,7 @@ public class NewsFragment extends Fragment {
 
     ListNewsBaseAdapter listNewsBaseAdapter = null;
     ArrayList<NewsModel> listNewsModel = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,29 +92,31 @@ public class NewsFragment extends Fragment {
         nestedScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
-                View view = (View) nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
+                if (isScrollChanged == true) {
+                    View view = (View) nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
 
-                int diff = (view.getBottom() - (nestedScrollView.getHeight() + nestedScrollView
-                        .getScrollY()));
+                    int diff = (view.getBottom() - (nestedScrollView.getHeight() + nestedScrollView
+                            .getScrollY()));
 
-                if (diff == 0) {
-                    Log.i("TAG 1", "BOTTOM SCROLL");
+                    if (diff == 0) {
+                        Log.i("TAG 1", "BOTTOM SCROLL");
 
-                    if(listNewsModel == null){
-                        page = 1;
-                        getListNews(page);
-                    } else {
-                        page = page + 1;
-                        if(listNewsModel.size() >= total){
-
-                        } else {
+                        if (listNewsModel == null) {
+                            page = 1;
                             getListNews(page);
+                        } else {
+                            page = page + 1;
+                            if (listNewsModel.size() >= total) {
+
+                            } else {
+                                getListNews(page);
+                            }
                         }
                     }
                 }
             }
         });
-        if(type == 0){
+        if (type == 0) {
             bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
             bottomNavigationView.getMenu().findItem(R.id.nav_news).setChecked(true);
             bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(false);
@@ -158,7 +164,7 @@ public class NewsFragment extends Fragment {
         progressDoalog = new ProgressDialog(getActivity());
         progressDoalog.setMessage("Loading....");
         progressDoalog.show();
-        if(listNewsModel == null){
+        if (listNewsModel == null) {
             listNewsModel = new ArrayList<NewsModel>();
         }
 
@@ -166,7 +172,7 @@ public class NewsFragment extends Fragment {
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
         GetDataService getDataService = RetrofitClientInstance.getRetrofitAuthInstance(token).create(GetDataService.class);
-        Call call = getDataService.getNews(page);
+        Call call = getDataService.getNews(page,this.searchValue);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
@@ -209,29 +215,23 @@ public class NewsFragment extends Fragment {
                             sr1.setContent(content);
                             sr1.setStrDate(strDate);
                             sr1.setAttachmentModels(attachmentModels);
-//                            if(objects.getJSONArray("certificate").length() >= 1){
-//                                String organization = objects.getJSONArray("certificate").optJSONObject(0).getString("organization_name");
-////                                sr1.setOrganization(organization);
-//                            }
+
                             if (i == 0) {
                                 headNewsModel.add(sr1);
                             }
                             listNewsModel.add(sr1);
-//                            itemList.add(new StringWithTag(objects.getString("name"), objects.getInt("id")));
                         }
-//                        ListView lv1 = (ListView) getActivity().findViewById(R.id.list_rv_regular);
-//                        lv1.setAdapter(new ListNewsBaseAdapter(getActivity(), listNewsModel));
                         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.list_rv_regular);
                         assert recyclerView != null;
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                         recyclerView.setLayoutManager(mLayoutManager);
-                        listNewsBaseAdapter = new ListNewsBaseAdapter(getActivity(), listNewsModel);
+                        listNewsBaseAdapter = new ListNewsBaseAdapter(getActivity(), listNewsModel,limitNews);
                         recyclerView.setAdapter(listNewsBaseAdapter);
 
 
                         RecyclerView headRecyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_headline);
                         assert headRecyclerView != null;
-                        if(type == 0) {
+                        if (type == 0) {
                             headRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                             HeadlineNewsBaseAdapter headAdapter = new HeadlineNewsBaseAdapter(getActivity(), headNewsModel);
                             headRecyclerView.setAdapter(headAdapter);
@@ -248,7 +248,7 @@ public class NewsFragment extends Fragment {
 //                    Toast.makeText(getActivity(), "Email Has been Registered , Please Write Other Email", Toast.LENGTH_SHORT).show();
                 }
                 progressDoalog.dismiss();
-                if(type == 0) {
+                if (type == 0) {
                     bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(true);
                 }
             }
@@ -256,7 +256,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call call, Throwable t) {
                 progressDoalog.dismiss();
-                if(type == 0) {
+                if (type == 0) {
                     bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(true);
                 }
                 Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();

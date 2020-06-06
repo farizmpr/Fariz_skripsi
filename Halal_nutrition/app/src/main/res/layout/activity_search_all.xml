@@ -37,26 +37,14 @@
                     android:tint="@color/white" />
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/titleMenuBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="25dp"
-                android:layout_weight="6"
-                android:fontFamily="@font/fontsfreenetproximanovabold"
-                android:gravity="center"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+
 
 
             <RelativeLayout
                 android:id="@+id/lnl_favorite"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="12"
                 android:gravity="end">
 
                 <RelativeLayout
