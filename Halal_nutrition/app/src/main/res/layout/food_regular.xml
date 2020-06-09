@@ -26,17 +26,18 @@
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Tertiary Butylhydroquinone "
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:maxLines="3"
-        android:ellipsize="end"
-        app:layout_constraintStart_toEndOf="@id/img_poster"
-        app:layout_constraintTop_toTopOf="@id/img_poster"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"/>
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/img_poster"
+        app:layout_constraintTop_toTopOf="@id/img_poster"
+        tools:text="Tertiary Butylhydroquinone " />
 
     <TextView
         android:id="@+id/tv_source"
@@ -51,8 +52,11 @@
         android:id="@+id/status_halal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Halal status : Halal"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="@id/tv_source"
         app:layout_constraintTop_toBottomOf="@id/tv_source"
-        android:layout_marginTop="8dp"/>
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_bold"
+        tools:text="Halal status : Halal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

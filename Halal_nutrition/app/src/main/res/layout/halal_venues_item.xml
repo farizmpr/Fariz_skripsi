@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/img_poster"
-        android:layout_width="140dp"
-        android:layout_height="110dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:src="@color/colorPrimaryDark"
         android:scaleType="fitXY"
         tools:background="@drawable/round_outline"
@@ -26,18 +26,18 @@
         android:id="@+id/venuesTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Tertiary Butylhydroquinone "
-        android:textColor="@android:color/black"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="16sp"
-        android:maxLines="3"
-        android:ellipsize="end"
-        app:layout_constraintStart_toEndOf="@id/img_poster"
-        app:layout_constraintTop_toTopOf="@id/img_poster"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"/>
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_medium"
+        android:maxLines="3"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/img_poster"
+        app:layout_constraintTop_toTopOf="@id/img_poster"
+        tools:text="Tertiary Butylhydroquinone " />
 
     <TextView
         android:id="@+id/restaurantType"

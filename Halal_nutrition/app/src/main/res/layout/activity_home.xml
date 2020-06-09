@@ -5,7 +5,7 @@
     android:id="@+id/acivity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryTernary"
+    android:background="@color/white"
     tools:context=".ui.home.HomeActivity">
 
 
@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimarySecondary"
+        android:background="@color/white"
         android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/bottom_navigation">
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/bottom_navigation"
+                android:background="#735A5858"></View>
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <ProgressBar
