@@ -64,4 +64,5 @@
         app:layout_constraintStart_toStartOf="@id/venuesStatus"
         app:layout_constraintTop_toBottomOf="@id/venuesStatus"
         android:layout_marginTop="8dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
