@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -54,12 +55,16 @@ import retrofit2.Response;
 public class AddItemsCertificateFragment extends Fragment {
     ProgressDialog progressDoalog;
     public String fullname = null;
-    public String email = null;
-    public String address = null;
+    public String dateED = null;
+    public String organization = null;
+    public Integer halalStatusId = null;
+    public Integer halalTypeId = null;
+    public Integer halalCertificateIndex = null;
     Map<String, Integer> mapStatusCert = new HashMap<>();
     Map<String, Integer> mapTypeCert = new HashMap<>();
-    ArrayList<CertificateRowModel> listCertificateRowModel =  new ArrayList<CertificateRowModel>();
-    ItemsModel itemsModel = new ItemsModel();
+    public ArrayList<CertificateRowModel> listCertificateRowModel =  new ArrayList<CertificateRowModel>();
+    public ItemsModel itemsModel = new ItemsModel();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,15 +75,29 @@ public class AddItemsCertificateFragment extends Fragment {
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
 
+        TextView titleHeadCertificate = (TextView) rootView.findViewById(R.id.titleHeadCertificate);
+//
+
+        EditText txtFullname = (EditText) rootView.findViewById(R.id.name_edit_text);
+        if(fullname != null){
+            txtFullname.setText(fullname);
+            titleHeadCertificate.setText("Edit Certificate");
+        }
+
+
         EditText date = (EditText) rootView.findViewById(R.id.Date);
+        if(dateED != null){
+            date.setText(dateED);
+        }
+
+        EditText txtOrganization = (EditText) rootView.findViewById(R.id.halal_org);
+        if(organization != null){
+            txtOrganization.setText(organization);
+        }
         date.setOnClickListener(dateListenerClick);
         date.setOnFocusChangeListener(dateListener);
         Spinner mySpinner = (Spinner) rootView.findViewById(R.id.spinner1);
         Spinner mySpinner2 = (Spinner) rootView.findViewById(R.id.spinner_type);
-//        Map<String, String> languages = new HashMap<>();
-//        languages.put("hindi", "hi");
-//        languages.put("arabic", "ar");
-//        languages.put("english", "en");
 
         TextView btnSendCertificate = (TextView) rootView.findViewById(R.id.btnSendCertificate);
         btnSendCertificate.setOnClickListener(sendCertificateListener);
@@ -93,14 +112,24 @@ public class AddItemsCertificateFragment extends Fragment {
                     try {
                         List<StringWithTag> itemList = new ArrayList<StringWithTag>();
                         JSONArray jsonArray = new JSONArray(new Gson().toJson(response.body()));
+                        Integer selIndex = 0;
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject objects = jsonArray.optJSONObject(i);
                             mapStatusCert.put(objects.getString("name"), objects.getInt("id"));
                             itemList.add(new StringWithTag(objects.getString("name"), objects.getInt("id")));
+                            if(halalStatusId != null){
+                                if(halalStatusId == objects.getInt("id")){
+                                    selIndex = i;
+                                }
+
+                            }
                         }
                         ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<StringWithTag>(getActivity(), android.R.layout.simple_spinner_item, itemList);
                         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mySpinner.setAdapter(spinnerAdapter);
+                        if(halalStatusId != null) {
+                            mySpinner.setSelection(selIndex);
+                        }
                     } catch (JSONException e) {
 //                        Toast.makeText(getActivity(), "Email Has been Registered , Please Write Other Email", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -129,14 +158,24 @@ public class AddItemsCertificateFragment extends Fragment {
                     try {
                         List<StringWithTag> itemList = new ArrayList<StringWithTag>();
                         JSONArray jsonArray = new JSONArray(new Gson().toJson(response.body()));
+                        Integer selIndex = 0;
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject objects = jsonArray.optJSONObject(i);
                             mapTypeCert.put(objects.getString("name"), objects.getInt("id"));
                             itemList.add(new StringWithTag(objects.getString("name"), objects.getInt("id")));
+                            if(halalTypeId != null){
+                                if(halalTypeId == objects.getInt("id")){
+                                    selIndex = i;
+                                }
+
+                            }
                         }
                         ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<StringWithTag>(getActivity(), android.R.layout.simple_spinner_item, itemList);
                         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mySpinner2.setAdapter(spinnerAdapter);
+                        if(halalTypeId != null) {
+                            mySpinner2.setSelection(selIndex);
+                        }
                     } catch (JSONException e) {
 //                        Toast.makeText(getActivity(), "Email Has been Registered , Please Write Other Email", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -188,6 +227,7 @@ public class AddItemsCertificateFragment extends Fragment {
             }
             Spinner mySpinner = (Spinner) getActivity().findViewById(R.id.spinner1);
             String selectedStatus = mySpinner.getSelectedItem().toString();
+//            mySpinner.getSelectedItemId();
             Integer selectStatus = mapStatusCert.get(selectedStatus);
             Spinner mySpinner2 = (Spinner) getActivity().findViewById(R.id.spinner_type);
             String selectedType = mySpinner2.getSelectedItem().toString();
@@ -205,12 +245,18 @@ public class AddItemsCertificateFragment extends Fragment {
             String type = selectedType;
             sr1.setType(type);
             sr1.setTypeId(selectType);
+            sr1.setHalalStatus(selectedStatus);
             sr1.setStatusId(selectStatus);
             sr1.setExpiredDate(date);
             sr1.setCode(code);
-            listCertificateRowModel.add(sr1);
+            if(fullname != null){
+                listCertificateRowModel.set(halalCertificateIndex,sr1);
+            } else {
+                listCertificateRowModel.add(sr1);
+            }
             accountFragment.listCertificateRowModel = listCertificateRowModel;
             accountFragment.itemsModel = itemsModel;
+            accountFragment.isShowHideBtnAddItem = false;
             fragmentTransaction.replace(R.id.fragment_content, accountFragment);
             fragmentTransaction.commit();
         }
@@ -257,6 +303,11 @@ public class AddItemsCertificateFragment extends Fragment {
             AddItemsFragment accountFragment = new AddItemsFragment();
             accountFragment.listCertificateRowModel = listCertificateRowModel;
             accountFragment.itemsModel = itemsModel;
+            if(listCertificateRowModel.size() > 0 ){
+                accountFragment.isShowHideBtnAddItem = false;
+            } else {
+                accountFragment.isShowHideBtnAddItem = true;
+            }
             fragmentTransaction.replace(R.id.fragment_content, accountFragment);
             fragmentTransaction.commit();
         }

@@ -9,15 +9,19 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -35,6 +39,7 @@ import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.adapter.HeadlineNewsBaseAdapter;
 import com.acomp.khobarapp.ui.adapter.HistoryItemsBaseAdapter;
 import com.acomp.khobarapp.ui.adapter.ListNewsBaseAdapter;
+import com.acomp.khobarapp.ui.home.HomeFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -78,6 +83,53 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_news, container, false);
+        ImageView logoImgHN = (ImageView) rootView.findViewById(R.id.logoImgHN);
+        SearchView searchView =
+                (SearchView) rootView.findViewById(R.id.btnViewSearchNews);
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setActivity(getActivity());
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchNews",searchView);
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                logoImgHN.setVisibility(View.GONE);
+//                closeBtn.setGravity();
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+                logoImgHN.setVisibility(View.VISIBLE);
+                //do what you want  searchview is not expanded
+                return false;
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                if(isScrollChanged == true) {
+                    searchValue = s;
+                    page = 1;
+                    type = 1;
+                    listNewsModel.clear();
+                    HomeFragment homeFragment = new HomeFragment();
+                    homeFragment.setActivity(getActivity());
+                    homeFragment.saveSuggest("suggestSearchNews", s);
+                    getListNews(page);
+//                    Log.d("QUERY Submit", "QueryTextSubmit: " + s);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d("QUERY CHANGE", "QueryTextChange: " + newText);
+                return false;
+            }
+        });
 
         pullToRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.pullToRefresh);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -122,6 +174,9 @@ public class NewsFragment extends Fragment {
             bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
             bottomNavigationView.getMenu().findItem(R.id.nav_news).setChecked(true);
             bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(false);
+        } else {
+            LinearLayout toolbarItems = (LinearLayout) rootView.findViewById(R.id.toolbar_items);
+            toolbarItems.setVisibility(View.GONE);
         }
         layItemsNotFound = (RelativeLayout) rootView.findViewById(R.id.layItemsNotFound);
         layItemsNotFound.setVisibility(View.GONE);
@@ -262,11 +317,13 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onFailure(Call call, Throwable t) {
+
                 progressDoalog.dismiss();
                 if (type == 0) {
                     bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(true);
                 }
                 Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                t.getStackTrace();
             }
         });
     }

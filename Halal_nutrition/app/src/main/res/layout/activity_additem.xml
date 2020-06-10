@@ -302,17 +302,6 @@
                                 android:layout_marginTop="25dp"
                                 app:chipHeight="20dp"
                                 app:chipVerticalSpacing="3dp"/>
-                        <!--                        <EditText-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="45dp"-->
-                        <!--                            android:hint=" Nitrate "-->
-                        <!--                            android:inputType="text"-->
-                        <!--                            android:fontFamily="@font/roboto_medium"-->
-                        <!--                            android:textSize="16sp"-->
-                        <!--                            android:layout_marginTop="25dp"-->
-                        <!--                            android:layout_gravity="center"-->
-                        <!--                            android:id="@+id/foodIngredientText"-->
-                        <!--                            />-->
 
                     </RelativeLayout>
 
@@ -405,18 +394,54 @@
                     <RelativeLayout
                         android:id="@+id/itemCertificate"
                         android:layout_width="match_parent"
-                        android:layout_height="128dp"
-                        android:layout_below="@+id/certificate"
+                        android:layout_height="300dp"
+                        android:layout_below="@+id/food_ingredients"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:orientation="vertical">
-
+                        <TextView
+                            android:id="@+id/titleCertificate"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:paddingBottom="25dp"
+                            android:text="Halal Certificate"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
                         <ListView
                             android:id="@+id/listItemCertificate"
                             android:layout_width="wrap_content"
-                            android:layout_height="fill_parent" />
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/titleCertificate"/>
                     </RelativeLayout>
+                    <LinearLayout
+                        android:id="@+id/btnBottomAddCertificate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_margin="10dp"
+                        android:layout_below="@+id/itemCertificate"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_add_circle_black_24dp"
+                            android:layout_gravity="center"
+                            />
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Halal Certificate"
+                            android:textColor="@color/halal"/>
+                    </LinearLayout>
                 </RelativeLayout>
 
             </RelativeLayout>

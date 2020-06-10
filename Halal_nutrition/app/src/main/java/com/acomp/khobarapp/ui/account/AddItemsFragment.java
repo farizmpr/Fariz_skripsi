@@ -32,6 +32,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.acomp.khobarapp.R;
@@ -96,6 +97,9 @@ public class AddItemsFragment extends Fragment {
     private RelativeLayout layAddSuccessItems;
     private RelativeLayout btnBackAddSuccessItems;
     private LinearLayout layAddItems;
+    public FragmentActivity fragmentActivity = null;
+
+    public Boolean isShowHideBtnAddItem = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -117,12 +121,24 @@ public class AddItemsFragment extends Fragment {
         RelativeLayout btnCertificate = (RelativeLayout) rootView.findViewById(R.id.certificate);
         btnCertificate.setOnClickListener(btnCertificateListener);
 
+
+        ListView listItemCertificate = (ListView) rootView.findViewById(R.id.listItemCertificate);
         Button btnAddCertificate = (Button) rootView.findViewById(R.id.btnAddCertificate);
+        RelativeLayout layAddCert = (RelativeLayout) rootView.findViewById(R.id.certificate);
+        LinearLayout btnBottomAddCertificate = (LinearLayout) rootView.findViewById(R.id.btnBottomAddCertificate);
+        if (isShowHideBtnAddItem == true) {
+            layAddCert.setVisibility(View.VISIBLE);
+            btnBottomAddCertificate.setVisibility(View.GONE);
+            listItemCertificate.setVisibility(View.GONE);
+        } else {
+            listItemCertificate.setVisibility(View.VISIBLE);
+            layAddCert.setVisibility(View.GONE);
+            btnBottomAddCertificate.setVisibility(View.VISIBLE);
+        }
         btnAddCertificate.setOnClickListener(btnCertificateListener);
+        btnBottomAddCertificate.setOnClickListener(btnCertificateListener);
 
 
-        ListView lv1 = (ListView) rootView.findViewById(R.id.listItemCertificate);
-        lv1.setAdapter(new MyCustomBaseAdapter(getActivity(), listCertificateRowModel));
         ImageView btnSendItems = (ImageView) rootView.findViewById(R.id.btnSendItems);
         btnSendItems.setOnClickListener(sendItemsListener);
 
@@ -141,15 +157,6 @@ public class AddItemsFragment extends Fragment {
         if (itemsModel.getManufacture() != "") {
             foodManufactureText.setText(itemsModel.getManufacture());
         }
-//        String foo = "This,that,other";
-//        String[] split = foo.split(",");
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < split.length; i++) {
-//            sb.append(split[i]);
-//            if (i != split.length - 1) {
-//                sb.append(" ");
-//            }
-//        }
 
         mChipsView = (NachoTextView) rootView.findViewById(R.id.foodIngredientText);
 //        mChipsView.setText();
@@ -162,8 +169,22 @@ public class AddItemsFragment extends Fragment {
         if (itemsModel.getIngredient() != "") {
             String[] splitIngredient = itemsModel.getIngredient().split(";");
             mChipsView.setText(Arrays.asList(splitIngredient));
+//            ingredientTxt += text.toString() + ";";
 //            foodIngredientText.setText(itemsModel.getIngredient());
         }
+
+        String ingredientTxt = "";
+        for (Chip chip : mChipsView.getAllChips()) {
+            CharSequence text = chip.getText();
+            ingredientTxt += text.toString() + ";";
+            Object data = chip.getData();
+        }
+        itemsModel.setCode(foodCode);
+        itemsModel.setName(foodName);
+        itemsModel.setManufacture(foodManufacture);
+        itemsModel.setIngredient(ingredientTxt);
+        ListView lv1 = (ListView) rootView.findViewById(R.id.listItemCertificate);
+        lv1.setAdapter(new MyCustomBaseAdapter(getActivity(), listCertificateRowModel, getActivity(),itemsModel));
         return rootView;
     }
 
@@ -206,7 +227,7 @@ public class AddItemsFragment extends Fragment {
                 ingredientTxt += text.toString() + ";";
                 Object data = chip.getData();
             }
-            if(ingredientTxt == ""){
+            if (ingredientTxt == "") {
                 mChipsView.requestFocus();
                 return;
             }
@@ -319,6 +340,37 @@ public class AddItemsFragment extends Fragment {
         }
     };
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+
+        if (requestCode == 100) {
+            if (!verifyAllPermissions(grantResults)) {
+                Toast.makeText(getActivity().getApplicationContext(), "No sufficient permissions", Toast.LENGTH_LONG).show();
+            } else {
+                verifyStoragePermissions(getActivity());
+                Log.d("CHOOSE CAMERA", "OK");
+                Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(takePicture, PICK_IMAGE_CAMERA);
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private boolean verifyAllPermissions(int[] grantResults) {
+
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private final String[] listPermission = new String[]{
+            Manifest.permission.CAMERA
+    };
 
     private void DialogForm(String foodCode, String foodName, String foodManufacture, String foodIngredient) {
         this.foodCode = foodCode;
@@ -331,11 +383,15 @@ public class AddItemsFragment extends Fragment {
         Button btnAddPhoto = (Button) dialogView.findViewById(R.id.btnAddPhoto);
         btnAddPhoto.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if (getActivity().checkSelfPermission(listPermission[0]) != PackageManager.PERMISSION_DENIED ) {
+                    verifyStoragePermissions(getActivity());
+                    Log.d("CHOOSE CAMERA", "OK");
+                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePicture, PICK_IMAGE_CAMERA);
+                } else {
+                    requestPermissions(listPermission, 100);
+                }
 
-                verifyStoragePermissions(getActivity());
-                Log.d("CHOOSE CAMERA","OK");
-                Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(takePicture, PICK_IMAGE_CAMERA);
             }
         });
         Button btnWithoutPhoto = (Button) dialogView.findViewById(R.id.btnWithoutPhoto);
@@ -496,40 +552,41 @@ public class AddItemsFragment extends Fragment {
 
     private View.OnClickListener btnCertificateListener = new View.OnClickListener() {
         public void onClick(View v) {
-            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            AddItemsCertificateFragment accountFragment = new AddItemsCertificateFragment();
-            accountFragment.listCertificateRowModel = listCertificateRowModel;
-            EditText foodCodeText = (EditText) getActivity().findViewById(R.id.foodCodeText);
-            String foodCode = foodCodeText.getText().toString();
-
-            EditText foodNameText = (EditText) getActivity().findViewById(R.id.foodNameText);
-            String foodName = foodNameText.getText().toString();
-
-            EditText foodManufactureText = (EditText) getActivity().findViewById(R.id.foodManufactureText);
-            String foodManufacture = foodManufactureText.getText().toString();
-            String ingredientTxt = "";
-            for (Chip chip : mChipsView.getAllChips()) {
-                // Do something with the text of each chip
-                CharSequence text = chip.getText();
-//                Log.d("CHIPS TEXT FIRST",text.toString());
-                ingredientTxt += text.toString() + ";";
-                // Do something with the data of each chip (this data will be set if the chip was created by tapping a suggestion)
-                Object data = chip.getData();
-            }
-            String ingredientTxt2 = method(ingredientTxt);
-//            Characters.valueOf(ingredientTxt).rightTrim( ... );
-//            ChipsView foodIngredientText = (ChipsView) getActivity().findViewById(R.id.foodIngredientText);
-//            String foodIngredient = foodIngredientText.getText().toString();
-            foodIngredient = ingredientTxt2;
-//            Log.d("CHIPS TEXT",foodIngredient);
-            accountFragment.itemsModel.setCode(foodCode);
-            accountFragment.itemsModel.setName(foodName);
-            accountFragment.itemsModel.setIngredient(foodIngredient);
-            accountFragment.itemsModel.setManufacture(foodManufacture);
-            fragmentTransaction.replace(R.id.fragment_content, accountFragment);
-            fragmentTransaction.commit();
+            clickBtnAddListener();
         }
     };
+
+    public void clickBtnAddListener() {
+        if (fragmentActivity == null) {
+            fragmentActivity = getActivity();
+        }
+        FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
+
+        AddItemsCertificateFragment accountFragment = new AddItemsCertificateFragment();
+        accountFragment.listCertificateRowModel = listCertificateRowModel;
+        EditText foodCodeText = (EditText) getActivity().findViewById(R.id.foodCodeText);
+        String foodCode = foodCodeText.getText().toString();
+
+        EditText foodNameText = (EditText) getActivity().findViewById(R.id.foodNameText);
+        String foodName = foodNameText.getText().toString();
+
+        EditText foodManufactureText = (EditText) getActivity().findViewById(R.id.foodManufactureText);
+        String foodManufacture = foodManufactureText.getText().toString();
+        String ingredientTxt = "";
+        for (Chip chip : mChipsView.getAllChips()) {
+            CharSequence text = chip.getText();
+            ingredientTxt += text.toString() + ";";
+            Object data = chip.getData();
+        }
+        String ingredientTxt2 = method(ingredientTxt);
+        foodIngredient = ingredientTxt2;
+        accountFragment.itemsModel.setCode(foodCode);
+        accountFragment.itemsModel.setName(foodName);
+        accountFragment.itemsModel.setIngredient(foodIngredient);
+        accountFragment.itemsModel.setManufacture(foodManufacture);
+        fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+        fragmentTransaction.commit();
+    }
 
     public String method(String str) {
         if (str != null && str.length() > 0 && str.charAt(str.length() - 1) == ';') {

@@ -71,7 +71,9 @@
 
         <activity
             android:name=".ui.items.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps"
+            tools:ignore="Instantiatable"></activity>
+
         <activity
             android:name=".ui.splash.SplashScreenActivity"
             android:theme="@style/SplashTheme">
@@ -82,7 +84,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
+
+        </activity>
         <activity android:name=".accountactivity" />
         <activity
             android:name=".ui.detail.DetailedActivity"

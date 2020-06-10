@@ -62,6 +62,9 @@ public class ListCertificateIssuerAdapter extends RecyclerView.Adapter<ListCerti
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         String actualDate = "2016-03-20";
+        if(object.getExpiredDate() != null){
+            actualDate = object.getExpiredDate();
+        }
 
         Date fixDateParse = null;
         try {

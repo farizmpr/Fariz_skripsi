@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="TITLE"
+        app:actionViewClass="com.acomp.khobarapp.ui.adapter.ArrayAdapterSearchView"
+        app:showAsAction="ifRoom|collapseActionView"/>
+
+</menu>

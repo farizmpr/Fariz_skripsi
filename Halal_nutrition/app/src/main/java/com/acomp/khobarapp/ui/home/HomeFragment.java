@@ -1,9 +1,13 @@
 package com.acomp.khobarapp.ui.home;
 
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +16,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -21,12 +28,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
+import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
+import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.ui.account.AccountFragment;
+import com.acomp.khobarapp.ui.adapter.ArrayAdapterSearchView;
 import com.acomp.khobarapp.ui.items.HalalItemsFragment;
 import com.acomp.khobarapp.ui.items.HalalVenuesFragment;
 import com.acomp.khobarapp.ui.items.ScanItemsDetailFragment;
@@ -40,7 +51,12 @@ import com.synnapps.carouselview.ImageListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,7 +69,11 @@ public class HomeFragment extends Fragment {
     public String address = null;
     CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner_home_1};
+    FragmentActivity fragmentActivity = null;
 
+    public void setActivity(FragmentActivity fragmentActivitys) {
+        fragmentActivity= fragmentActivitys;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,11 +105,32 @@ public class HomeFragment extends Fragment {
         fragmentTransaction.replace(R.id.fragment_content_news_home, newsFragment);
         fragmentTransaction.commit();
 
+//        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         SearchView searchView =
                 (SearchView) rootView.findViewById(R.id.btnSearchAllHome);
+        getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
+
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int position) {
+                return true;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int position) {
+//                CursorAdapter selectedView = searchView.getSuggestionsAdapter();
+//                Cursor cursor = (Cursor) selectedView.getItem(position);
+//                int index = cursor.getColumnIndexOrThrow(SearchManager.SUGGEST_COLUMN_TEXT_1);
+//                searchView.setQuery(cursor.getString(index), true);
+                return true;
+            }
+        });
+
+        ImageView logoImgHN = (ImageView) rootView.findViewById(R.id.logoImgHN);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                logoImgHN.setVisibility(View.GONE);
                 //do what you want when search view expended
 //                paramsBack.weight = 1.0f;
 //                paramsLnlFav.weight = 8.0f;
@@ -102,6 +143,7 @@ public class HomeFragment extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
+                logoImgHN.setVisibility(View.VISIBLE);
 //                paramsBack.weight = 2.0f;
 //                paramsLnlFav.weight = 4.0f;
 //                closeBtn.setLayoutParams(paramsBack);
@@ -119,9 +161,14 @@ public class HomeFragment extends Fragment {
 //                page = 1;
 //                listVenuesModel.clear();
 //                getListVenues(page, querySearch);
+//                SearchRecentSuggestions suggestions = new SearchRecentSuggestions(getActivity(),
+//                        MySuggestionProvider.AUTHORITY,
+//                        MySuggestionProvider.MODE);
+//                suggestions.saveRecentQuery(s, null);
+                saveSuggest("suggestSearchAll", s);
                 searchHomeAll(s);
                 Log.d("QUERY Submit", "QueryTextSubmit: " + s);
-                return false;
+                return true;
             }
 
             @Override
@@ -134,10 +181,89 @@ public class HomeFragment extends Fragment {
 //        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
 //        navBar.setVisibility(View.VISIBLE);
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
         return rootView;
     }
 
-    public void searchHomeAll(String text){
+    public static String[] convertSetToArrayString(Set<String> setOfString) {
+
+        // Create String[] of size of setOfString
+        String[] arrayOfString = new String[setOfString.size()];
+
+        // Copy elements from set to string array
+        // using advanced for loop
+        int index = 0;
+        for (String str : setOfString)
+            arrayOfString[index++] = str;
+
+        // return the formed String[]
+        return arrayOfString;
+    }
+
+    public void getSuggetsSearchAutoComplete(String key, SearchView searchView) {
+        if(fragmentActivity == null){
+            fragmentActivity = getActivity();
+        }
+
+        SharedPreferences preferences = fragmentActivity.getPreferences(Context.MODE_PRIVATE);
+        Set<String> listSuggestSearchAll = preferences.getStringSet(key, null);
+        String dataListSuggestSearchAll[] = {};
+        if (listSuggestSearchAll != null) {
+            if (listSuggestSearchAll.size() > 0) {
+                dataListSuggestSearchAll = convertSetToArrayString(listSuggestSearchAll);
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(fragmentActivity, R.layout.autocomplete_search, R.id.textAutoComplete, dataListSuggestSearchAll);
+        ArrayAdapterSearchView dataAdapter = new ArrayAdapterSearchView(fragmentActivity, searchView);
+        dataAdapter.setAdapter(adapter);
+    }
+
+    public void saveSuggest(String key, String text) {
+        if(fragmentActivity == null){
+            fragmentActivity = getActivity();
+        }
+        SharedPreferences preferences = fragmentActivity.getPreferences(Context.MODE_PRIVATE);
+        Set<String> set = null;
+        Set<String> listSuggestSearchAll = preferences.getStringSet(key, null);
+        if (listSuggestSearchAll != null) {
+            if (listSuggestSearchAll.size() >= 11) {
+//            listSuggestSearchAll.remove(1);
+                Iterator<String> iterator = listSuggestSearchAll.iterator();
+                while (iterator.hasNext()) {
+                    String s = iterator.next();
+                    if (s.length() >= 11) {
+                        iterator.remove();
+                    }
+
+                }
+                set = new HashSet<String>((Collection<? extends String>) iterator);
+            } else {
+                set = new HashSet<String>(listSuggestSearchAll);
+                if (!set.contains(text)) {
+                    set.add(text);
+                }
+            }
+        } else {
+            if (listSuggestSearchAll != null) {
+                set = new HashSet<String>(listSuggestSearchAll);
+            } else {
+                set = new HashSet<String>();
+            }
+
+
+        }
+
+
+        SharedPreferences.Editor prefsEditr = preferences.edit();
+        prefsEditr.putStringSet("suggestSearchAll", set);
+        prefsEditr.commit();
+//                        preferences.edit().putString("token", token).commit();
+//                        SharedPreferences.Editor editor = preferences.edit();
+        prefsEditr.apply();
+    }
+
+    public void searchHomeAll(String text) {
+
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         TabHomeSearchAllFragment halalItemsFragment = new TabHomeSearchAllFragment();
         halalItemsFragment.setDefaultTextSearch(text);

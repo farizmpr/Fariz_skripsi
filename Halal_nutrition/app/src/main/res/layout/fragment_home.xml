@@ -16,24 +16,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_items"
         android:background="@color/white">
+
         <ImageView
+            android:id="@+id/logoImgHN"
             android:layout_margin="10dp"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:src="@drawable/mas_logo"
             android:scaleType="fitStart"
             />
-
         <RelativeLayout
             android:id="@+id/lnl_favorite"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
+            android:scaleType="fitStart"
             android:gravity="end">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="100dp"
+                android:scaleType="fitStart"
                 android:layout_centerInParent="true">
 
                 <androidx.appcompat.widget.SearchView
@@ -43,13 +46,17 @@
                     android:layout_height="wrap_content"
                     android:tint="@color/halal"
                     app:searchIcon="@drawable/ic_search_color_halal_24dp" />
-                <!--                            <ImageView-->
-                <!--                                android:layout_width="20dp"-->
-                <!--                                android:layout_height="20dp"-->
-                <!--                                android:layout_centerInParent="true"-->
-                <!--                                android:src="@drawable/ic_search_black_24dp"-->
-                <!--                                android:tint="@color/white" />-->
+<!--                <AutoCompleteTextView-->
+<!--                    android:id="@+id/autoCompleteSearch"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ems="10"-->
+<!--                    android:imeOptions="actionSearch"-->
+<!--                    android:inputType="textAutoComplete|textAutoCorrect"-->
+<!--                    android:textColor="#000" >-->
 
+<!--                    <requestFocus />-->
+<!--                </AutoCompleteTextView>-->
 
             </RelativeLayout>
 

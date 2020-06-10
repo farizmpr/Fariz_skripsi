@@ -68,6 +68,9 @@ public class HalalVenuesFragment extends Fragment {
 //                (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
                 (SearchView) rootView.findViewById(R.id.btnViewSearchAllItems);
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setActivity(getActivity());
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchVenues",searchView);
         TextView titleMenuBar = (TextView) rootView.findViewById(R.id.titleMenuBar);
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
@@ -109,6 +112,9 @@ public class HalalVenuesFragment extends Fragment {
                 querySearch = s;
                 page = 1;
                 listVenuesModel.clear();
+                HomeFragment homeFragment = new HomeFragment();
+                homeFragment.setActivity(getActivity());
+                homeFragment.saveSuggest("suggestSearchVenues", s);
                 getListVenues(page, querySearch);
                 Log.d("QUERY Submit", "QueryTextSubmit: " + s);
                 return false;

@@ -55,7 +55,9 @@ public class TabHomeSearchAllFragment extends Fragment {
 //            }
 //            hideKeyboard(getActivity());
         }
-
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setActivity(getActivity());
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll",searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -67,6 +69,9 @@ public class TabHomeSearchAllFragment extends Fragment {
 //                    getListFood(page, querySearch);
 //                    Log.d("QUERY Submit", "QueryTextSubmit: " + s);
 //                }
+                HomeFragment homeFragment = new HomeFragment();
+                homeFragment.setActivity(getActivity());
+                homeFragment.saveSuggest("suggestSearchAll",s);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 TabHomeSearchAllFragment tabHomeSearchAllFragment = new TabHomeSearchAllFragment();
                 tabHomeSearchAllFragment.setDefaultTextSearch(s);

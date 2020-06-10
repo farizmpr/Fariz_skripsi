@@ -13,9 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
-//    private static final String BASE_URL = "http://192.168.42.165/skripsi/purnomo/halal-nutrition-api/public/api/"; //LOCAL
-    public static final String BASE_URL = "http://smkpgri35.sch.id/halal_nutrition/public/api/";
-
+    public static final String BASE_URL = "http://app.halalnutrition.xyz/api/";
 
     public static Retrofit getRetrofitInstance() {
 //        if (retrofit == null) {
@@ -35,11 +33,11 @@ public class RetrofitClientInstance {
             }
         });
         OkHttpClient client = httpClient.build();
-            retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
-                    .build();
+        retrofit = new retrofit2.Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
 //        }
         return retrofit;
     }
@@ -62,11 +60,11 @@ public class RetrofitClientInstance {
         });
         OkHttpClient client = httpClient.build();
 //        if (retrofit == null) {
-            retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
-                    .build();
+        retrofit = new retrofit2.Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
 //        }
         return retrofit;
     }

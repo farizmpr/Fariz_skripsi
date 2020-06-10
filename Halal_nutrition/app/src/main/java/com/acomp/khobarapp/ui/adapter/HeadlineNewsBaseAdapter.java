@@ -3,6 +3,7 @@ package com.acomp.khobarapp.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -12,8 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
+import com.acomp.khobarapp.model.AttachmentModel;
 import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.ui.news.NewsDetailFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -48,6 +51,17 @@ public class HeadlineNewsBaseAdapter extends RecyclerView.Adapter<HeadlineNewsBa
 
         holder.txtTitleRow.setText(firstText);
         holder.txtStrDate.setText(secondText);
+        String imageUrl = null;
+        Integer no=0;
+        for(AttachmentModel attachmentModel: object.getAttachmentModels()){
+            if(no == 0){
+                imageUrl = attachmentModel.getUrl();
+            }
+            no++;
+        }
+        if(imageUrl != null){
+            Picasso.get().load(imageUrl).into(holder.imgPoster);
+        }
 
         FragmentTransaction fragmentTransaction = context.getSupportFragmentManager().beginTransaction();
         holder.newsHeadlineBox.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +86,12 @@ public class HeadlineNewsBaseAdapter extends RecyclerView.Adapter<HeadlineNewsBa
         TextView txtTitleRow;
         TextView txtStrDate;
         CardView newsHeadlineBox;
+        ImageView imgPoster;
         NewsViewHolder(View itemView) {
             super(itemView);
             txtTitleRow = (TextView) itemView.findViewById(R.id.tv_title);
             txtStrDate = (TextView) itemView.findViewById(R.id.tv_source);
+            imgPoster = (ImageView) itemView.findViewById(R.id.img_poster);
             newsHeadlineBox = (CardView) itemView.findViewById(R.id.newsHeadlineBox);
         }
 //        ImageView btnRemoveCertificate;

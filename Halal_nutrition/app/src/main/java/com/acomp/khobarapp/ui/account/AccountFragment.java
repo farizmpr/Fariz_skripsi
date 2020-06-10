@@ -80,6 +80,7 @@ public class AccountFragment extends Fragment {
                         attachmentUrl = resAttachmentUrl;
                         if(attachmentId != 0){
 //                            Picasso.get().load(mImages.get(position)).into(circularImageView);
+                            Log.d("Image Profile",resAttachmentUrl);
                             Picasso.get().load(resAttachmentUrl).fit().centerCrop().into(circularImageView);
                         }
 

@@ -213,10 +213,18 @@ public class HalalVenuesDetailFragment extends Fragment {
                         String strScheduleStatus_1 = "CLOSE";
                         if (scheduleStatus == 1) {
                             strScheduleStatus_1 = "OPEN";
+                        } else {
+                            scheduleStatusHead.setTextColor(Color.RED);
                         }
                         scheduleStatusHead.setText(strScheduleStatus_1);
                         TextView descScheduleStatus = (TextView) view.findViewById(R.id.descStatusSchedule);
-                        descScheduleStatus.setText(strScheduleStatus + " daily time " + strOpenSchedule);
+                        if(strOpenSchedule == null){
+                            descScheduleStatus.setTextColor(Color.RED);
+                            descScheduleStatus.setText("Close Now");
+                        } else {
+                            descScheduleStatus.setText(strScheduleStatus + " daily time " + strOpenSchedule);
+                        }
+
                     } catch (JSONException e) {
                         Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();

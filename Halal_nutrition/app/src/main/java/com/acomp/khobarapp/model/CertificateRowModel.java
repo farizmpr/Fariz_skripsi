@@ -7,6 +7,7 @@ public class CertificateRowModel {
     private Integer statusId;
     private String expiredDate;
     private String code;
+    private String halalStatus = "";
 
     public Integer getTypeId() {
         return typeId;
@@ -18,6 +19,14 @@ public class CertificateRowModel {
 
     public Integer getStatusId() {
         return statusId;
+    }
+
+    public String getHalalStatus() {
+        return halalStatus;
+    }
+
+    public void setHalalStatus(String halalStatus) {
+        this.halalStatus = halalStatus;
     }
 
     public void setStatusId(Integer statusId) {

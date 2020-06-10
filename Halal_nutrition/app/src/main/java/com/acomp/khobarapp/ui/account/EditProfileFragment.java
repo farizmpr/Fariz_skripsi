@@ -1,10 +1,12 @@
 package com.acomp.khobarapp.ui.account;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -89,6 +91,7 @@ public class EditProfileFragment extends Fragment {
         circularImageView.setImageDrawable(getResources().getDrawable(R.drawable.sample_avatar));
         circularImageView.setImageResource(R.drawable.sample_avatar);
         if (attachmentId != 0) {
+            Log.d("Image Profile",attachmentUrl);
             Picasso.get().load(attachmentUrl).fit().centerCrop().into(circularImageView);
         }
 
@@ -113,14 +116,53 @@ public class EditProfileFragment extends Fragment {
     }
 
     private final int SELECT_IMAGE = 200;
+    private final String[] listPermission = new String[]{
+            android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
     private View.OnClickListener layUpdatePhotoProfileListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE);
+            if (getActivity().checkSelfPermission(listPermission[0]) != PackageManager.PERMISSION_DENIED &&
+                    getActivity().checkSelfPermission(listPermission[1]) != PackageManager.PERMISSION_DENIED ) {
+                selectImage();
+            } else {
+                requestPermissions(listPermission, 100);
+            }
+
+
         }
     };
+
+    public void selectImage(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+
+        if (requestCode == 100) {
+            if (!verifyAllPermissions(grantResults)) {
+                Toast.makeText(getActivity().getApplicationContext(), "No sufficient permissions", Toast.LENGTH_LONG).show();
+            } else {
+                selectImage();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private boolean verifyAllPermissions(int[] grantResults) {
+
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

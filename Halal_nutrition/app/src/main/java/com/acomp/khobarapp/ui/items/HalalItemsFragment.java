@@ -84,6 +84,9 @@ public class HalalItemsFragment extends Fragment {
 //                (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
                 (SearchView) rootView.findViewById(R.id.btnViewSearchAllItems);
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setActivity(getActivity());
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchItems",searchView);
         TextView titleMenuBar = (TextView) rootView.findViewById(R.id.titleMenuBar);
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
@@ -126,6 +129,9 @@ public class HalalItemsFragment extends Fragment {
                     querySearch = s;
                     page = 1;
                     listFoodModel.clear();
+                    HomeFragment homeFragment = new HomeFragment();
+                    homeFragment.setActivity(getActivity());
+                    homeFragment.saveSuggest("suggestSearchItems", s);
                     getListFood(page, querySearch);
                     Log.d("QUERY Submit", "QueryTextSubmit: " + s);
                 }
