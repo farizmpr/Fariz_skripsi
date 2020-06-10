@@ -101,7 +101,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:hint=" e.g. 899299411xxxx "
+                            android:hint="e.g. 899299411xxxx "
                             android:inputType="text"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp"
@@ -133,7 +133,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:hint=" ITS Mine "
+                            android:hint="ITS Mine "
                             android:inputType="text"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp"
@@ -166,7 +166,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:hint=" PT. Utama "
+                            android:hint="PT. Utama "
                             android:inputType="text"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp"
@@ -199,7 +199,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:hint=" Nitrate "
+                            android:hint="Nitrate "
                             android:inputType="text"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp"

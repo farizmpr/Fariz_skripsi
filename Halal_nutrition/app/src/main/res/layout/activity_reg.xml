@@ -101,6 +101,7 @@
                     android:inputType="text"
                     android:fontFamily="@font/roboto_medium"
                     android:textSize="16sp"
+                    android:hint="Your First &amp; Last Name "
                     android:layout_marginTop="25dp"
                     android:layout_gravity="center"
                     android:id="@+id/registerFieldFullname"
@@ -130,6 +131,7 @@
                     android:layout_height="45dp"
                     android:id="@+id/registerFieldEmail"
                     android:inputType="textEmailAddress"
+                    android:hint="Enter Your Email Address "
                     android:fontFamily="@font/roboto_medium"
                     android:textSize="16sp"
                     android:layout_marginTop="25dp"
@@ -163,6 +165,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:textSize="16sp"
                     android:layout_marginTop="25dp"
+                    android:hint="Enter Your Address "
                     android:layout_gravity="center"
                     android:id="@+id/registerFieldAddress"
                     />
@@ -193,6 +196,7 @@
                     android:inputType="textEmailAddress"
                     android:fontFamily="@font/roboto_medium"
                     android:textSize="16sp"
+                    android:hint="Create a Strong Password "
                     android:layout_marginTop="25dp"
                     android:layout_gravity="center"
                     android:id="@+id/registerFieldPassword"
@@ -201,6 +205,12 @@
             </RelativeLayout>
 
         </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
         <Button
             android:id="@+id/btnSaveSignUp"
             android:layout_width="match_parent"
@@ -218,6 +228,7 @@
             android:background="@drawable/btn"
             android:textColor="@color/white"
             />
+        </LinearLayout>
     </LinearLayout>
 
 
