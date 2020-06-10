@@ -126,14 +126,24 @@ public class AddItemsFragment extends Fragment {
         Button btnAddCertificate = (Button) rootView.findViewById(R.id.btnAddCertificate);
         RelativeLayout layAddCert = (RelativeLayout) rootView.findViewById(R.id.certificate);
         LinearLayout btnBottomAddCertificate = (LinearLayout) rootView.findViewById(R.id.btnBottomAddCertificate);
+        TextView titleCertificate = (TextView) rootView.findViewById(R.id.titleCertificate);
+        RelativeLayout itemCertificate = (RelativeLayout) rootView.findViewById(R.id.itemCertificate);
+        RelativeLayout layTitleCertificate = (RelativeLayout) rootView.findViewById(R.id.layTitleCertificate);
+
         if (isShowHideBtnAddItem == true) {
             layAddCert.setVisibility(View.VISIBLE);
             btnBottomAddCertificate.setVisibility(View.GONE);
             listItemCertificate.setVisibility(View.GONE);
+            titleCertificate.setVisibility(View.GONE);
+            itemCertificate.setVisibility(View.GONE);
+            layTitleCertificate.setVisibility(View.GONE);
         } else {
             listItemCertificate.setVisibility(View.VISIBLE);
             layAddCert.setVisibility(View.GONE);
+            titleCertificate.setVisibility(View.VISIBLE);
             btnBottomAddCertificate.setVisibility(View.VISIBLE);
+            itemCertificate.setVisibility(View.VISIBLE);
+            layTitleCertificate.setVisibility(View.VISIBLE);
         }
         btnAddCertificate.setOnClickListener(btnCertificateListener);
         btnBottomAddCertificate.setOnClickListener(btnCertificateListener);

@@ -15,7 +15,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
+
 import com.google.android.gms.location.LocationListener;
+
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -101,7 +103,23 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
 
         TextView addressOnMaps = (TextView) rootView.findViewById(R.id.addressOnMaps);
         addressOnMaps.setText(venuesModel.getAddress());
+        this.rootViews = rootView;
+        if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_DENIED && getActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_DENIED) {
+            nextMap();
 
+        } else {
+            requestPermissions(new String[]{
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+            }, 100);
+        }
+
+
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
+        return rootView;
+    }
+
+    public void nextMap() {
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
                 // The next two lines tell the new client that “this” current class will handle connection stuff
                 .addConnectionCallbacks(this)
@@ -119,17 +137,6 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
-
-//        map = mapFragment.getMap();
-        this.rootViews = rootView;
-//        if (rootViews != null) {
-
-//        }
-        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-        navBar.setVisibility(View.GONE);
-        return rootView;
     }
 
 
@@ -150,9 +157,14 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
             String str_origin = mOrigin.latitude + "," + mOrigin.longitude;
 
             // Destination of route
-            String str_dest = mDestination.latitude + "," + mDestination.longitude;
-            String url = "https://www.google.com/maps/dir/" + str_origin + "/" + str_dest;
-            openWebURL(url);
+           if(mDestination.latitude != 0.0 || mDestination.longitude != 0.0 ){
+//               mDestination.latitude = mOrigin.latitude;
+//               mDestination = new LatLng(mOrigin.latitude, mOrigin.longitude);
+               String str_dest = mDestination.latitude + "," + mDestination.longitude;
+               String url = "https://www.google.com/maps/dir/" + str_origin + "/" + str_dest;
+               openWebURL(url);
+           }
+
         }
     };
 
@@ -175,11 +187,16 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
         mMap = googleMap;
         Double latitude = 0.0;
         if (venuesModel.getLatitude() != null) {
-            latitude = Double.parseDouble(venuesModel.getLatitude());
+            if(!venuesModel.getLatitude().isEmpty()){
+                latitude = Double.parseDouble(venuesModel.getLatitude());
+            }
+
         }
         Double longitude = 0.0;
         if (venuesModel.getLongitude() != null) {
-            longitude = Double.parseDouble(venuesModel.getLongitude());
+            if(!venuesModel.getLongitude().isEmpty()) {
+                longitude = Double.parseDouble(venuesModel.getLongitude());
+            }
         }
         mDestination = new LatLng(latitude, longitude);
 
@@ -214,7 +231,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
             if (!verifyAllPermissions(grantResults)) {
                 Toast.makeText(getActivity().getApplicationContext(), "No sufficient permissions", Toast.LENGTH_LONG).show();
             } else {
-                getMyLocation();
+                nextMap();
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -244,83 +261,17 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
         // get the best provider depending on the criteria
         provider = mLocationManager.getBestProvider(criteria, false);
 
-/*
-        mLocationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                Log.d("MORIGIN START", "OK");
-                mOrigin = new LatLng(location.getLatitude(), location.getLongitude());
-                Log.d("MORIGIN START", "OK 2");
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin, 10));
-
-
-                if (mOrigin != null && mDestination != null) {
-//                    Log.d("MORIGIN START", "OK NEXT");
-//                    drawRoute();
-                }
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-                Toast.makeText(getActivity(), provider + "'s status changed to "+status +"!",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-                Toast.makeText(getActivity(), "Provider " + provider + " enabled!",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-                Toast.makeText(getActivity(), "Provider " + provider + " disabled!",
-                        Toast.LENGTH_SHORT).show();
-            }
-        };
-*/
         int currentApiVersion = Build.VERSION.SDK_INT;
-//        if (currentApiVersion >= Build.VERSION_CODES.M) {
 
         if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_DENIED) {
             mMap.setMyLocationEnabled(true);
-//                mMap.setMyLocationEnabled(true);
-//            Log.d("MORIGIN START", "SECOND");
-//            mLocationManager.requestLocationUpdates(provider, 2000, 0, mLocationListener);
-/*
-            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-                @Override
-                public void onMapLongClick(LatLng latLng) {
-                    mDestination = latLng;
-                    mMap.clear();
-                    mMarkerOptions = new MarkerOptions().position(mDestination).title("Destination");
-                    mMap.addMarker(mMarkerOptions);
-                    if (mOrigin != null && mDestination != null)
-                        drawRoute();
-                }
-            });
 
- */
 
         } else {
             requestPermissions(new String[]{
                     android.Manifest.permission.ACCESS_FINE_LOCATION
             }, 100);
         }
-//        }
-//        GPSTracker gpsTracker = new GPSTracker(getActivity());
-//
-//        if (gpsTracker.getIsGPSTrackingEnabled())   {
-//
-//        }
-//        Location location = mLocationManager.getLastKnownLocation(provider);
-//        if(location != null){
-//
-//        }
-
-//        String a=""+location.getLatitude();
-//        Toast.makeText(getActivity().getApplicationContext(), a,  Toast.LENGTH_SHORT).show();
-
     }
 
 
@@ -402,16 +353,36 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d("LONGLAT2", "LAT="+location.getLatitude()+"&LONG="+location.getLongitude());
+        Log.d("LONGLAT2", "LAT=" + location.getLatitude() + "&LONG=" + location.getLongitude());
         Toast.makeText(getActivity(), location.getLatitude() + " WORKS " + location.getLongitude() + "", Toast.LENGTH_LONG).show();
 
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
         if (location == null) {
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, (com.google.android.gms.location.LocationListener) getActivity());
 
         } else {

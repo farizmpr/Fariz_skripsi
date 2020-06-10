@@ -81,10 +81,19 @@ public class MyCustomBaseAdapter extends BaseAdapter {
                 searchArrayList.remove(position);
                 notifyDataSetChanged();
                 if (searchArrayList.size() == 0) {
+                    ListView listItemCertificate = (ListView) fragmentActivity.findViewById(R.id.listItemCertificate);
+                    Button btnAddCertificate = (Button) fragmentActivity.findViewById(R.id.btnAddCertificate);
                     RelativeLayout layAddCert = (RelativeLayout) fragmentActivity.findViewById(R.id.certificate);
-                    layAddCert.setVisibility(View.VISIBLE);
                     LinearLayout btnBottomAddCertificate = (LinearLayout) fragmentActivity.findViewById(R.id.btnBottomAddCertificate);
+                    TextView titleCertificate = (TextView) fragmentActivity.findViewById(R.id.titleCertificate);
+                    RelativeLayout itemCertificate = (RelativeLayout) fragmentActivity.findViewById(R.id.itemCertificate);
+                    RelativeLayout layTitleCertificate = (RelativeLayout) fragmentActivity.findViewById(R.id.layTitleCertificate);
+                    layAddCert.setVisibility(View.VISIBLE);
                     btnBottomAddCertificate.setVisibility(View.GONE);
+                    listItemCertificate.setVisibility(View.GONE);
+                    titleCertificate.setVisibility(View.GONE);
+                    itemCertificate.setVisibility(View.GONE);
+                    layTitleCertificate.setVisibility(View.GONE);
                 }
             }
 
