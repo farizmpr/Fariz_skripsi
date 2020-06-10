@@ -356,27 +356,30 @@
                         android:layout_marginLeft="162dp"
                         android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
                 </LinearLayout>
-
-
             </RelativeLayout>
-
-            <Button
-                android:id="@+id/logoutBtnLinear"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/btn"
-                android:backgroundTint="@color/halal"
-                android:fontFamily="@font/roboto_mmedium"
-                android:text="Log out"
-                android:textAllCaps="false"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:orientation="vertical" >
+                <Button
+                    android:id="@+id/logoutBtnLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/btn"
+                    android:backgroundTint="@color/halal"
+                    android:fontFamily="@font/roboto_mmedium"
+                    android:text="Log out"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

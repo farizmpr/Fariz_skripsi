@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".RegisterActivity">
@@ -205,22 +205,32 @@
 
         </RelativeLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
+            <Button
+                android:layout_marginTop="115dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/btnUpdateProfile"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:text="Save"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto_mmedium"
+                android:textAllCaps="false"
+                android:background="@drawable/btn"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/halal"
+                />
+        </LinearLayout>
     </LinearLayout>
-    <Button
-        android:layout_marginTop="115dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/btnUpdateProfile"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="center"
-        android:text="Save"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:fontFamily="@font/roboto_mmedium"
-        android:textAllCaps="false"
-        android:background="@drawable/btn"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/halal"
-        />
+
+
 </LinearLayout>
