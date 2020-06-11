@@ -100,7 +100,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:hint=" e.g. 899299411xxxx "
+                            android:hint="Enter Certificate's Number "
                             android:inputType="text"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp"
@@ -131,7 +131,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:hint=" dd/mm/yy"
+                            android:hint="Add Halal Certificate's Expiry Date"
                             android:inputType="text"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp"
@@ -228,7 +228,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:hint=" Majelis Ulama Indonesia"
+                            android:hint="Majelis Ulama Indonesia"
                             android:inputType="text"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp"

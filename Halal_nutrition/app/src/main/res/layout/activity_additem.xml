@@ -139,7 +139,7 @@
                 android:layout_weight="8"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
-                android:text="Add Items"
+                android:text="Add Product"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -187,7 +187,7 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Food Code"
+                    android:text="Product Code"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -199,7 +199,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:hint=" e.g. 899299411xxxx "
+                    android:hint="Enter Product's Code "
                     android:inputType="text"
                     android:textSize="16sp" />
 
@@ -220,7 +220,7 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Food Name"
+                    android:text="Product Name"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -232,7 +232,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:hint=" ITS Mine "
+                    android:hint="Enter Product's Name "
                     android:inputType="text"
                     android:textSize="16sp" />
 
@@ -253,7 +253,7 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Food Manufacture"
+                    android:text="Product Manufacture"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -265,7 +265,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:hint=" PT. Utama "
+                    android:hint="Enter Product's Manufacture "
                     android:inputType="text"
                     android:textSize="16sp" />
 
@@ -288,7 +288,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto_medium"
                     android:paddingBottom="25dp"
-                    android:text="Food Ingredient"
+                    android:text="Product Ingredient"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -301,6 +301,7 @@
                     android:layout_marginTop="25dp"
                     android:fontFamily="@font/roboto_medium"
                     app:chipHeight="20dp"
+                    android:hint="Enter At Least Two Ingredients"
                     app:chipTextSize="16dp"
                     app:chipSpacing="0dp"
                     app:chipVerticalSpacing="3dp" />
@@ -339,12 +340,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="8"
-                android:background="@color/grey_certif"
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    android:gravity="center"
+                    android:background="@color/grey_certif"
                     android:layout_centerHorizontal="true">
 
                     <RelativeLayout

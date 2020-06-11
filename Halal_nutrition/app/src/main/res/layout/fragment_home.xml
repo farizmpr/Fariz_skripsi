@@ -111,6 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textSize="12sp"
                     android:text="Search Items"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -143,6 +144,7 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
+                    android:textSize="12sp"
                     android:text="Scan Product"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -174,6 +176,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_regular"
+                    android:textSize="12sp"
                     android:gravity="center"
                     android:text="Halal Venues"/>
             </LinearLayout>

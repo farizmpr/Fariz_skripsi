@@ -131,7 +131,7 @@
     <style name="AppTheme.RoundedCornerMaterialButton" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/halal</item>
         <item name="cornerFamily">rounded</item>
-        <item name="cornerRadius">114dp</item>
+        <item name="cornerRadius">36dp</item>
         <item name="textAllCaps">true</item>
         <item name="fontFamily">@font/roboto_light</item>
         <item name="backgroundTint">@color/halal</item>
