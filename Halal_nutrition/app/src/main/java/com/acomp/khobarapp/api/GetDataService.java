@@ -72,6 +72,9 @@ public interface GetDataService {
     @GET("news")
     Call<JsonObject> getNews(@Query("page") Integer page, @Query("search") String search);
 
+    @GET("news")
+    Call<JsonObject> getNewsByKeyValue(@Query("page") Integer page, @Query("key") String key, @Query("value") String value);
+
     @Multipart
     @POST("attachment/upload")
     Call<JsonObject> uploadAttachment(@Part MultipartBody.Part files,

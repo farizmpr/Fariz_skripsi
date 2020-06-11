@@ -102,7 +102,6 @@ public class HomeActivity extends AppCompatActivity {
                         String token = preferences.getString("token", "");
 //                        Log.d("TOKEN", token);
                         if (token == null) {
-//                            Log.d("TOKEN LOGIN GAGAL", token);
                             AccountFragment1 accountFragment1 = new AccountFragment1();
                             fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                             fragmentTransaction.commit();

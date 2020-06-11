@@ -26,19 +26,23 @@ import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.ViewCompat;
 import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.adapter.ArrayAdapterSearchView;
+import com.acomp.khobarapp.ui.adapter.SliderHomeAdapter;
 import com.acomp.khobarapp.ui.items.HalalItemsFragment;
 import com.acomp.khobarapp.ui.items.HalalVenuesFragment;
 import com.acomp.khobarapp.ui.items.ScanItemsDetailFragment;
@@ -70,9 +74,11 @@ public class HomeFragment extends Fragment {
     public String fullname = null;
     public String email = null;
     public String address = null;
-    CarouselView carouselView;
-    int[] sampleImages = {R.drawable.banner_home_1};
+//    CarouselView carouselView;
+    Integer[] sampleImages = {R.drawable.halal_info_news,R.drawable.nambah_produk_home_ps,R.drawable.slide_berita_ps};
     FragmentActivity fragmentActivity = null;
+    ViewPager2 myViewPager2;
+    SliderHomeAdapter sliderHomeAdapter;
 
     public void setActivity(FragmentActivity fragmentActivitys) {
         fragmentActivity = fragmentActivitys;
@@ -95,9 +101,34 @@ public class HomeFragment extends Fragment {
 //        Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);
 //        btnUpdatePassword.setOnClickListener(updatePasswordListener);
 
-        carouselView = rootView.findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-        carouselView.setImageListener(imageListener);
+//        carouselView = rootView.findViewById(R.id.carouselView);
+//        carouselView.setPageCount(sampleImages.length);
+//        carouselView.setImageListener(imageListener);
+        myViewPager2 = rootView.findViewById(R.id.viewpager);
+
+        sliderHomeAdapter = new SliderHomeAdapter(getActivity(),sampleImages);
+        myViewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        myViewPager2.setAdapter(sliderHomeAdapter);
+        myViewPager2.setOffscreenPageLimit(3);
+
+        float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMarginSlider);
+        float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offsetSlider);
+
+        myViewPager2.setPageTransformer((page, position) -> {
+            float myOffset = position * -(2 * pageOffset + pageMargin);
+            if (position < -1) {
+                page.setTranslationX(-myOffset);
+            } else if (position <= 1) {
+                float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
+                page.setTranslationX(myOffset);
+                page.setScaleY(scaleFactor);
+                page.setAlpha(scaleFactor);
+            } else {
+                page.setAlpha(0);
+                page.setTranslationX(myOffset);
+            }
+        });
+
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
         bottomNavigationView.setVisibility(View.VISIBLE);

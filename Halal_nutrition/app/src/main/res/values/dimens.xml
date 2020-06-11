@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="rv_item_margin">12dp</dimen>
-
+    <dimen name="pageMarginSlider">0dp</dimen>
+    <dimen name="offsetSlider">20dp</dimen>
 </resources>

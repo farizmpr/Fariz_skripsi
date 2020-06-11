@@ -85,32 +85,13 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/layItemsNotFound"
+        <include
+            layout="@layout/not_found_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true">
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageView1"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="center_horizontal"
-                android:text="No Result Found"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="229dp"
-                android:layout_height="240dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/undraw_not_found" />
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollViewHalalItems"
