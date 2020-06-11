@@ -147,17 +147,12 @@
         <Button
             android:id="@+id/LoginbtnProses"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:textSize="16dp"
-            android:layout_marginRight="10dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_mmedium"
-            android:background="@drawable/btn"
-            android:backgroundTint="@color/halal"
             android:text="Sign In"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:textAllCaps="false"
             android:textColor="@color/white" />
         </LinearLayout>

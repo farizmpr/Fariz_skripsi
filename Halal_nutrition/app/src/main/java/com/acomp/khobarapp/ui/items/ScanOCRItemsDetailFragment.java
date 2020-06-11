@@ -79,6 +79,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
     private static final int PERMISSION_REQUEST_CODE = 200;
     private Camera camera = null;
     boolean flashmode=false;
+    public Boolean isStartOCR = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -198,8 +199,11 @@ public class ScanOCRItemsDetailFragment extends Fragment {
                                     stringBuilder.append("\n");
                                 }
                                 String textOCR= stringBuilder.toString();
-                                mTextView.setText(textOCR);
-                                getListVenues(textOCR);
+                                if(isStartOCR == true){
+                                    mTextView.setText(textOCR);
+                                    getListVenues(textOCR);
+                                }
+
                             }
                         });
                     }
@@ -333,6 +337,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
 
     public void getListVenues(String code) {
         if(getActivity() != null) {
+            isStartOCR = false;
             progressDoalog = new ProgressDialog(getActivity());
             progressDoalog.setMessage("Loading....");
             progressDoalog.show();
@@ -351,6 +356,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
 //                        total = totalData;
                             JSONArray jsArrayData = jsonObject.getJSONArray("data");
                             if (jsArrayData.length() > 0) {
+//                                mTextView.setText(code);
                                 JSONObject objects = jsonObject.getJSONArray("data").optJSONObject(0);
 //                            mapStatusCert.put(objects.getString("name"), objects.getInt("id"));
                                 String ingredient = objects.getString("ingredient");
@@ -600,10 +606,14 @@ public class ScanOCRItemsDetailFragment extends Fragment {
 //                            restartCamera();
 //                                Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();
                             }
+                            isStartOCR = true;
+                            progressDoalog.dismiss();
                         } catch (JSONException e) {
 //                        restartCamera();
 //                            Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
+                            isStartOCR = true;
+                            progressDoalog.dismiss();
                         }
 
                     } else {
@@ -615,6 +625,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
+                    isStartOCR = true;
                     progressDoalog.dismiss();
 //                restartCamera();
                     Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();

@@ -214,19 +214,14 @@
         <Button
             android:id="@+id/btnSaveSignUp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:text="Sign Up"
-            android:fontFamily="@font/roboto_mmedium"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/halal"
-            android:textAllCaps="false"
-            android:background="@drawable/btn"
-            android:textColor="@color/white"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+
             />
         </LinearLayout>
     </LinearLayout>

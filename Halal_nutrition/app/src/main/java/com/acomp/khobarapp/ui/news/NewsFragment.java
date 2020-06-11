@@ -42,6 +42,7 @@ import com.acomp.khobarapp.ui.adapter.HeadlineNewsBaseAdapter;
 import com.acomp.khobarapp.ui.adapter.HistoryItemsBaseAdapter;
 import com.acomp.khobarapp.ui.adapter.ListNewsBaseAdapter;
 import com.acomp.khobarapp.ui.home.HomeFragment;
+import com.acomp.khobarapp.ui.home.TabHomeSearchAllFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -122,7 +123,8 @@ public class NewsFragment extends Fragment {
                     HomeFragment homeFragment = new HomeFragment();
                     homeFragment.setActivity(getActivity());
                     homeFragment.saveSuggest("suggestSearchNews", s);
-                    getListNews(page);
+                    searchHomeAll(s);
+//                    getListNews(page);
 //                    Log.d("QUERY Submit", "QueryTextSubmit: " + s);
                 }
                 return false;
@@ -197,6 +199,15 @@ public class NewsFragment extends Fragment {
             imageView.setImageResource(sampleImages[position]);
         }
     };
+
+    public void searchHomeAll(String text) {
+
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        TabHomeSearchAllFragment halalItemsFragment = new TabHomeSearchAllFragment();
+        halalItemsFragment.setDefaultTextSearch(text);
+        fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
+        fragmentTransaction.commit();
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
