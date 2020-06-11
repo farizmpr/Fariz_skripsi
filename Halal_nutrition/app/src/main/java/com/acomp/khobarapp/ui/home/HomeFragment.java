@@ -255,7 +255,7 @@ public class HomeFragment extends Fragment {
 
 
         SharedPreferences.Editor prefsEditr = preferences.edit();
-        prefsEditr.putStringSet("suggestSearchAll", set);
+        prefsEditr.putStringSet(key, set);
         prefsEditr.commit();
 //                        preferences.edit().putString("token", token).commit();
 //                        SharedPreferences.Editor editor = preferences.edit();
