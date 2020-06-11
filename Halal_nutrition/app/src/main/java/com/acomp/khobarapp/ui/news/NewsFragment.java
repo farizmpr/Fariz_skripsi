@@ -43,8 +43,10 @@ import com.acomp.khobarapp.ui.adapter.HistoryItemsBaseAdapter;
 import com.acomp.khobarapp.ui.adapter.ListNewsBaseAdapter;
 import com.acomp.khobarapp.ui.home.HomeFragment;
 import com.acomp.khobarapp.ui.home.TabHomeSearchAllFragment;
+import com.acomp.khobarapp.ui.home.TabSearchAllFragment;
 import com.acomp.khobarapp.utils.RetrofitClientInstance;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.synnapps.carouselview.CarouselView;
@@ -78,7 +80,12 @@ public class NewsFragment extends Fragment {
     public SwipeRefreshLayout pullToRefresh;
     BottomNavigationView bottomNavigationView = null;
     public View viewSearchAll = null;
-    ;
+    public TabLayout tabLayout = null;
+    public Integer tabPageType = null;
+    public TabSearchAllFragment tabSearchAllFragment = null;
+    public FragmentActivity fragmentActivity = null;
+    public Boolean isCheckTab = false;
+
     ListNewsBaseAdapter listNewsBaseAdapter = null;
     ArrayList<NewsModel> listNewsModel = null;
     RelativeLayout layItemsNotFound;
@@ -235,7 +242,10 @@ public class NewsFragment extends Fragment {
     };
 
     public void getListNews(Integer page) {
-        progressDoalog = new ProgressDialog(getActivity());
+        if(fragmentActivity == null){
+            fragmentActivity = getActivity();
+        }
+        progressDoalog = new ProgressDialog(fragmentActivity);
         progressDoalog.setMessage("Loading....");
         progressDoalog.show();
         if (listNewsModel == null) {
@@ -243,7 +253,7 @@ public class NewsFragment extends Fragment {
         }
 
         ArrayList<NewsModel> headNewsModel = new ArrayList<NewsModel>();
-        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences preferences = fragmentActivity.getPreferences(Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
         GetDataService getDataService = RetrofitClientInstance.getRetrofitAuthInstance(token).create(GetDataService.class);
         Call call = getDataService.getNews(page, this.searchValue);
@@ -256,77 +266,89 @@ public class NewsFragment extends Fragment {
                         NewsModel sr1 = null;
                         Integer totalData = jsonObject.getInt("total");
                         total = totalData;
-                        for (int i = 0; i < jsonObject.getJSONArray("data").length(); i++) {
-                            JSONObject objects = jsonObject.getJSONArray("data").optJSONObject(i);
+                        if(isCheckTab == true){
+                            if(totalData == 0){
+                                tabLayout.removeTabAt(tabPageType);
+                            }
+                        } else {
+                            for (int i = 0; i < jsonObject.getJSONArray("data").length(); i++) {
+                                JSONObject objects = jsonObject.getJSONArray("data").optJSONObject(i);
 //                            mapStatusCert.put(objects.getString("name"), objects.getInt("id"));
-                            String strDate = objects.getString("strDate");
-                            String code = objects.getString("code");
-                            String name = objects.getString("name");
-                            String content = objects.getString("content");
-                            JSONArray jsArrayAt = objects.getJSONArray("image");
-                            ArrayList<AttachmentModel> attachmentModels = new ArrayList<AttachmentModel>();
-                            if (jsArrayAt.length() > 0) {
-                                AttachmentModel attach = null;
-                                for (int i2 = 0; i2 < jsArrayAt.length(); i2++) {
-                                    JSONObject objectImg = jsArrayAt.optJSONObject(i2);
-                                    String path = objectImg.getString("path");
-                                    String filename = objectImg.getString("filename");
-                                    String type = objectImg.getString("type");
-                                    String mime = objectImg.getString("mime");
-                                    String url = objectImg.getString("url");
-                                    attach = new AttachmentModel();
-                                    attach.setPath(path);
-                                    attach.setFilename(filename);
-                                    attach.setType(type);
-                                    attach.setMime(mime);
-                                    attach.setUrl(url);
-                                    attachmentModels.add(attach);
+                                String strDate = objects.getString("strDate");
+                                String code = objects.getString("code");
+                                String name = objects.getString("name");
+                                String content = objects.getString("content");
+                                JSONArray jsArrayAt = objects.getJSONArray("image");
+                                ArrayList<AttachmentModel> attachmentModels = new ArrayList<AttachmentModel>();
+                                if (jsArrayAt.length() > 0) {
+                                    AttachmentModel attach = null;
+                                    for (int i2 = 0; i2 < jsArrayAt.length(); i2++) {
+                                        JSONObject objectImg = jsArrayAt.optJSONObject(i2);
+                                        String path = objectImg.getString("path");
+                                        String filename = objectImg.getString("filename");
+                                        String type = objectImg.getString("type");
+                                        String mime = objectImg.getString("mime");
+                                        String url = objectImg.getString("url");
+                                        attach = new AttachmentModel();
+                                        attach.setPath(path);
+                                        attach.setFilename(filename);
+                                        attach.setType(type);
+                                        attach.setMime(mime);
+                                        attach.setUrl(url);
+                                        attachmentModels.add(attach);
+                                    }
+                                }
+                                sr1 = new NewsModel();
+                                sr1.setTitle(name);
+                                sr1.setCode(code);
+                                sr1.setContent(content);
+                                sr1.setStrDate(strDate);
+                                sr1.setAttachmentModels(attachmentModels);
+
+                                if (i == 0) {
+                                    headNewsModel.add(sr1);
+                                }
+                                listNewsModel.add(sr1);
+                            }
+                            RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.list_rv_regular);
+                            assert recyclerView != null;
+                            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                            recyclerView.setLayoutManager(mLayoutManager);
+                            listNewsBaseAdapter = new ListNewsBaseAdapter(getActivity(), listNewsModel, limitNews);
+                            recyclerView.setAdapter(listNewsBaseAdapter);
+
+
+                            RecyclerView headRecyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_headline);
+                            assert headRecyclerView != null;
+                            if (type == 0) {
+                                headRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                HeadlineNewsBaseAdapter headAdapter = new HeadlineNewsBaseAdapter(getActivity(), headNewsModel);
+                                headRecyclerView.setAdapter(headAdapter);
+                            } else {
+                                headRecyclerView.setVisibility(View.GONE);
+                            }
+                            if (totalData == 0) {
+                                if (viewSearchAll != null) {
+                                    LinearLayout headSearchTabs = (LinearLayout) viewSearchAll.findViewById(R.id.head_news_search_all);
+                                    headSearchTabs.setVisibility(View.GONE);
+                                    FrameLayout frameSearchTabs = (FrameLayout) viewSearchAll.findViewById(R.id.fragment_search_all_news);
+                                    frameSearchTabs.setVisibility(View.GONE);
+//                                tabLayout.getChildAt(tabPageType).setVisibility(View.GONE);
+                                    if (tabSearchAllFragment != null) {
+                                        tabLayout.removeTabAt(tabPageType);
+                                        tabSearchAllFragment.isRemove = true;
+                                    }
+
+                                }
+
+                                if (isSearchNotFound == true) {
+                                    layItemsNotFound.setVisibility(View.VISIBLE);
+
                                 }
                             }
-                            sr1 = new NewsModel();
-                            sr1.setTitle(name);
-                            sr1.setCode(code);
-                            sr1.setContent(content);
-                            sr1.setStrDate(strDate);
-                            sr1.setAttachmentModels(attachmentModels);
-
-                            if (i == 0) {
-                                headNewsModel.add(sr1);
-                            }
-                            listNewsModel.add(sr1);
                         }
-                        RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.list_rv_regular);
-                        assert recyclerView != null;
-                        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                        recyclerView.setLayoutManager(mLayoutManager);
-                        listNewsBaseAdapter = new ListNewsBaseAdapter(getActivity(), listNewsModel, limitNews);
-                        recyclerView.setAdapter(listNewsBaseAdapter);
-
-
-                        RecyclerView headRecyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_headline);
-                        assert headRecyclerView != null;
-                        if (type == 0) {
-                            headRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                            HeadlineNewsBaseAdapter headAdapter = new HeadlineNewsBaseAdapter(getActivity(), headNewsModel);
-                            headRecyclerView.setAdapter(headAdapter);
-                        } else {
-                            headRecyclerView.setVisibility(View.GONE);
-                        }
-                        if (totalData == 0) {
-                            if (viewSearchAll != null) {
-                                LinearLayout headSearchTabs = (LinearLayout) viewSearchAll.findViewById(R.id.head_news_search_all);
-                                headSearchTabs.setVisibility(View.GONE);
-                                FrameLayout frameSearchTabs = (FrameLayout) viewSearchAll.findViewById(R.id.fragment_search_all_news);
-                                frameSearchTabs.setVisibility(View.GONE);
-                            }
-                            if (isSearchNotFound == true) {
-                                layItemsNotFound.setVisibility(View.VISIBLE);
-
-                            }
-                        }
-
                     } catch (JSONException e) {
-                        Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(fragmentActivity, "Data Not Found", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
 
@@ -346,7 +368,7 @@ public class NewsFragment extends Fragment {
                 if (type == 0) {
                     bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(true);
                 }
-                Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragmentActivity, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
                 t.getStackTrace();
             }
         });

@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable,3000);
+                sliderHandler.postDelayed(sliderRunnable,6000);
             }
         });
 

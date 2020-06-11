@@ -27,20 +27,23 @@ public class ListVenuesBaseAdapter extends RecyclerView.Adapter<ListVenuesBaseAd
 
     private LayoutInflater mInflater;
     FragmentActivity context;
+    private Integer limit = 3;
 
-    public ListVenuesBaseAdapter(FragmentActivity c, ArrayList<VenuesModel> arrayList) {
+    public ListVenuesBaseAdapter(FragmentActivity c, ArrayList<VenuesModel> arrayList,Integer limitData) {
         context = c;
         searchArrayList = arrayList;
-    }
-
-    public void addListNews(FragmentActivity c, ArrayList<VenuesModel> arrayList) {
-        context = c;
-        searchArrayList = arrayList;
+        limit = limitData;
     }
 
     @Override
     public int getItemCount() {
-        return searchArrayList.size();
+        if (limit == null) {
+            return searchArrayList.size();
+        } else if (searchArrayList.size() > limit) {
+            return limit;
+        } else {
+            return searchArrayList.size();
+        }
     }
 
     @Override

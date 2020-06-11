@@ -1,8 +1,11 @@
 package com.acomp.khobarapp.ui.home;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,13 +28,21 @@ import com.acomp.khobarapp.ui.adapter.TabSearchAdapter;
 import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TabHomeSearchAllFragment extends Fragment {
     private TabSearchAdapter adapter;
-    private TabLayout tabLayout;
+    private TabLayout tabLayout = null;
     private ViewPager viewPager;
     String defaultTextSearch = null;
     public Integer defaultTabsPage = 0;
+    public String defaultTabsPageText = null;
+    private Handler _hRedraw;
+    protected static final int REFRESH = 0;
+    public List<Integer> listRemoveTab = new ArrayList<>();
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -57,7 +68,7 @@ public class TabHomeSearchAllFragment extends Fragment {
         }
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
-        homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll",searchView);
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -71,10 +82,13 @@ public class TabHomeSearchAllFragment extends Fragment {
 //                }
                 HomeFragment homeFragment = new HomeFragment();
                 homeFragment.setActivity(getActivity());
-                homeFragment.saveSuggest("suggestSearchAll",s);
+                homeFragment.saveSuggest("suggestSearchAll", s);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 TabHomeSearchAllFragment tabHomeSearchAllFragment = new TabHomeSearchAllFragment();
                 tabHomeSearchAllFragment.setDefaultTextSearch(s);
+                if (defaultTabsPage != 0) {
+                    tabHomeSearchAllFragment.tabLayout = tabLayout;
+                }
                 tabHomeSearchAllFragment.defaultTabsPage = defaultTabsPage;
                 fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                 fragmentTransaction.commit();
@@ -87,16 +101,17 @@ public class TabHomeSearchAllFragment extends Fragment {
                 return false;
             }
         });
-
         RelativeLayout btnBack = (RelativeLayout) rootView.findViewById(R.id.back);
-        rootView.setOnClickListener(goBackListener);
+        btnBack.setOnClickListener(goBackListener);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
         FragmentManager fragmentTransaction = getActivity().getSupportFragmentManager();
         adapter = new TabSearchAdapter(fragmentTransaction);
+//        tabLayout.not
         TabSearchAllFragment tabSearchAllFragment = new TabSearchAllFragment();
+        tabSearchAllFragment.tabLayout = tabLayout;
         tabSearchAllFragment.type = 0;
-        if(defaultTabsPage == 0){
+        if (defaultTabsPage == 0) {
             tabSearchAllFragment.isConnect = 1;
         } else {
             tabSearchAllFragment.isConnect = 0;
@@ -104,67 +119,134 @@ public class TabHomeSearchAllFragment extends Fragment {
         tabSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
         adapter.addFragment(tabSearchAllFragment, "Search All");
 
-//        TabSearchItemsFragment tabSearchItemsFragment = new TabSearchItemsFragment();
-//        tabSearchItemsFragment.setDefaultTextSearch(defaultTextSearch);
         TabSearchAllFragment tabSearchAllFragment2 = new TabSearchAllFragment();
         tabSearchAllFragment2.setDefaultTextSearch(defaultTextSearch);
         tabSearchAllFragment2.type = 1;
-//        tabSearchAllFragment2.isConnect = 0;
-        if(defaultTabsPage == 1){
+        tabSearchAllFragment2.tabLayout = tabLayout;
+        if (defaultTabsPage == 1) {
             tabSearchAllFragment2.isConnect = 1;
         } else {
             tabSearchAllFragment2.isConnect = 0;
         }
+        Boolean isRemove2 = tabSearchAllFragment2.isRemove();
+        Log.d("REMOVE 2", "IS=" + isRemove2);
         adapter.addFragment(tabSearchAllFragment2, "Items");
 
-//        TabSearchNewsFragment tabSearchNewsFragment = new TabSearchNewsFragment();
-//        tabSearchNewsFragment.setDefaultTextSearch(defaultTextSearch);
-//        tabSearchItemsFragment
         TabSearchAllFragment tabSearchAllFragment3 = new TabSearchAllFragment();
         tabSearchAllFragment3.setDefaultTextSearch(defaultTextSearch);
+        tabSearchAllFragment3.tabLayout = tabLayout;
         tabSearchAllFragment3.type = 2;
-//        tabSearchAllFragment3.isConnect = 0;
-        if(defaultTabsPage == 2){
+        if (defaultTabsPage == 2) {
             tabSearchAllFragment3.isConnect = 1;
         } else {
             tabSearchAllFragment3.isConnect = 0;
         }
+        Boolean isRemove3 = tabSearchAllFragment3.isRemove();
+        Log.d("REMOVE 3", "IS=" + isRemove3);
         adapter.addFragment(tabSearchAllFragment3, "News");
+
+        TabSearchAllFragment tabSearchAllFragment4 = new TabSearchAllFragment();
+        tabSearchAllFragment4.setDefaultTextSearch(defaultTextSearch);
+        tabSearchAllFragment4.tabLayout = tabLayout;
+        tabSearchAllFragment4.type = 3;
+        if (defaultTabsPage == 3) {
+            tabSearchAllFragment4.isConnect = 1;
+        } else {
+            tabSearchAllFragment4.isConnect = 0;
+        }
+        Boolean isRemove4 = tabSearchAllFragment4.isRemove();
+        Log.d("REMOVE 4", "IS=" + isRemove4);
+        adapter.addFragment(tabSearchAllFragment4, "Venues");
         viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(defaultTabsPage);
+
         tabLayout.setupWithViewPager(viewPager);
-//        tabLayout.addOnTabSelectedListener();
+//        tabLayout.setS
+//        getTag
+        Integer tabCount = tabLayout.getTabCount();
+        if (defaultTabsPageText == null) {
+            viewPager.setCurrentItem(defaultTabsPage);
+            tabLayout.setupWithViewPager(viewPager);
+        } else {
+            Integer selectedTabPosition = 0;
+            for (Integer no = 0; no < tabCount; no++) {
+                String txt = tabLayout.getTabAt(no).getText().toString();
+                if(txt == defaultTabsPageText){
+                    selectedTabPosition = no;
+
+                }
+            }
+            tabLayout.getTabAt(selectedTabPosition).select();
+            viewPager.setCurrentItem(defaultTabsPage);
+            tabLayout.setupWithViewPager(viewPager);
+        }
+
+        Log.d("TAB COUNT", "C=" + tabCount);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 TabHomeSearchAllFragment tabHomeSearchAllFragment = new TabHomeSearchAllFragment();
-                switch(tab.getPosition()) {
+                String text = tab.getText().toString();
+//                    tabHomeSearchAllFragment.adapter = adapter;
+//                    tabHomeSearchAllFragment.viewPager = viewPager;
+                tabHomeSearchAllFragment.listRemoveTab = listRemoveTab;
+                if (text == "Search All") {
+                    tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
+
+                    tabHomeSearchAllFragment.defaultTabsPage = 0;
+                    tabHomeSearchAllFragment.defaultTabsPageText = "Search All";
+                    tabHomeSearchAllFragment.tabLayout = tabLayout;
+                    fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
+                    fragmentTransaction.commit();
+                } else if (text == "Items") {
+                    tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
+                    tabHomeSearchAllFragment.defaultTabsPage = 1;
+                    tabHomeSearchAllFragment.defaultTabsPageText = "Items";
+                    tabHomeSearchAllFragment.tabLayout = tabLayout;
+                    fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
+                    fragmentTransaction.commit();
+                } else if (text == "News") {
+                    tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
+                    tabHomeSearchAllFragment.defaultTabsPage = 2;
+                    tabHomeSearchAllFragment.defaultTabsPageText = "News";
+                    tabHomeSearchAllFragment.tabLayout = tabLayout;
+                    fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
+                    fragmentTransaction.commit();
+                } else if (text == "Venues") {
+                    tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
+                    tabHomeSearchAllFragment.defaultTabsPage = 3;
+                    tabHomeSearchAllFragment.defaultTabsPageText = "Venues";
+                    tabHomeSearchAllFragment.tabLayout = tabLayout;
+                    fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
+                    fragmentTransaction.commit();
+                }
+                /*
+                switch (tab.getPosition()) {
                     case 0:
-                        Log.d("TAB","TAB1");
+
                         tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
                         tabHomeSearchAllFragment.defaultTabsPage = 0;
                         fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                         fragmentTransaction.commit();
-                        break;
                     case 1:
-//                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        TabHomeSearchAllFragment tabHomeSearchAllFragment = new TabHomeSearchAllFragment();
                         tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
                         tabHomeSearchAllFragment.defaultTabsPage = 1;
                         fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                         fragmentTransaction.commit();
-                        Log.d("TAB","TAB2");
-                        break;
                     case 2:
-                        Log.d("TAB","TAB3");
                         tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
                         tabHomeSearchAllFragment.defaultTabsPage = 2;
                         fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                         fragmentTransaction.commit();
-                        break;
+                    case 3:
+                        tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
+                        tabHomeSearchAllFragment.defaultTabsPage = 3;
+                        fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
+                        fragmentTransaction.commit();
                         // ...
                 }
+
+                 */
             }
 
             @Override
