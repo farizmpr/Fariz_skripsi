@@ -31,6 +31,8 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +46,7 @@ public class AccountFragment extends Fragment {
     String address = null;
     Integer attachmentId = 0;
     String attachmentUrl = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,12 +79,22 @@ public class AccountFragment extends Fragment {
                         fullname = name;
                         email = resEmail;
                         address = resAddress;
+
                         attachmentId = resAttachmentId;
-                        attachmentUrl = resAttachmentUrl;
-                        if(attachmentId != 0){
+
+//                        String randChar = "";
+                        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                        String randomKey = preferences.getString("RANDOM_KEY", null);
+                        String resAttachmentUrl2 = resAttachmentUrl;
+                        if (randomKey != null) {
+                            resAttachmentUrl2 = resAttachmentUrl + "?q=" + randomKey;
+                        }
+
+                        attachmentUrl = resAttachmentUrl2;
+                        if (attachmentId != 0) {
 //                            Picasso.get().load(mImages.get(position)).into(circularImageView);
-                            Log.d("Image Profile",resAttachmentUrl);
-                            Picasso.get().load(resAttachmentUrl).fit().centerCrop().into(circularImageView);
+                            Log.d("Image Profile", resAttachmentUrl2);
+                            Picasso.get().load(resAttachmentUrl2).fit().centerCrop().into(circularImageView);
                         }
 
                         TextView fieldEmailText = (TextView) rootView.findViewById(R.id.account_email_text);
@@ -206,4 +219,16 @@ public class AccountFragment extends Fragment {
         progressDoalog.dismiss();
     }
 
+    public static String randomSeriesForThreeCharacter() {
+        final String alphabet = "0123456789ABCDE";
+        final int N = alphabet.length();
+
+        Random r = new Random();
+        String text = "";
+        for (int i = 0; i < 10; i++) {
+            text += alphabet.charAt(r.nextInt(N));
+//            System.out.print(alphabet.charAt(r.nextInt(N)));
+        }
+        return text;
+    }
 }

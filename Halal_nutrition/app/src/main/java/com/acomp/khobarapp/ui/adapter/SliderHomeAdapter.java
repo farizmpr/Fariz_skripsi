@@ -19,11 +19,13 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.model.AttachmentModel;
 import com.acomp.khobarapp.model.NewsModel;
+import com.acomp.khobarapp.model.SliderItem;
 import com.acomp.khobarapp.model.UserModel;
 import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.account.AccountFragment1;
@@ -40,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,12 +50,15 @@ import retrofit2.Response;
 
 public class SliderHomeAdapter extends RecyclerView.Adapter<SliderHomeAdapter.MyViewHolder> {
 
+    public static int LOOPS_COUNT = 1000;
     private FragmentActivity context;
-    private Integer[] listSlider;
+    private List<SliderItem> listSlider;
+    private ViewPager2 viewPager2;
 
-    public SliderHomeAdapter(FragmentActivity context, Integer[] sliderImage) {
+    public SliderHomeAdapter(FragmentActivity context, ViewPager2 viewPager2_1, List<SliderItem> sliderImage) {
         this.context = context;
         this.listSlider = sliderImage;
+        this.viewPager2 = viewPager2_1;
     }
 
     @NonNull
@@ -65,9 +71,14 @@ public class SliderHomeAdapter extends RecyclerView.Adapter<SliderHomeAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 //        holder.tvName.setText(String.format("Row number%d", position));
-        holder.tvName.setText("");
-        holder.imgBanner.setImageResource(listSlider[position]);
 
+        holder.tvName.setText("");
+//        holder.imgBanner.setImageResource(listSlider.get(position));
+        holder.setImage(listSlider.get(position));
+        if (position == listSlider.size() - 2) {
+            viewPager2.post(runnable);
+        }
+//        holder.imgBanner.setImageResource(listSlider.get(position));
         FragmentTransaction fragmentTransaction = context.getSupportFragmentManager().beginTransaction();
         holder.imgBanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,17 +228,12 @@ public class SliderHomeAdapter extends RecyclerView.Adapter<SliderHomeAdapter.My
             }
 
         });
-//        if (position % 2 == 0) {
-//
-//            holder.imgBanner.setBackgroundColor(Color.RED);
-//        } else {
-//            holder.imgBanner.setBackgroundColor(Color.GREEN);
-//        }
     }
 
     @Override
     public int getItemCount() {
-        return this.listSlider.length;
+
+        return this.listSlider.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -239,5 +245,17 @@ public class SliderHomeAdapter extends RecyclerView.Adapter<SliderHomeAdapter.My
             tvName = itemView.findViewById(R.id.tvName);
             imgBanner = itemView.findViewById(R.id.imgBanner);
         }
+
+        void setImage(SliderItem sliderItem) {
+            imgBanner.setImageResource(sliderItem.getImage());
+        }
     }
+
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            listSlider.addAll(listSlider);
+            notifyDataSetChanged();
+        }
+    };
 }

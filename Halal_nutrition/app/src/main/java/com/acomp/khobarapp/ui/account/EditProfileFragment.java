@@ -90,8 +90,9 @@ public class EditProfileFragment extends Fragment {
         circularImageView = (CircularImageView) rootView.findViewById(R.id.profile_image);
         circularImageView.setImageDrawable(getResources().getDrawable(R.drawable.sample_avatar));
         circularImageView.setImageResource(R.drawable.sample_avatar);
+        String randChar = randomSeriesForThreeCharacter();
         if (attachmentId != 0) {
-            Log.d("Image Profile",attachmentUrl);
+            Log.d("Image Profile", attachmentUrl);
             Picasso.get().load(attachmentUrl).fit().centerCrop().into(circularImageView);
         }
 
@@ -122,7 +123,7 @@ public class EditProfileFragment extends Fragment {
     private View.OnClickListener layUpdatePhotoProfileListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (getActivity().checkSelfPermission(listPermission[0]) != PackageManager.PERMISSION_DENIED &&
-                    getActivity().checkSelfPermission(listPermission[1]) != PackageManager.PERMISSION_DENIED ) {
+                    getActivity().checkSelfPermission(listPermission[1]) != PackageManager.PERMISSION_DENIED) {
                 selectImage();
             } else {
                 requestPermissions(listPermission, 100);
@@ -132,7 +133,7 @@ public class EditProfileFragment extends Fragment {
         }
     };
 
-    public void selectImage(){
+    public void selectImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -236,34 +237,43 @@ public class EditProfileFragment extends Fragment {
                             Boolean result = jsonObject.getBoolean("result");
                             if (result == true) {
                                 if (bitmap == null) {
+                                    progressDoalog.dismiss();
                                     Toast.makeText(getActivity(), "Update Profile Success", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    progressDoalog.hide();
                                     sendPhotoProfile();
                                 }
 
                             } else {
+
 //                                String message =  jsonObject.getString("message");
                                 Toast.makeText(getActivity(), "Update Profile Success", Toast.LENGTH_SHORT).show();
+                                progressDoalog.dismiss();
                             }
                         } else {
+
                             Toast.makeText(getActivity(), "Update Profile Failed", Toast.LENGTH_SHORT).show();
+                            progressDoalog.dismiss();
                         }
                     } catch (JSONException e) {
+
                         Toast.makeText(getActivity(), "Update Profile Failed", Toast.LENGTH_SHORT).show();
+                        progressDoalog.dismiss();
                         e.printStackTrace();
                     }
 
                 } else {
+
                     Toast.makeText(getActivity(), "Update Profile Failed", Toast.LENGTH_SHORT).show();
+                    progressDoalog.dismiss();
                 }
-                progressDoalog.dismiss();
+
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                progressDoalog.dismiss();
+
                 Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                progressDoalog.dismiss();
             }
         });
     }
@@ -285,9 +295,9 @@ public class EditProfileFragment extends Fragment {
         RequestBody referenceId = RequestBody.create(MediaType.parse("text/plain"), txtRefId);
         RequestBody referenceTable = RequestBody.create(MediaType.parse("text/plain"), txtRefTable);
         RequestBody rAttachmentId = RequestBody.create(MediaType.parse("text/plain"), attachmentId.toString());
-        progressDoalog = new ProgressDialog(getActivity());
-        progressDoalog.setMessage("Loading....");
-        progressDoalog.show();
+//        progressDoalog = new ProgressDialog(getActivity());
+//        progressDoalog.setMessage("Loading....");
+//        progressDoalog.show();
         Call call = getDataService.uploadAttachmentById(body, rAttachmentId, referenceId, referenceTable);
         call.enqueue(new Callback() {
             @Override
@@ -302,8 +312,14 @@ public class EditProfileFragment extends Fragment {
 //                            layAddItems.setVisibility(View.GONE);
 
                             Toast.makeText(getActivity(), "Update Profile Success", Toast.LENGTH_SHORT).show();
+                            SharedPreferences preferences2 = getActivity().getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor prefsEditr2 = preferences2.edit();
+                            prefsEditr2.putString("RANDOM_KEY", randomSeriesForThreeCharacter());
+                            prefsEditr2.commit();
+                            prefsEditr2.apply();
                             progressDoalog.dismiss();
                         } else {
+                            progressDoalog.dismiss();
                             Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         }
 
@@ -335,11 +351,11 @@ public class EditProfileFragment extends Fragment {
         String currentTime = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss", Locale.getDefault()).format(new Date());
 
         // String temp = null;
-        char randChar = randomSeriesForThreeCharacter();
-        File file = new File(extStorageDirectory, email + ".png?r=" + randChar);
+//        String randChar = randomSeriesForThreeCharacter();
+        File file = new File(extStorageDirectory, email + ".png");
         if (file.exists()) {
             file.delete();
-            file = new File(extStorageDirectory, email + ".png?r=" + randChar);
+            file = new File(extStorageDirectory, email + ".png");
 
         }
         try {
@@ -356,9 +372,16 @@ public class EditProfileFragment extends Fragment {
         return file;
     }
 
-    public static char randomSeriesForThreeCharacter() {
+    public static String randomSeriesForThreeCharacter() {
+        final String alphabet = "0123456789ABCDE";
+        final int N = alphabet.length();
+
         Random r = new Random();
-        char random_3_Char = (char) (97 + r.nextInt(10));
-        return random_3_Char;
+        String text = "";
+        for (int i = 0; i < 10; i++) {
+            text += alphabet.charAt(r.nextInt(N));
+//            System.out.print(alphabet.charAt(r.nextInt(N)));
+        }
+        return text;
     }
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.SearchRecentSuggestions;
 import android.util.ArrayMap;
 import android.util.Log;
@@ -35,11 +36,13 @@ import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.model.NewsModel;
+import com.acomp.khobarapp.model.SliderItem;
 import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.adapter.ArrayAdapterSearchView;
 import com.acomp.khobarapp.ui.adapter.SliderHomeAdapter;
@@ -75,10 +78,11 @@ public class HomeFragment extends Fragment {
     public String email = null;
     public String address = null;
 //    CarouselView carouselView;
-    Integer[] sampleImages = {R.drawable.halal_info_news,R.drawable.nambah_produk_home_ps,R.drawable.slide_berita_ps};
+
     FragmentActivity fragmentActivity = null;
     ViewPager2 myViewPager2;
     SliderHomeAdapter sliderHomeAdapter;
+    Handler sliderHandler = new Handler();
 
     public void setActivity(FragmentActivity fragmentActivitys) {
         fragmentActivity = fragmentActivitys;
@@ -105,11 +109,18 @@ public class HomeFragment extends Fragment {
 //        carouselView.setPageCount(sampleImages.length);
 //        carouselView.setImageListener(imageListener);
         myViewPager2 = rootView.findViewById(R.id.viewpager);
-
-        sliderHomeAdapter = new SliderHomeAdapter(getActivity(),sampleImages);
+//        Integer[] sampleImages = {R.drawable.halal_info_news,R.drawable.nambah_produk_home_ps,R.drawable.slide_berita_ps};
+        List<SliderItem> sliderItems = new ArrayList<>();
+        sliderItems.add(new SliderItem(R.drawable.halal_info_news));
+        sliderItems.add(new SliderItem(R.drawable.nambah_produk_home_ps));
+        sliderItems.add(new SliderItem(R.drawable.slide_berita_ps));
+        sliderHomeAdapter = new SliderHomeAdapter(getActivity(),myViewPager2,sliderItems);
         myViewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         myViewPager2.setAdapter(sliderHomeAdapter);
+//        myViewPager2.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        myViewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         myViewPager2.setOffscreenPageLimit(3);
+//        myViewPager2.setCurrentItem(myViewPager2.getChildCount() * SliderHomeAdapter.LOOPS_COUNT / 2, false); // set current item in the adapter to middle
 
         float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMarginSlider);
         float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offsetSlider);
@@ -128,6 +139,15 @@ public class HomeFragment extends Fragment {
                 page.setTranslationX(myOffset);
             }
         });
+        myViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                sliderHandler.removeCallbacks(sliderRunnable);
+                sliderHandler.postDelayed(sliderRunnable,3000);
+            }
+        });
+
 
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
@@ -195,6 +215,13 @@ public class HomeFragment extends Fragment {
 
         return rootView;
     }
+
+    private Runnable sliderRunnable = new Runnable() {
+        @Override
+        public void run() {
+            myViewPager2.setCurrentItem(myViewPager2.getCurrentItem()+1);
+        }
+    };
 
     public static String[] convertSetToArrayString(Set<String> setOfString) {
 
@@ -294,7 +321,7 @@ public class HomeFragment extends Fragment {
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
+//            imageView.setImageResource(sampleImages[position]);
         }
     };
 
