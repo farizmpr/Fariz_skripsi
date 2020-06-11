@@ -176,7 +176,7 @@ public class TabHomeSearchAllFragment extends Fragment {
                 }
             }
             tabLayout.getTabAt(selectedTabPosition).select();
-            viewPager.setCurrentItem(defaultTabsPage);
+            viewPager.setCurrentItem(selectedTabPosition);
             tabLayout.setupWithViewPager(viewPager);
         }
 
