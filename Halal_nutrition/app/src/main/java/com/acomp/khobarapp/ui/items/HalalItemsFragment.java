@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -24,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,10 +70,11 @@ public class HalalItemsFragment extends Fragment {
     public Integer type = 0;
     public Integer total = 0;
     public Boolean isScrollChanged = true;
+    public Boolean isSearchNotFound = true;
     public Integer limitItems = null;
     BottomNavigationView bottomNavigationView = null;
     RelativeLayout layItemsNotFound;
-
+    public View viewSearchAll = null;
     ListFoodBaseAdapter listFoodBaseAdapter = null;
     ArrayList<ItemsModel> listFoodModel = null;
 
@@ -485,7 +488,16 @@ public class HalalItemsFragment extends Fragment {
                         recyclerView.setAdapter(listFoodBaseAdapter);
 
                         if (totalData == 0) {
-                            layItemsNotFound.setVisibility(View.VISIBLE);
+                            if (viewSearchAll != null) {
+                                LinearLayout headSearchTabs = (LinearLayout) viewSearchAll.findViewById(R.id.head_items_search_all);
+                                headSearchTabs.setVisibility(View.GONE);
+                                FrameLayout frameSearchTabs = (FrameLayout) viewSearchAll.findViewById(R.id.fragment_search_all_items);
+                                frameSearchTabs.setVisibility(View.GONE);
+                            }
+                            if(isSearchNotFound == true){
+                                layItemsNotFound.setVisibility(View.VISIBLE);
+
+                            }
                         }
 
 

@@ -302,6 +302,7 @@
                     android:fontFamily="@font/roboto_medium"
                     app:chipHeight="20dp"
                     app:chipTextSize="16dp"
+                    app:chipSpacing="0dp"
                     app:chipVerticalSpacing="3dp" />
 
             </RelativeLayout>

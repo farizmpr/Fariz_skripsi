@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,9 +53,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -72,7 +75,7 @@ public class HomeFragment extends Fragment {
     FragmentActivity fragmentActivity = null;
 
     public void setActivity(FragmentActivity fragmentActivitys) {
-        fragmentActivity= fragmentActivitys;
+        fragmentActivity = fragmentActivitys;
     }
 
     @Override
@@ -110,21 +113,6 @@ public class HomeFragment extends Fragment {
                 (SearchView) rootView.findViewById(R.id.btnSearchAllHome);
         getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
 
-        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-            @Override
-            public boolean onSuggestionSelect(int position) {
-                return true;
-            }
-
-            @Override
-            public boolean onSuggestionClick(int position) {
-//                CursorAdapter selectedView = searchView.getSuggestionsAdapter();
-//                Cursor cursor = (Cursor) selectedView.getItem(position);
-//                int index = cursor.getColumnIndexOrThrow(SearchManager.SUGGEST_COLUMN_TEXT_1);
-//                searchView.setQuery(cursor.getString(index), true);
-                return true;
-            }
-        });
 
         ImageView logoImgHN = (ImageView) rootView.findViewById(R.id.logoImgHN);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
@@ -157,14 +145,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
-//                querySearch = s;
-//                page = 1;
-//                listVenuesModel.clear();
-//                getListVenues(page, querySearch);
-//                SearchRecentSuggestions suggestions = new SearchRecentSuggestions(getActivity(),
-//                        MySuggestionProvider.AUTHORITY,
-//                        MySuggestionProvider.MODE);
-//                suggestions.saveRecentQuery(s, null);
                 saveSuggest("suggestSearchAll", s);
                 searchHomeAll(s);
                 Log.d("QUERY Submit", "QueryTextSubmit: " + s);
@@ -201,13 +181,13 @@ public class HomeFragment extends Fragment {
     }
 
     public void getSuggetsSearchAutoComplete(String key, SearchView searchView) {
-        if(fragmentActivity == null){
+        if (fragmentActivity == null) {
             fragmentActivity = getActivity();
         }
 
         SharedPreferences preferences = fragmentActivity.getPreferences(Context.MODE_PRIVATE);
         Set<String> listSuggestSearchAll = preferences.getStringSet(key, null);
-        String dataListSuggestSearchAll[] = {};
+        String[] dataListSuggestSearchAll = {};
         if (listSuggestSearchAll != null) {
             if (listSuggestSearchAll.size() > 0) {
                 dataListSuggestSearchAll = convertSetToArrayString(listSuggestSearchAll);
@@ -216,10 +196,19 @@ public class HomeFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(fragmentActivity, R.layout.autocomplete_search, R.id.textAutoComplete, dataListSuggestSearchAll);
         ArrayAdapterSearchView dataAdapter = new ArrayAdapterSearchView(fragmentActivity, searchView);
         dataAdapter.setAdapter(adapter);
+        List<String> stringList = new ArrayList<String>(Arrays.asList(dataListSuggestSearchAll)); //new ArrayList is only needed if you absolutely need an ArrayList
+        dataAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ArrayAdapter selectedView = (ArrayAdapter) parent.getAdapter();
+                String txtVal = (String) selectedView.getItem(position);
+                searchView.setQuery(txtVal, false);
+            }
+        });
     }
 
     public void saveSuggest(String key, String text) {
-        if(fragmentActivity == null){
+        if (fragmentActivity == null) {
             fragmentActivity = getActivity();
         }
         SharedPreferences preferences = fragmentActivity.getPreferences(Context.MODE_PRIVATE);

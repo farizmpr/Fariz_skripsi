@@ -13,6 +13,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,12 +70,14 @@ public class NewsFragment extends Fragment {
     public Integer type = 0;
     public Integer total = 0;
     public Boolean isScrollChanged = true;
+    public Boolean isSearchNotFound = true;
     public Integer limitNews = null;
     CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner_home_1};
     public SwipeRefreshLayout pullToRefresh;
     BottomNavigationView bottomNavigationView = null;
-
+    public View viewSearchAll = null;
+    ;
     ListNewsBaseAdapter listNewsBaseAdapter = null;
     ArrayList<NewsModel> listNewsModel = null;
     RelativeLayout layItemsNotFound;
@@ -88,7 +92,7 @@ public class NewsFragment extends Fragment {
                 (SearchView) rootView.findViewById(R.id.btnViewSearchNews);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
-        homeFragment.getSuggetsSearchAutoComplete("suggestSearchNews",searchView);
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchNews", searchView);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +114,7 @@ public class NewsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
-                if(isScrollChanged == true) {
+                if (isScrollChanged == true) {
                     searchValue = s;
                     page = 1;
                     type = 1;
@@ -231,7 +235,7 @@ public class NewsFragment extends Fragment {
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
         GetDataService getDataService = RetrofitClientInstance.getRetrofitAuthInstance(token).create(GetDataService.class);
-        Call call = getDataService.getNews(page,this.searchValue);
+        Call call = getDataService.getNews(page, this.searchValue);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
@@ -284,7 +288,7 @@ public class NewsFragment extends Fragment {
                         assert recyclerView != null;
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                         recyclerView.setLayoutManager(mLayoutManager);
-                        listNewsBaseAdapter = new ListNewsBaseAdapter(getActivity(), listNewsModel,limitNews);
+                        listNewsBaseAdapter = new ListNewsBaseAdapter(getActivity(), listNewsModel, limitNews);
                         recyclerView.setAdapter(listNewsBaseAdapter);
 
 
@@ -298,7 +302,16 @@ public class NewsFragment extends Fragment {
                             headRecyclerView.setVisibility(View.GONE);
                         }
                         if (totalData == 0) {
-                            layItemsNotFound.setVisibility(View.VISIBLE);
+                            if (viewSearchAll != null) {
+                                LinearLayout headSearchTabs = (LinearLayout) viewSearchAll.findViewById(R.id.head_news_search_all);
+                                headSearchTabs.setVisibility(View.GONE);
+                                FrameLayout frameSearchTabs = (FrameLayout) viewSearchAll.findViewById(R.id.fragment_search_all_news);
+                                frameSearchTabs.setVisibility(View.GONE);
+                            }
+                            if (isSearchNotFound == true) {
+                                layItemsNotFound.setVisibility(View.VISIBLE);
+
+                            }
                         }
 
                     } catch (JSONException e) {
