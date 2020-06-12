@@ -116,20 +116,20 @@ public class TabSearchAllFragment extends Fragment {
                 fragmentTransactionItems.commit();
 
 
-                newsFragment.tabLayout = tabLayout;
-                newsFragment.fragmentActivity = getActivity();
-                newsFragment.tabPageType = 2;
-                newsFragment.isCheckTab = true;
-                newsFragment.type = 1;
-                newsFragment.searchValue = defaultTextSearch;
-                newsFragment.getListNews(1);
-
-                halalVenuesFragment.tabLayout = tabLayout;
-                halalVenuesFragment.fragmentActivity = getActivity();
-                halalVenuesFragment.tabPageType = 3;
-                halalVenuesFragment.type = 1;
-                halalVenuesFragment.isCheckTab = true;
-                halalVenuesFragment.getListVenues(1,defaultTextSearch);
+//                newsFragment.tabLayout = tabLayout;
+//                newsFragment.fragmentActivity = getActivity();
+//                newsFragment.tabPageType = 2;
+//                newsFragment.isCheckTab = true;
+//                newsFragment.type = 1;
+//                newsFragment.searchValue = defaultTextSearch;
+//                newsFragment.getListNews(1);
+//
+//                halalVenuesFragment.tabLayout = tabLayout;
+//                halalVenuesFragment.fragmentActivity = getActivity();
+//                halalVenuesFragment.tabPageType = 3;
+//                halalVenuesFragment.type = 1;
+//                halalVenuesFragment.isCheckTab = true;
+//                halalVenuesFragment.getListVenues(1,defaultTextSearch);
 
             }
         } else if (type == 2) {
@@ -143,19 +143,19 @@ public class TabSearchAllFragment extends Fragment {
                 fragmentTransactionItems.replace(R.id.fragment_search_news, newsFragment);
                 fragmentTransactionItems.commit();
 
-                halalItemsFragment.tabLayout = tabLayout;
-                halalItemsFragment.fragmentActivity = getActivity();
-                halalItemsFragment.tabPageType = 1;
-                halalItemsFragment.isCheckTab = true;
-                halalItemsFragment.type = 1;
-                halalItemsFragment.getListFood(1,defaultTextSearch);
-
-                halalVenuesFragment.tabLayout = tabLayout;
-                halalVenuesFragment.fragmentActivity = getActivity();
-                halalVenuesFragment.tabPageType = 3;
-                halalVenuesFragment.type = 1;
-                halalVenuesFragment.isCheckTab = true;
-                halalVenuesFragment.getListVenues(1,defaultTextSearch);
+//                halalItemsFragment.tabLayout = tabLayout;
+//                halalItemsFragment.fragmentActivity = getActivity();
+//                halalItemsFragment.tabPageType = 1;
+//                halalItemsFragment.isCheckTab = true;
+//                halalItemsFragment.type = 1;
+//                halalItemsFragment.getListFood(1,defaultTextSearch);
+//
+//                halalVenuesFragment.tabLayout = tabLayout;
+//                halalVenuesFragment.fragmentActivity = getActivity();
+//                halalVenuesFragment.tabPageType = 3;
+//                halalVenuesFragment.type = 1;
+//                halalVenuesFragment.isCheckTab = true;
+//                halalVenuesFragment.getListVenues(1,defaultTextSearch);
             }
         } else if (type == 3) {
             rootView = inflater.inflate(R.layout.tab_fragment_search_venues, container, false);
@@ -168,24 +168,42 @@ public class TabSearchAllFragment extends Fragment {
                 fragmentTransactionItems.replace(R.id.fragment_search_venues, halalVenuesFragment);
                 fragmentTransactionItems.commit();
 
-                halalItemsFragment.tabLayout = tabLayout;
-                halalItemsFragment.fragmentActivity = getActivity();
-                halalItemsFragment.tabPageType = 1;
-                halalItemsFragment.isCheckTab = true;
-                halalItemsFragment.type = 1;
-                halalItemsFragment.getListFood(1,defaultTextSearch);
-
-                newsFragment.tabLayout = tabLayout;
-                newsFragment.fragmentActivity = getActivity();
-                newsFragment.tabPageType = 2;
-                newsFragment.isCheckTab = true;
-                newsFragment.type = 1;
-                newsFragment.searchValue = defaultTextSearch;
-                newsFragment.getListNews(1);
+//                halalItemsFragment.tabLayout = tabLayout;
+//                halalItemsFragment.fragmentActivity = getActivity();
+//                halalItemsFragment.tabPageType = 1;
+//                halalItemsFragment.isCheckTab = true;
+//                halalItemsFragment.type = 1;
+//                halalItemsFragment.getListFood(1,defaultTextSearch);
+//
+//                newsFragment.tabLayout = tabLayout;
+//                newsFragment.fragmentActivity = getActivity();
+//                newsFragment.tabPageType = 2;
+//                newsFragment.isCheckTab = true;
+//                newsFragment.type = 1;
+//                newsFragment.searchValue = defaultTextSearch;
+//                newsFragment.getListNews(1);
             }
         }
-
-
+//        RelativeLayout btnBack = (RelativeLayout) getActivity().findViewById(R.id.back);
+//        LinearLayout layoutAll = (LinearLayout) getActivity().findViewById(R.id.layoutAll);
+//        SearchView searchView =
+//                (SearchView) getActivity().findViewById(R.id.btnViewSearchAllItems);
+//        searchView.setOnSearchClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                layoutAll.setVisibility(View.GONE);
+//                btnBack.setVisibility(View.GONE);
+//
+//            }
+//        });
+//        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+//            @Override
+//            public boolean onClose() {
+//                layoutAll.setVisibility(View.VISIBLE);
+//                btnBack.setVisibility(View.VISIBLE);
+//                return false;
+//            }
+//        });
 
         return rootView;
     }

@@ -15,7 +15,7 @@
         <LinearLayout
             android:id="@+id/toolbar_items"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/halal"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,39 +25,41 @@
 
             <RelativeLayout
                 android:id="@+id/back"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="2">
 
                 <ImageView
-                    android:layout_width="20dp"
+                    android:layout_width="30dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
                     android:tint="@color/white" />
             </RelativeLayout>
 
 
-
-
             <RelativeLayout
                 android:id="@+id/lnl_favorite"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="12"
+                android:layout_weight="8"
                 android:gravity="end">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:layout_centerInParent="true">
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/btnViewSearchAllItems"
                         style="@style/SearchViewStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layoutDirection="rtl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:tint="@color/white"
+                        app:closeIcon="@drawable/ic_close_black_24dp"
                         app:searchIcon="@drawable/ic_search_black_24dp" />
                     <!--                            <ImageView-->
                     <!--                                android:layout_width="20dp"-->
@@ -72,79 +74,86 @@
             </RelativeLayout>
 
         </LinearLayout>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        <LinearLayout
+            android:id="@+id/layoutAll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?actionBarSize"
-                android:backgroundTint="@color/halal"
-                app:tabTextColor="@color/grey_20"
-                app:tabSelectedTextColor="@color/white"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@color/white"
-                app:tabIndicatorHeight="4dp"
-                app:tabBackground="@color/halal"
-                app:tabMode="fixed">
-            </com.google.android.material.tabs.TabLayout>
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/halal"
+                    android:minHeight="?actionBarSize"
+                    app:tabBackground="@color/halal"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorHeight="4dp"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="@color/grey_20"></com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></androidx.viewpager.widget.ViewPager>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layItemsNotFound"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </androidx.viewpager.widget.ViewPager>
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView1"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center_horizontal"
+                    android:text="No Result Found"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="229dp"
+                    android:layout_height="240dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/undraw_not_found" />
+            </RelativeLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollViewHalalItems"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_items">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/toolbar_items"
+                    android:layout_marginLeft="10dp"
+                    android:fadeScrollbars="false"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintEnd_toEndOf="@id/toolbar_items"
+                    app:layout_constraintStart_toStartOf="@id/toolbar_items"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar_items"
+                    tools:listitem="@layout/food_regular" />
+
+
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/layItemsNotFound"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true">
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageView1"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="center_horizontal"
-                android:text="No Result Found"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="229dp"
-                android:layout_height="240dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/undraw_not_found" />
-        </RelativeLayout>
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/scrollViewHalalItems"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar_items">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_food"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/toolbar_items"
-                android:layout_marginLeft="10dp"
-                android:fadeScrollbars="false"
-                android:nestedScrollingEnabled="false"
-                app:layout_constraintEnd_toEndOf="@id/toolbar_items"
-                app:layout_constraintStart_toStartOf="@id/toolbar_items"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_items"
-                tools:listitem="@layout/food_regular" />
-
-
-        </androidx.core.widget.NestedScrollView>
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.acomp.khobarapp.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.AdapterView;
@@ -9,6 +11,8 @@ import android.widget.SimpleCursorAdapter;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.cursoradapter.widget.CursorAdapter;
+
+import com.acomp.khobarapp.R;
 
 public class ArrayAdapterSearchView extends SearchView {
     private String[] arraySearch;
@@ -28,8 +32,14 @@ public class ArrayAdapterSearchView extends SearchView {
         initialize();
     }
 
+    @SuppressLint("RestrictedApi")
     public void initialize() {
         mSearchAutoComplete = (SearchAutoComplete) mSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        mSearchAutoComplete.setThreshold(0);
+        mSearchAutoComplete.setElevation(0);
+        mSearchAutoComplete.setDropDownBackgroundDrawable(
+                getContext().getResources().getDrawable(R.drawable.remove_shadow));
+        mSearchAutoComplete.setShadowLayer(0,0,0, Color.BLACK);
         this.setAdapter(null);
         this.setOnItemClickListener(null);
 //        new SuggestionAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);

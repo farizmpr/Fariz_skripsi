@@ -106,27 +106,31 @@ public class HalalItemsFragment extends Fragment {
         RelativeLayout lnlFav = (RelativeLayout) rootView.findViewById(R.id.lnl_favorite);
         LinearLayout.LayoutParams paramsLnlFav = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.MATCH_PARENT);
-
+        LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                closeBtn.setVisibility(View.GONE);
                 //do what you want when search view expended
                 paramsBack.weight = 1.0f;
                 paramsLnlFav.weight = 8.0f;
                 closeBtn.setLayoutParams(paramsBack);
                 lnlFav.setLayoutParams(paramsLnlFav);
                 titleMenuBar.setVisibility(View.GONE);
+                layoutAll.setVisibility(View.GONE);
 //                closeBtn.setGravity();
             }
         });
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
+                closeBtn.setVisibility(View.VISIBLE);
                 paramsBack.weight = 2.0f;
                 paramsLnlFav.weight = 4.0f;
                 closeBtn.setLayoutParams(paramsBack);
                 lnlFav.setLayoutParams(paramsLnlFav);
                 titleMenuBar.setVisibility(View.VISIBLE);
+                layoutAll.setVisibility(View.VISIBLE);
                 //do what you want  searchview is not expanded
                 return false;
             }
@@ -512,7 +516,7 @@ public class HalalItemsFragment extends Fragment {
                                     frameSearchTabs.setVisibility(View.GONE);
 
                                     if (tabSearchAllFragment != null) {
-                                        tabLayout.removeTabAt(tabPageType);
+//                                        tabLayout.removeTabAt(tabPageType);
                                         tabSearchAllFragment.isRemove = true;
                                     }
                                 }

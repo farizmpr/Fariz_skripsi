@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -38,6 +40,7 @@ public class TabHomeSearchAllFragment extends Fragment {
     String defaultTextSearch = null;
     public Integer defaultTabsPage = 0;
     public String defaultTabsPageText = null;
+    public Boolean isExpandSearch = false;
     private Handler _hRedraw;
     protected static final int REFRESH = 0;
     public List<Integer> listRemoveTab = new ArrayList<>();
@@ -47,15 +50,38 @@ public class TabHomeSearchAllFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_search_all, container, false);
-
+        RelativeLayout btnBack = (RelativeLayout) rootView.findViewById(R.id.back);
+        LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
         SearchView searchView =
                 (SearchView) rootView.findViewById(R.id.btnViewSearchAllItems);
+
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                layoutAll.setVisibility(View.VISIBLE);
+                btnBack.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(), "CLOSE VIEW", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         if (defaultTextSearch != null) {
+//        if (isExpandSearch) {
+
+            btnBack.setVisibility(View.GONE);
             String str = getActivity().getIntent().getStringExtra(defaultTextSearch);
+//            searchView.onActionViewCollapsed();
 //            searchView.setQuery(str, false);
-            searchView.onActionViewExpanded();
+//            searchView.onActionViewExpanded();
+            searchView.setIconified(false);
+//            searchView.setIconifiedByDefault(true);
+
             searchView.setQuery(defaultTextSearch, false);
             searchView.clearFocus();
+            layoutAll.setVisibility(View.VISIBLE);
+//            btnBack.setVisibility(View.VISIBLE);
+//            layoutAll.setVisibility(View.GONE);
+//
 
 //            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)‌​;
 
@@ -66,13 +92,38 @@ public class TabHomeSearchAllFragment extends Fragment {
 //            }
 //            hideKeyboard(getActivity());
         }
+
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
         homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
+
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    layoutAll.setVisibility(View.GONE);
+                    btnBack.setVisibility(View.GONE);
+//                    Toast.makeText(getActivity(), "OPEN VIEW", Toast.LENGTH_SHORT).show();
+                    // searchView expanded
+                } else {
+                    // searchView not expanded
+                }
+            }
+        });
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                return true;
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
+                layoutAll.setVisibility(View.VISIBLE);
+//                btnBack.setVisibility(View.VISIBLE);
 //                if(isScrollChanged == true) {
 //                    querySearch = s;
 //                    page = 1;
@@ -101,7 +152,7 @@ public class TabHomeSearchAllFragment extends Fragment {
                 return false;
             }
         });
-        RelativeLayout btnBack = (RelativeLayout) rootView.findViewById(R.id.back);
+
         btnBack.setOnClickListener(goBackListener);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
@@ -170,7 +221,7 @@ public class TabHomeSearchAllFragment extends Fragment {
             Integer selectedTabPosition = 0;
             for (Integer no = 0; no < tabCount; no++) {
                 String txt = tabLayout.getTabAt(no).getText().toString();
-                if(txt == defaultTabsPageText){
+                if (txt == defaultTabsPageText) {
                     selectedTabPosition = no;
 
                 }
@@ -259,6 +310,7 @@ public class TabHomeSearchAllFragment extends Fragment {
 
             }
         });
+
         return rootView;
     }
 
@@ -271,6 +323,8 @@ public class TabHomeSearchAllFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_menu, menu);
         MenuItem item = menu.findItem(R.id.action_fetch);
+        MenuItem mSearchMenuItem;
+        mSearchMenuItem = menu.findItem(R.id.action_search);
         item.setVisible(false);
     }
 

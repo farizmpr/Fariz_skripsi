@@ -15,7 +15,7 @@
         <LinearLayout
             android:id="@+id/toolbar_items"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/halal"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,16 +60,18 @@
                 android:gravity="end">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:layout_centerInParent="true">
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/btnViewSearchAllItems"
                         style="@style/SearchViewStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:tint="@color/white"
+                        app:closeIcon="@drawable/ic_close_black_24dp"
                         app:searchIcon="@drawable/ic_search_black_24dp" />
                     <!--                            <ImageView-->
                     <!--                                android:layout_width="20dp"-->
@@ -85,34 +87,41 @@
 
         </LinearLayout>
 
-        <include
-            layout="@layout/not_found_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/scrollViewHalalItems"
+        <LinearLayout
+            android:id="@+id/layoutAll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar_items">
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_venues"
+            <include
+                layout="@layout/not_found_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/toolbar_items"
-                android:layout_marginLeft="10dp"
-                android:fadeScrollbars="false"
-                android:nestedScrollingEnabled="false"
-                app:layout_constraintEnd_toEndOf="@id/toolbar_items"
-                app:layout_constraintStart_toStartOf="@id/toolbar_items"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_items"
-                tools:listitem="@layout/halal_venues_item" />
+                android:layout_alignParentBottom="true"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollViewHalalItems"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_items">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list_venues"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/toolbar_items"
+                    android:layout_marginLeft="10dp"
+                    android:fadeScrollbars="false"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintEnd_toEndOf="@id/toolbar_items"
+                    app:layout_constraintStart_toStartOf="@id/toolbar_items"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar_items"
+                    tools:listitem="@layout/halal_venues_item" />
 
 
-        </androidx.core.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

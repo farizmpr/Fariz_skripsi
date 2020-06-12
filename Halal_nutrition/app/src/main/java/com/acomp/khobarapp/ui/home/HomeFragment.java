@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
@@ -166,10 +167,13 @@ public class HomeFragment extends Fragment {
 
 
         ImageView logoImgHN = (ImageView) rootView.findViewById(R.id.logoImgHN);
+        LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logoImgHN.setVisibility(View.GONE);
+                layoutAll.setVisibility(View.GONE);
+//                Toast.makeText(getActivity(), "OPEN VIEW", Toast.LENGTH_SHORT).show();
                 //do what you want when search view expended
 //                paramsBack.weight = 1.0f;
 //                paramsLnlFav.weight = 8.0f;
@@ -183,6 +187,7 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onClose() {
                 logoImgHN.setVisibility(View.VISIBLE);
+                layoutAll.setVisibility(View.VISIBLE);
 //                paramsBack.weight = 2.0f;
 //                paramsLnlFav.weight = 4.0f;
 //                closeBtn.setLayoutParams(paramsBack);
@@ -196,6 +201,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
+                layoutAll.setVisibility(View.VISIBLE);
                 saveSuggest("suggestSearchAll", s);
                 searchHomeAll(s);
                 Log.d("QUERY Submit", "QueryTextSubmit: " + s);
@@ -314,6 +320,7 @@ public class HomeFragment extends Fragment {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         TabHomeSearchAllFragment halalItemsFragment = new TabHomeSearchAllFragment();
         halalItemsFragment.setDefaultTextSearch(text);
+        halalItemsFragment.isExpandSearch = true;
         fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
         fragmentTransaction.commit();
     }

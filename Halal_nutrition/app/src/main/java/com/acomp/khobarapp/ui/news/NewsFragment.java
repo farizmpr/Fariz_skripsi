@@ -101,11 +101,13 @@ public class NewsFragment extends Fragment {
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
         homeFragment.getSuggetsSearchAutoComplete("suggestSearchNews", searchView);
+        LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 logoImgHN.setVisibility(View.GONE);
+                layoutAll.setVisibility(View.GONE);
 //                closeBtn.setGravity();
             }
         });
@@ -114,6 +116,7 @@ public class NewsFragment extends Fragment {
             public boolean onClose() {
 
                 logoImgHN.setVisibility(View.VISIBLE);
+                layoutAll.setVisibility(View.VISIBLE);
                 //do what you want  searchview is not expanded
                 return false;
             }
@@ -123,6 +126,7 @@ public class NewsFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 if (isScrollChanged == true) {
+                    layoutAll.setVisibility(View.VISIBLE);
                     searchValue = s;
                     page = 1;
                     type = 1;
@@ -335,7 +339,7 @@ public class NewsFragment extends Fragment {
                                     frameSearchTabs.setVisibility(View.GONE);
 //                                tabLayout.getChildAt(tabPageType).setVisibility(View.GONE);
                                     if (tabSearchAllFragment != null) {
-                                        tabLayout.removeTabAt(tabPageType);
+//                                        tabLayout.removeTabAt(tabPageType);
                                         tabSearchAllFragment.isRemove = true;
                                     }
 

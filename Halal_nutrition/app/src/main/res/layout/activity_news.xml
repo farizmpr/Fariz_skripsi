@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/toolbar_items"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="#FFF"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,12 +24,11 @@
 
             <ImageView
                 android:id="@+id/logoImgHN"
-                android:layout_margin="10dp"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:src="@drawable/mas_logo"
+                android:layout_margin="10dp"
                 android:scaleType="fitStart"
-                />
+                android:src="@drawable/mas_logo" />
 
 
             <RelativeLayout
@@ -39,15 +39,16 @@
                 android:gravity="end">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:layout_centerInParent="true">
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/btnViewSearchNews"
                         style="@style/SearchViewStyleColorHalal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:tint="@color/halal"
                         app:searchIcon="@drawable/ic_search_color_halal_24dp" />
 
@@ -57,55 +58,62 @@
 
         </LinearLayout>
 
-        <include
-            layout="@layout/not_found_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/scrollViewListNews"
+        <LinearLayout
+            android:id="@+id/layoutAll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar_items">
+            android:orientation="vertical">
 
-            <RelativeLayout
+            <include
+                layout="@layout/not_found_search"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_headline"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollViewListNews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_items">
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    app:layout_constraintBottom_toTopOf="@id/list_rv_regular"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/news_headline" />
+                    android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_rv_regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/rv_headline"
-                    android:fadeScrollbars="true"
-                    android:nestedScrollingEnabled="true"
-                    app:layout_constraintStart_toStartOf="@id/rv_headline"
-                    app:layout_constraintTop_toBottomOf="@id/rv_headline"
-                    tools:listitem="@layout/news_regular" />
-                <!--            <ListView-->
-                <!--                android:id="@+id/list_rv_regular"-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:fadeScrollbars="false"-->
-                <!--                android:nestedScrollingEnabled="false"-->
-                <!--                app:layout_constraintEnd_toEndOf="@id/rv_headline"-->
-                <!--                app:layout_constraintHorizontal_bias="1.0"-->
-                <!--                app:layout_constraintStart_toStartOf="@id/rv_headline"-->
-                <!--                app:layout_constraintTop_toBottomOf="@id/rv_headline"-->
-                <!--                tools:listitem="@layout/news_regular" />-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_headline"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        app:layout_constraintBottom_toTopOf="@id/list_rv_regular"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/news_headline" />
 
-            </RelativeLayout>
-        </androidx.core.widget.NestedScrollView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_rv_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/rv_headline"
+                        android:fadeScrollbars="true"
+                        android:nestedScrollingEnabled="true"
+                        app:layout_constraintStart_toStartOf="@id/rv_headline"
+                        app:layout_constraintTop_toBottomOf="@id/rv_headline"
+                        tools:listitem="@layout/news_regular" />
+                    <!--            <ListView-->
+                    <!--                android:id="@+id/list_rv_regular"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:fadeScrollbars="false"-->
+                    <!--                android:nestedScrollingEnabled="false"-->
+                    <!--                app:layout_constraintEnd_toEndOf="@id/rv_headline"-->
+                    <!--                app:layout_constraintHorizontal_bias="1.0"-->
+                    <!--                app:layout_constraintStart_toStartOf="@id/rv_headline"-->
+                    <!--                app:layout_constraintTop_toBottomOf="@id/rv_headline"-->
+                    <!--                tools:listitem="@layout/news_regular" />-->
+
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
     </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
