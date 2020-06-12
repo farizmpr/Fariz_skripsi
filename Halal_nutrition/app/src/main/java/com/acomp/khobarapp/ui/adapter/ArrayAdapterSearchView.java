@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -40,6 +41,8 @@ public class ArrayAdapterSearchView extends SearchView {
         mSearchAutoComplete.setDropDownBackgroundDrawable(
                 getContext().getResources().getDrawable(R.drawable.remove_shadow));
         mSearchAutoComplete.setShadowLayer(0,0,0, Color.BLACK);
+        mSearchAutoComplete.setDropDownWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+//        mSearchAutoComplete.setDropDownHorizontalOffset(-100);
         this.setAdapter(null);
         this.setOnItemClickListener(null);
 //        new SuggestionAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);

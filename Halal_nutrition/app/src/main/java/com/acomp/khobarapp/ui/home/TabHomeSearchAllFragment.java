@@ -60,15 +60,16 @@ public class TabHomeSearchAllFragment extends Fragment {
             @Override
             public boolean onClose() {
                 layoutAll.setVisibility(View.VISIBLE);
-                btnBack.setVisibility(View.VISIBLE);
+//                btnBack.setVisibility(View.VISIBLE);
 //                Toast.makeText(getActivity(), "CLOSE VIEW", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
+//        searchView.setLeft(0);
         if (defaultTextSearch != null) {
 //        if (isExpandSearch) {
 
-            btnBack.setVisibility(View.GONE);
+//            btnBack.setVisibility(View.GONE);
             String str = getActivity().getIntent().getStringExtra(defaultTextSearch);
 //            searchView.onActionViewCollapsed();
 //            searchView.setQuery(str, false);
@@ -95,14 +96,16 @@ public class TabHomeSearchAllFragment extends Fragment {
 
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
+        homeFragment.setNoPaddingAutoComplete(true);
         homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
+
 
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     layoutAll.setVisibility(View.GONE);
-                    btnBack.setVisibility(View.GONE);
+//                    btnBack.setVisibility(View.GONE);
 //                    Toast.makeText(getActivity(), "OPEN VIEW", Toast.LENGTH_SHORT).show();
                     // searchView expanded
                 } else {
@@ -110,7 +113,7 @@ public class TabHomeSearchAllFragment extends Fragment {
                 }
             }
         });
-
+//searchView.setDrop
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

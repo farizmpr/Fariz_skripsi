@@ -96,7 +96,8 @@ public class HalalItemsFragment extends Fragment {
                 (SearchView) rootView.findViewById(R.id.btnViewSearchAllItems);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
-        homeFragment.getSuggetsSearchAutoComplete("suggestSearchItems",searchView);
+        homeFragment.setNoPaddingAutoComplete(true);
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll",searchView);
         TextView titleMenuBar = (TextView) rootView.findViewById(R.id.titleMenuBar);
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
@@ -110,7 +111,7 @@ public class HalalItemsFragment extends Fragment {
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeBtn.setVisibility(View.GONE);
+//                closeBtn.setVisibility(View.GONE);
                 //do what you want when search view expended
                 paramsBack.weight = 1.0f;
                 paramsLnlFav.weight = 8.0f;
@@ -124,7 +125,7 @@ public class HalalItemsFragment extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                closeBtn.setVisibility(View.VISIBLE);
+//                closeBtn.setVisibility(View.VISIBLE);
                 paramsBack.weight = 2.0f;
                 paramsLnlFav.weight = 4.0f;
                 closeBtn.setLayoutParams(paramsBack);
@@ -145,7 +146,7 @@ public class HalalItemsFragment extends Fragment {
                     listFoodModel.clear();
                     HomeFragment homeFragment = new HomeFragment();
                     homeFragment.setActivity(getActivity());
-                    homeFragment.saveSuggest("suggestSearchItems", s);
+                    homeFragment.saveSuggest("suggestSearchAll", s);
                     getListFood(page, querySearch);
                     Log.d("QUERY Submit", "QueryTextSubmit: " + s);
                 }

@@ -83,7 +83,8 @@ public class HalalVenuesFragment extends Fragment {
                 (SearchView) rootView.findViewById(R.id.btnViewSearchAllItems);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
-        homeFragment.getSuggetsSearchAutoComplete("suggestSearchVenues",searchView);
+        homeFragment.setNoPaddingAutoComplete(true);
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll",searchView);
         TextView titleMenuBar = (TextView) rootView.findViewById(R.id.titleMenuBar);
         RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
         closeBtn.setOnClickListener(goBackListener);
@@ -98,7 +99,7 @@ public class HalalVenuesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //do what you want when search view expended
-                closeBtn.setVisibility(View.GONE);
+//                closeBtn.setVisibility(View.GONE);
                 paramsBack.weight = 1.0f;
                 paramsLnlFav.weight = 8.0f;
                 closeBtn.setLayoutParams(paramsBack);
@@ -111,7 +112,7 @@ public class HalalVenuesFragment extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                closeBtn.setVisibility(View.VISIBLE);
+//                closeBtn.setVisibility(View.VISIBLE);
                 paramsBack.weight = 2.0f;
                 paramsLnlFav.weight = 4.0f;
                 closeBtn.setLayoutParams(paramsBack);
@@ -133,7 +134,7 @@ public class HalalVenuesFragment extends Fragment {
                     listVenuesModel.clear();
                     HomeFragment homeFragment = new HomeFragment();
                     homeFragment.setActivity(getActivity());
-                    homeFragment.saveSuggest("suggestSearchVenues", s);
+                    homeFragment.saveSuggest("suggestSearchAll", s);
                     getListVenues(page, querySearch);
                     Log.d("QUERY Submit", "QueryTextSubmit: " + s);
 

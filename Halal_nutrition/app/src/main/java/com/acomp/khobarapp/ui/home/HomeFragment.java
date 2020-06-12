@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         sliderItems.add(new SliderItem(R.drawable.halal_info_news));
         sliderItems.add(new SliderItem(R.drawable.nambah_produk_home_ps));
         sliderItems.add(new SliderItem(R.drawable.slide_berita_ps));
-        sliderHomeAdapter = new SliderHomeAdapter(getActivity(),myViewPager2,sliderItems);
+        sliderHomeAdapter = new SliderHomeAdapter(getActivity(), myViewPager2, sliderItems);
         myViewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         myViewPager2.setAdapter(sliderHomeAdapter);
 //        myViewPager2.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
         myViewPager2.setOffscreenPageLimit(3);
 //        myViewPager2.setCurrentItem(myViewPager2.getChildCount() * SliderHomeAdapter.LOOPS_COUNT / 2, false); // set current item in the adapter to middle
 
-        float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMarginSlider);
+        float pageMargin = getResources().getDimensionPixelOffset(R.dimen.pageMarginSlider);
         float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offsetSlider);
 
         myViewPager2.setPageTransformer((page, position) -> {
@@ -145,7 +145,7 @@ public class HomeFragment extends Fragment {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable,6000);
+                sliderHandler.postDelayed(sliderRunnable, 6000);
             }
         });
 
@@ -225,7 +225,7 @@ public class HomeFragment extends Fragment {
     private Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
-            myViewPager2.setCurrentItem(myViewPager2.getCurrentItem()+1);
+            myViewPager2.setCurrentItem(myViewPager2.getCurrentItem() + 1);
         }
     };
 
@@ -244,6 +244,12 @@ public class HomeFragment extends Fragment {
         return arrayOfString;
     }
 
+    private Boolean isNoPaddingAutoComplete = false;
+
+    public void setNoPaddingAutoComplete(Boolean value) {
+        this.isNoPaddingAutoComplete = value;
+    }
+
     public void getSuggetsSearchAutoComplete(String key, SearchView searchView) {
         if (fragmentActivity == null) {
             fragmentActivity = getActivity();
@@ -257,7 +263,11 @@ public class HomeFragment extends Fragment {
                 dataListSuggestSearchAll = convertSetToArrayString(listSuggestSearchAll);
             }
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(fragmentActivity, R.layout.autocomplete_search, R.id.textAutoComplete, dataListSuggestSearchAll);
+        int view_xml = R.layout.autocomplete_search;
+        if(this.isNoPaddingAutoComplete){
+            view_xml = R.layout.autocomplete_search_no_padding;
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(fragmentActivity, view_xml, R.id.textAutoComplete, dataListSuggestSearchAll);
         ArrayAdapterSearchView dataAdapter = new ArrayAdapterSearchView(fragmentActivity, searchView);
         dataAdapter.setAdapter(adapter);
         List<String> stringList = new ArrayList<String>(Arrays.asList(dataListSuggestSearchAll)); //new ArrayList is only needed if you absolutely need an ArrayList
