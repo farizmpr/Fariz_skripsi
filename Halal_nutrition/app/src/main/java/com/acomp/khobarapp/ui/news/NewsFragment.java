@@ -100,7 +100,7 @@ public class NewsFragment extends Fragment {
                 (SearchView) rootView.findViewById(R.id.btnViewSearchNews);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
-        homeFragment.getSuggetsSearchAutoComplete("suggestSearchNews", searchView);
+        homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
         LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +133,7 @@ public class NewsFragment extends Fragment {
                     listNewsModel.clear();
                     HomeFragment homeFragment = new HomeFragment();
                     homeFragment.setActivity(getActivity());
-                    homeFragment.saveSuggest("suggestSearchNews", s);
+                    homeFragment.saveSuggest("suggestSearchAll", s);
                     searchHomeAll(s);
 //                    getListNews(page);
 //                    Log.d("QUERY Submit", "QueryTextSubmit: " + s);

@@ -61,7 +61,7 @@ public class TabHomeSearchAllFragment extends Fragment {
             public boolean onClose() {
                 layoutAll.setVisibility(View.VISIBLE);
                 btnBack.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(), "CLOSE VIEW", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "CLOSE VIEW", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
