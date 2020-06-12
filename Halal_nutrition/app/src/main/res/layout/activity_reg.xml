@@ -193,7 +193,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:fontFamily="@font/roboto_medium"
                     android:textSize="16sp"
                     android:hint="Create a Strong Password "
