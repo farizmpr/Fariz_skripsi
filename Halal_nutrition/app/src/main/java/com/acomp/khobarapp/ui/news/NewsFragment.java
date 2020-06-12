@@ -96,16 +96,24 @@ public class NewsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.activity_news, container, false);
         ImageView logoImgHN = (ImageView) rootView.findViewById(R.id.logoImgHN);
+        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
+
         SearchView searchView =
                 (SearchView) rootView.findViewById(R.id.btnViewSearchNews);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setActivity(getActivity());
+        homeFragment.setNoPaddingAutoComplete(true);
         homeFragment.getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
         LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                searchView.setIconified(true);
+            }
+        });
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                closeBtn.setVisibility(View.VISIBLE);
                 logoImgHN.setVisibility(View.GONE);
                 layoutAll.setVisibility(View.GONE);
 //                closeBtn.setGravity();
@@ -114,7 +122,7 @@ public class NewsFragment extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-
+                closeBtn.setVisibility(View.GONE);
                 logoImgHN.setVisibility(View.VISIBLE);
                 layoutAll.setVisibility(View.VISIBLE);
                 //do what you want  searchview is not expanded
@@ -246,7 +254,7 @@ public class NewsFragment extends Fragment {
     };
 
     public void getListNews(Integer page) {
-        if(fragmentActivity == null){
+        if (fragmentActivity == null) {
             fragmentActivity = getActivity();
         }
         progressDoalog = new ProgressDialog(fragmentActivity);
@@ -270,8 +278,8 @@ public class NewsFragment extends Fragment {
                         NewsModel sr1 = null;
                         Integer totalData = jsonObject.getInt("total");
                         total = totalData;
-                        if(isCheckTab == true){
-                            if(totalData == 0){
+                        if (isCheckTab == true) {
+                            if (totalData == 0) {
                                 tabLayout.removeTabAt(tabPageType);
                             }
                         } else {

@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
@@ -92,7 +93,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        this.setNoPaddingAutoComplete(true);
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         CardView btnSearchItems = (CardView) rootView.findViewById(R.id.btnSearchItems);
@@ -103,6 +104,9 @@ public class HomeFragment extends Fragment {
 
         CardView btnHalalVenues = (CardView) rootView.findViewById(R.id.btnHalalVenues);
         btnHalalVenues.setOnClickListener(btnHalalVenuesListener);
+
+        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
+//        closeBtn.setOnClickListener(goBackListener);
 //        Button btnUpdatePassword = (Button) rootView.findViewById(R.id.btnUpdatePassword);
 //        btnUpdatePassword.setOnClickListener(updatePasswordListener);
 
@@ -164,13 +168,18 @@ public class HomeFragment extends Fragment {
         SearchView searchView =
                 (SearchView) rootView.findViewById(R.id.btnSearchAllHome);
         getSuggetsSearchAutoComplete("suggestSearchAll", searchView);
-
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                searchView.setIconified(true);
+            }
+        });
 
         ImageView logoImgHN = (ImageView) rootView.findViewById(R.id.logoImgHN);
         LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                closeBtn.setVisibility(View.VISIBLE);
                 logoImgHN.setVisibility(View.GONE);
                 layoutAll.setVisibility(View.GONE);
 //                Toast.makeText(getActivity(), "OPEN VIEW", Toast.LENGTH_SHORT).show();
@@ -186,6 +195,8 @@ public class HomeFragment extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
+                closeBtn.setVisibility(View.GONE);
+
                 logoImgHN.setVisibility(View.VISIBLE);
                 layoutAll.setVisibility(View.VISIBLE);
 //                paramsBack.weight = 2.0f;

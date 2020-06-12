@@ -110,7 +110,7 @@ public class TabSearchAllFragment extends Fragment {
             if (isConnect == 1) {
                 halalItemsFragment.type = 1;
                 halalItemsFragment.isScrollChanged = true;
-                halalItemsFragment.isSearchNotFound = false;
+                halalItemsFragment.isSearchNotFound = true;
                 halalItemsFragment.querySearch = defaultTextSearch;
                 fragmentTransactionItems.replace(R.id.fragment_search_items, halalItemsFragment);
                 fragmentTransactionItems.commit();
@@ -139,7 +139,7 @@ public class TabSearchAllFragment extends Fragment {
                 newsFragment.isScrollChanged = true;
 //            halalItemsFragment.limitItems = 3;
                 newsFragment.searchValue = defaultTextSearch;
-                newsFragment.isSearchNotFound = false;
+                newsFragment.isSearchNotFound = true;
                 fragmentTransactionItems.replace(R.id.fragment_search_news, newsFragment);
                 fragmentTransactionItems.commit();
 
@@ -164,7 +164,7 @@ public class TabSearchAllFragment extends Fragment {
                 halalVenuesFragment.isScrollChanged = true;
 //            halalItemsFragment.limitItems = 3;
                 halalVenuesFragment.querySearch = defaultTextSearch;
-                halalVenuesFragment.isSearchNotFound = false;
+                halalVenuesFragment.isSearchNotFound = true;
                 fragmentTransactionItems.replace(R.id.fragment_search_venues, halalVenuesFragment);
                 fragmentTransactionItems.commit();
 

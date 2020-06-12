@@ -127,7 +127,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:fontFamily="@font/roboto_medium"
                 android:hint="Enter Your Secure Password "
                 android:textSize="16sp"
