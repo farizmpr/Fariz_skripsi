@@ -200,7 +200,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
                                 }
                                 String textOCR= stringBuilder.toString();
                                 if(isStartOCR == true){
-                                    mTextView.setText(textOCR);
+//                                    mTextView.setText(textOCR);
                                     getListVenues(textOCR);
                                 }
 
@@ -604,7 +604,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
                                 fragmentTransaction.commit();
                             } else {
 //                            restartCamera();
-//                                Toast.makeText(getActivity(), "Data Not Found", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), code+" : Not Found", Toast.LENGTH_LONG).show();
                             }
                             isStartOCR = true;
                             progressDoalog.dismiss();
