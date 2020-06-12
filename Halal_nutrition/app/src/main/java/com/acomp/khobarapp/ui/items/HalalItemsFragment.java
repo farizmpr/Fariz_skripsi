@@ -140,6 +140,7 @@ public class HalalItemsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
+                layoutAll.setVisibility(View.VISIBLE);
                 if(isScrollChanged == true) {
                     querySearch = s;
                     page = 1;

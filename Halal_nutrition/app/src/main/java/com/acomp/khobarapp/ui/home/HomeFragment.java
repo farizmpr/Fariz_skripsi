@@ -291,18 +291,24 @@ public class HomeFragment extends Fragment {
         if (listSuggestSearchAll != null) {
             if (listSuggestSearchAll.size() >= 11) {
 //            listSuggestSearchAll.remove(1);
+                set = new HashSet<String>();
+                set.add(text);
                 Iterator<String> iterator = listSuggestSearchAll.iterator();
                 while (iterator.hasNext()) {
                     String s = iterator.next();
                     if (s.length() >= 11) {
                         iterator.remove();
+                    } else {
+                        set.add(s);
                     }
 
                 }
-                set = new HashSet<String>((Collection<? extends String>) iterator);
+
             } else {
                 set = new HashSet<String>(listSuggestSearchAll);
                 if (!set.contains(text)) {
+//                    set.add(0, text);
+
                     set.add(text);
                 }
             }
