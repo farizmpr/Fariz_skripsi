@@ -292,6 +292,10 @@ public class AddItemsFragment extends Fragment {
             Toast.makeText(getActivity(), "Please Add Certificate", Toast.LENGTH_SHORT).show();
             return false;
         }
+        this.foodCode = foodCode;
+        this.foodName = foodName;
+        this.foodIngredient = foodIngredient;
+        this.foodManufacture = foodManufacture;
         return true;
     }
 
