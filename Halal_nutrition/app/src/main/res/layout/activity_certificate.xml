@@ -190,7 +190,8 @@
                             android:layout_below="@id/status_choice"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:paddingLeft="0dp"
+                            android:layout_gravity="left"
+                            android:padding="0dp"
                             style="@android:style/Widget.Material.Light.Spinner.Underlined"
                             android:spinnerMode="dropdown"
                             />
@@ -236,7 +237,8 @@
                             android:id="@+id/spinner_type"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:paddingLeft="0dp"
+                            android:layout_gravity="left"
+                            android:padding="0dp"
                             style="@android:style/Widget.Material.Light.Spinner.Underlined"
                             android:spinnerMode="dropdown"/>
                         <TextView

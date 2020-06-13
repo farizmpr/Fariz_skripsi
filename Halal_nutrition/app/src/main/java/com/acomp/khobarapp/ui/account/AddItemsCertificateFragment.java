@@ -127,6 +127,8 @@ public class AddItemsCertificateFragment extends Fragment {
                         ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<StringWithTag>(getActivity(), android.R.layout.simple_spinner_item, itemList);
                         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mySpinner.setAdapter(spinnerAdapter);
+//                        mySpinner.setPadding(0, mySpinner.getPaddingTop(), mySpinner.getPaddingRight(), mySpinner.getPaddingBottom());
+
                         if(halalStatusId != null) {
                             mySpinner.setSelection(selIndex);
                         }
@@ -173,6 +175,7 @@ public class AddItemsCertificateFragment extends Fragment {
                         ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<StringWithTag>(getActivity(), android.R.layout.simple_spinner_item, itemList);
                         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mySpinner2.setAdapter(spinnerAdapter);
+//                        mySpinner2.setPadding(0, mySpinner2.getPaddingTop(), mySpinner2.getPaddingRight(), mySpinner2.getPaddingBottom());
                         if(halalTypeId != null) {
                             mySpinner2.setSelection(selIndex);
                         }
