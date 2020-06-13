@@ -158,11 +158,11 @@ public class HomeFragment extends Fragment {
         bottomNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
         bottomNavigationView.setVisibility(View.VISIBLE);
 
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        NewsFragment newsFragment = new NewsFragment();
-        newsFragment.type = 1;
-        fragmentTransaction.replace(R.id.fragment_content_news_home, newsFragment);
-        fragmentTransaction.commit();
+//        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//        NewsFragment newsFragment = new NewsFragment();
+//        newsFragment.type = 1;
+//        fragmentTransaction.replace(R.id.fragment_content_news_home, newsFragment);
+//        fragmentTransaction.commit();
 
 //        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         SearchView searchView =
@@ -225,12 +225,23 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-
+        getHomeListNews(rootView);
 //        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
 //        navBar.setVisibility(View.VISIBLE);
 //        bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
         return rootView;
+    }
+
+    public void getHomeListNews(View rootview) {
+        NewsFragment newsFragment = new NewsFragment();
+        newsFragment.rootView = rootview;
+        newsFragment.fragmentActivity = getActivity();
+        newsFragment.isHeadlineNews = false;
+        newsFragment.isBottomNav = false;
+        newsFragment.getNestedScroll(rootview);
+        newsFragment.getListNews(1);
+//        newsFragment.sget
     }
 
     private Runnable sliderRunnable = new Runnable() {
@@ -275,7 +286,7 @@ public class HomeFragment extends Fragment {
             }
         }
         int view_xml = R.layout.autocomplete_search;
-        if(this.isNoPaddingAutoComplete){
+        if (this.isNoPaddingAutoComplete) {
             view_xml = R.layout.autocomplete_search_no_padding;
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(fragmentActivity, view_xml, R.id.textAutoComplete, dataListSuggestSearchAll);
@@ -370,9 +381,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
     private View.OnClickListener btnSearchItemsListener = new View.OnClickListener() {

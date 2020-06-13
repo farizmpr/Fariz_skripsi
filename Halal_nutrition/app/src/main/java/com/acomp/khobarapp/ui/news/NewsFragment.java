@@ -74,6 +74,9 @@ public class NewsFragment extends Fragment {
     public Integer total = 0;
     public Boolean isScrollChanged = true;
     public Boolean isSearchNotFound = true;
+    public Boolean isHeadlineNews = true;
+    public Boolean isBottomNav = true;
+    public Boolean isHeadNav = true;
     public Integer limitNews = null;
     CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner_home_1};
@@ -84,6 +87,7 @@ public class NewsFragment extends Fragment {
     public Integer tabPageType = null;
     public TabSearchAllFragment tabSearchAllFragment = null;
     public FragmentActivity fragmentActivity = null;
+    public View rootView = null;
     public Boolean isCheckTab = false;
 
     ListNewsBaseAdapter listNewsBaseAdapter = null;
@@ -161,13 +165,43 @@ public class NewsFragment extends Fragment {
             //            int Refreshcounter = 1; //Counting how many times user have refreshed the layout
             @Override
             public void onRefresh() {
-//                getListNews();
-//                Refreshcounter = Refreshcounter + 1;
-//                notifyDataSetChanged();
                 pullToRefresh.setRefreshing(false);
             }
         });
+        getNestedScroll(rootView);
+        if (type == 0) {
+            bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+            bottomNavigationView.getMenu().findItem(R.id.nav_news).setChecked(true);
+            bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(false);
+        } else {
+            LinearLayout toolbarItems = (LinearLayout) rootView.findViewById(R.id.toolbar_items);
+            toolbarItems.setVisibility(View.GONE);
+        }
+        layItemsNotFound = (RelativeLayout) rootView.findViewById(R.id.layItemsNotFound);
+        layItemsNotFound.setVisibility(View.GONE);
+        getListNews(this.page);
+//        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.VISIBLE);
+        return rootView;
+    }
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(sampleImages[position]);
+        }
+    };
+
+    public void getNestedScroll(View rootView) {
+        if (fragmentActivity == null) {
+            fragmentActivity = getActivity();
+        }
+        if (rootView == null) {
+            rootView = this.rootView;
+        }
         NestedScrollView nestedScrollView = (NestedScrollView) rootView.findViewById(R.id.scrollViewListNews);
+        nestedScrollView.setNestedScrollingEnabled(false);
         nestedScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -195,29 +229,7 @@ public class NewsFragment extends Fragment {
                 }
             }
         });
-        if (type == 0) {
-            bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
-            bottomNavigationView.getMenu().findItem(R.id.nav_news).setChecked(true);
-            bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(false);
-        } else {
-            LinearLayout toolbarItems = (LinearLayout) rootView.findViewById(R.id.toolbar_items);
-            toolbarItems.setVisibility(View.GONE);
-        }
-        layItemsNotFound = (RelativeLayout) rootView.findViewById(R.id.layItemsNotFound);
-        layItemsNotFound.setVisibility(View.GONE);
-        getListNews(this.page);
-//        bottomNavigationView.setSelectedItemId(R.id.nav_home);
-        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-        navBar.setVisibility(View.VISIBLE);
-        return rootView;
     }
-
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
-        }
-    };
 
     public void searchHomeAll(String text) {
 
@@ -322,22 +334,23 @@ public class NewsFragment extends Fragment {
                                 }
                                 listNewsModel.add(sr1);
                             }
-                            RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.list_rv_regular);
+                            RecyclerView recyclerView = (RecyclerView) fragmentActivity.findViewById(R.id.list_rv_regular);
                             assert recyclerView != null;
-                            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                            LinearLayoutManager mLayoutManager = new LinearLayoutManager(fragmentActivity);
                             recyclerView.setLayoutManager(mLayoutManager);
-                            listNewsBaseAdapter = new ListNewsBaseAdapter(getActivity(), listNewsModel, limitNews);
+                            listNewsBaseAdapter = new ListNewsBaseAdapter(fragmentActivity, listNewsModel, limitNews);
                             recyclerView.setAdapter(listNewsBaseAdapter);
 
-
-                            RecyclerView headRecyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_headline);
-                            assert headRecyclerView != null;
-                            if (type == 0) {
-                                headRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                HeadlineNewsBaseAdapter headAdapter = new HeadlineNewsBaseAdapter(getActivity(), headNewsModel);
-                                headRecyclerView.setAdapter(headAdapter);
-                            } else {
-                                headRecyclerView.setVisibility(View.GONE);
+                            if (isHeadlineNews) {
+                                RecyclerView headRecyclerView = (RecyclerView) fragmentActivity.findViewById(R.id.rv_headline);
+                                assert headRecyclerView != null;
+                                if (type == 0) {
+                                    headRecyclerView.setLayoutManager(new LinearLayoutManager(fragmentActivity));
+                                    HeadlineNewsBaseAdapter headAdapter = new HeadlineNewsBaseAdapter(fragmentActivity, headNewsModel);
+                                    headRecyclerView.setAdapter(headAdapter);
+                                } else {
+                                    headRecyclerView.setVisibility(View.GONE);
+                                }
                             }
                             if (totalData == 0) {
                                 if (viewSearchAll != null) {
@@ -369,7 +382,9 @@ public class NewsFragment extends Fragment {
                 }
                 progressDoalog.dismiss();
                 if (type == 0) {
-                    bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(true);
+                    if(isBottomNav) {
+                        bottomNavigationView.getMenu().findItem(R.id.nav_news).setEnabled(true);
+                    }
                 }
             }
 
