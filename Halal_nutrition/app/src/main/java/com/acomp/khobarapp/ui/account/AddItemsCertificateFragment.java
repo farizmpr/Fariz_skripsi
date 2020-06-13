@@ -215,15 +215,27 @@ public class AddItemsCertificateFragment extends Fragment {
         public void onClick(View v) {
             EditText codeCertificate = (EditText) getActivity().findViewById(R.id.name_edit_text);
             String code = codeCertificate.getText().toString();
+            TextView msgCertificateNumber = (TextView) getActivity().findViewById(R.id.msgCertificateNumber);
             if (code.matches("")) {
                 codeCertificate.requestFocus();
+                msgCertificateNumber.setVisibility(View.VISIBLE);
+                msgCertificateNumber.setText("You did not enter a Certificate Number");
                 return;
+            } else {
+                msgCertificateNumber.setVisibility(View.GONE);
+                msgCertificateNumber.setText("");
             }
             EditText dateCertificate = (EditText) getActivity().findViewById(R.id.Date);
             String date = dateCertificate.getText().toString();
+            TextView msgDateExpired = (TextView) getActivity().findViewById(R.id.msgDateExpired);
             if (date.matches("")) {
                 dateCertificate.requestFocus();
+                msgDateExpired.setVisibility(View.VISIBLE);
+                msgDateExpired.setText("You did not enter a Expiry Date");
                 return;
+            } else {
+                msgDateExpired.setVisibility(View.GONE);
+                msgDateExpired.setText("");
             }
             Spinner mySpinner = (Spinner) getActivity().findViewById(R.id.spinner1);
             String selectedStatus = mySpinner.getSelectedItem().toString();
@@ -234,9 +246,15 @@ public class AddItemsCertificateFragment extends Fragment {
             Integer selectType = mapTypeCert.get(selectedType);
             EditText halalCertificate = (EditText) getActivity().findViewById(R.id.halal_org);
             String halal = halalCertificate.getText().toString();
+            TextView msgHalalOrganization = (TextView) getActivity().findViewById(R.id.msgHalalOrganization);
             if (halal.matches("")) {
                 halalCertificate.requestFocus();
+                msgHalalOrganization.setVisibility(View.VISIBLE);
+                msgHalalOrganization.setText("You did not enter a Halal Organization");
                 return;
+            } else {
+                msgHalalOrganization.setVisibility(View.GONE);
+                msgHalalOrganization.setText("");
             }
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             AddItemsFragment accountFragment = new AddItemsFragment();

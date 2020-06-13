@@ -108,7 +108,18 @@
                             android:layout_gravity="center"
                             android:id="@+id/name_edit_text"
                             />
-
+                        <TextView
+                            android:id="@+id/msgCertificateNumber"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="65dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Please Write Code"
+                            android:textColor="@color/red_500"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/tv_date"
@@ -139,7 +150,18 @@
                             android:layout_gravity="center"
                             android:id="@+id/Date"
                             />
-
+                        <TextView
+                            android:id="@+id/msgDateExpired"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="65dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Please Write Code"
+                            android:textColor="@color/red_500"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -168,9 +190,22 @@
                             android:layout_below="@id/status_choice"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
+                            android:paddingLeft="0dp"
                             style="@android:style/Widget.Material.Light.Spinner.Underlined"
                             android:spinnerMode="dropdown"
                             />
+                        <TextView
+                            android:id="@+id/msgCertificateStatus"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="65dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Please Write Code"
+                            android:textColor="@color/red_500"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -201,8 +236,21 @@
                             android:id="@+id/spinner_type"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
+                            android:paddingLeft="0dp"
                             style="@android:style/Widget.Material.Light.Spinner.Underlined"
                             android:spinnerMode="dropdown"/>
+                        <TextView
+                            android:id="@+id/msgCertificateType"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="65dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Please Write Code"
+                            android:textColor="@color/red_500"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
                     </RelativeLayout>
 
 
@@ -235,7 +283,18 @@
                             android:layout_gravity="center"
                             android:id="@+id/halal_org"
                             />
-
+                        <TextView
+                            android:id="@+id/msgHalalOrganization"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="65dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Please Write Code"
+                            android:textColor="@color/red_500"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
                     </RelativeLayout>
 
                 </RelativeLayout>
