@@ -6,61 +6,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".accountactivity">
-
-    <LinearLayout
+    >
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        >
+        <ImageView
+            android:id="@+id/logoImgHN"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/mas_logo" />
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
         android:layout_gravity="center"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Profile"
-            android:layout_gravity="left"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="25dp"
-            android:textStyle="bold"/>
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:text="Sign In"
+        android:stateListAnimator="@null"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:stateListAnimator="@null"
+        android:layout_gravity="center"
+        android:text="Sign Up"
+        style="@style/AppTheme.RoundedCornerOutlineMaterialButton"
+        android:textAllCaps="false"
+        android:textColor="@color/halal" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/field_profile_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your Name"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:id="@+id/LogOutbtn"
-            android:text="Sign Out"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:elevation="5dp"
-            android:background="@drawable/btn"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account? Create Account"
-            android:onClick="gotoForward"
-            />
-    </LinearLayout>
 </LinearLayout>
 

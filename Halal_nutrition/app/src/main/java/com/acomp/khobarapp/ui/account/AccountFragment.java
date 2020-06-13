@@ -104,13 +104,13 @@ public class AccountFragment extends Fragment {
 //                        fragmentTransaction.replace(R.id.fragment_content, accountFragment);
 //                        fragmentTransaction.commit();
                     } else {
-                        AccountFragment1 accountFragment1 = new AccountFragment1();
+                        HomeAccountFragment accountFragment1 = new HomeAccountFragment();
                         fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                         fragmentTransaction.commit();
                     }
                 } else {
 //                                        Log.d("TOKEN LOGIN NOT SUCCESS", token);
-                    AccountFragment1 accountFragment1 = new AccountFragment1();
+                    HomeAccountFragment accountFragment1 = new HomeAccountFragment();
                     fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                     fragmentTransaction.commit();
                 }
@@ -120,7 +120,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
                 Log.d("TOKEN LOGIN FAILURE", token);
-                AccountFragment1 accountFragment1 = new AccountFragment1();
+                HomeAccountFragment accountFragment1 = new HomeAccountFragment();
                 fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                 fragmentTransaction.commit();
                 progressDoalog.dismiss();

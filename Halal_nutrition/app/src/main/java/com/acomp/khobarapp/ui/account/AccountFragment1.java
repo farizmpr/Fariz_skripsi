@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,9 @@ public class AccountFragment1 extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_signin, container, false);
+        RelativeLayout btnBack = (RelativeLayout) rootView.findViewById(R.id.back);
+        btnBack.setOnClickListener(btnBackListener);
+
         Button b = (Button) rootView.findViewById(R.id.LoginbtnProses);
         b.setOnClickListener(mButtonClickListener);
 
@@ -55,7 +59,7 @@ public class AccountFragment1 extends Fragment {
         btnSignUp.setOnClickListener(mClickSignUp);
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.nav_account).setChecked(true);
-        bottomNavigationView.setVisibility(View.VISIBLE);
+        bottomNavigationView.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -63,6 +67,15 @@ public class AccountFragment1 extends Fragment {
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             AccountFragmentSignUp accountFragment = new AccountFragmentSignUp();
+            fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+            fragmentTransaction.commit();
+        }
+    };
+
+    private View.OnClickListener btnBackListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            HomeAccountFragment accountFragment = new HomeAccountFragment();
             fragmentTransaction.replace(R.id.fragment_content, accountFragment);
             fragmentTransaction.commit();
         }

@@ -203,6 +203,18 @@
                     android:inputType="text"
                     android:textSize="16sp" />
 
+                <TextView
+                    android:id="@+id/msgProductCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -305,6 +317,17 @@
                     app:chipTextSize="16dp"
                     app:chipSpacing="0dp"
                     app:chipVerticalSpacing="3dp" />
+                <TextView
+                    android:id="@+id/msgIngredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
 
             </RelativeLayout>
 
