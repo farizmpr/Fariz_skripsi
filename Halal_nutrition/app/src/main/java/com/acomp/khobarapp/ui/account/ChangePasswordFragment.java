@@ -82,16 +82,44 @@ public class ChangePasswordFragment extends Fragment {
         progressDoalog.setMessage("Loading....");
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         EditText oldpasswordText = (EditText) getActivity().findViewById(R.id.fieldOldPassword);
+        TextView msgCurrentPassword = (TextView) getActivity().findViewById(R.id.msgCurrentPassword);
         String oldpassword = oldpasswordText.getText().toString();
-        if (oldpassword.matches("")) {
-            Toast.makeText(getActivity(), "You did not enter a Old Password", Toast.LENGTH_SHORT).show();
+        if (oldpassword.length() >= 8) {
+
+        } else {
+            oldpasswordText.requestFocus();
+            msgCurrentPassword.setVisibility(View.VISIBLE);
+            msgCurrentPassword.setText("Current Password must be more than 8 characters");
             return;
         }
-        EditText newpasswordText = (EditText) getActivity().findViewById(R.id.fieldNewPassword);
-        String newpassword = newpasswordText.getText().toString();
-        if (newpassword.matches("")) {
-            Toast.makeText(getActivity(), "You did not enter a New Password", Toast.LENGTH_SHORT).show();
+        if (oldpassword.matches("")) {
+            oldpasswordText.requestFocus();
+            msgCurrentPassword.setVisibility(View.VISIBLE);
+            msgCurrentPassword.setText("Current Password is Required");
             return;
+        } else {
+            msgCurrentPassword.setVisibility(View.GONE);
+            msgCurrentPassword.setText("");
+        }
+        EditText newpasswordText = (EditText) getActivity().findViewById(R.id.fieldNewPassword);
+        TextView msgNewPassword = (TextView) getActivity().findViewById(R.id.msgNewPassword);
+        String newpassword = newpasswordText.getText().toString();
+        if (newpassword.length() >= 8) {
+
+        } else {
+            newpasswordText.requestFocus();
+            msgNewPassword.setVisibility(View.VISIBLE);
+            msgNewPassword.setText("New Password must be more than 8 characters");
+            return;
+        }
+        if (newpassword.matches("")) {
+            newpasswordText.requestFocus();
+            msgNewPassword.setVisibility(View.VISIBLE);
+            msgNewPassword.setText("New Password is Required");
+            return;
+        } else {
+            msgNewPassword.setVisibility(View.GONE);
+            msgNewPassword.setText("");
         }
         progressDoalog.show();
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);

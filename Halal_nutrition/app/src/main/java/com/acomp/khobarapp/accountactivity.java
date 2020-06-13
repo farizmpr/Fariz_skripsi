@@ -19,14 +19,14 @@ public class accountactivity extends AppCompatActivity {
 
         img = findViewById(R.id.GoBackIcon);
 
-        TextView textView = (TextView) findViewById(R.id.textView);
-
-        String text = "<font color=##C7C7C7>Don't have an account?</font><font color=#000000>Create Account</font>";
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            textView.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT));
-        }else{
-            textView.setText(Html.fromHtml(text));
-        }
+//        TextView textView = (TextView) findViewById(R.id.textView);
+//
+//        String text = "<font color=##C7C7C7>Don't have an account?</font><font color=#000000>Create Account</font>";
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+//            textView.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT));
+//        }else{
+//            textView.setText(Html.fromHtml(text));
+//        }
 
     }
     public void gotoNext(View view){

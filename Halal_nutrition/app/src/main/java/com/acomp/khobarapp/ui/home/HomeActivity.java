@@ -35,6 +35,7 @@ import com.acomp.khobarapp.model.BearerTokenModel;
 import com.acomp.khobarapp.model.UserModel;
 import com.acomp.khobarapp.ui.account.AccountFragment;
 import com.acomp.khobarapp.ui.account.AccountFragment1;
+import com.acomp.khobarapp.ui.account.HomeAccountFragment;
 import com.acomp.khobarapp.ui.adapter.HeadlineNewsAdapter;
 import com.acomp.khobarapp.ui.adapter.RegularNewsAdapter;
 import com.acomp.khobarapp.ui.news.NewsFragment;
@@ -102,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
                         String token = preferences.getString("token", "");
 //                        Log.d("TOKEN", token);
                         if (token == null) {
-                            AccountFragment1 accountFragment1 = new AccountFragment1();
+                            HomeAccountFragment accountFragment1 = new HomeAccountFragment();
                             fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                             fragmentTransaction.commit();
                         } else {
@@ -120,13 +121,13 @@ public class HomeActivity extends AppCompatActivity {
                                             fragmentTransaction.commit();
                                         } else {
 //                                            Log.d("TOKEN NULL", token);
-                                            AccountFragment1 accountFragment1 = new AccountFragment1();
+                                            HomeAccountFragment accountFragment1 = new HomeAccountFragment();
                                             fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                                             fragmentTransaction.commit();
                                         }
                                     } else {
 //                                        Log.d("TOKEN LOGIN NOT SUCCESS", token);
-                                        AccountFragment1 accountFragment1 = new AccountFragment1();
+                                        HomeAccountFragment accountFragment1 = new HomeAccountFragment();
                                         fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                                         fragmentTransaction.commit();
                                     }
@@ -136,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<UserModel> call, Throwable t) {
                                     Log.d("TOKEN LOGIN FAILURE", token);
-                                    AccountFragment1 accountFragment1 = new AccountFragment1();
+                                    HomeAccountFragment accountFragment1 = new HomeAccountFragment();
                                     fragmentTransaction.replace(R.id.fragment_content, accountFragment1);
                                     fragmentTransaction.commit();
                                     progressDoalog.dismiss();

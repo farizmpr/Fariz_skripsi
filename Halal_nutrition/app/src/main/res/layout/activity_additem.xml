@@ -205,6 +205,7 @@
 
                 <TextView
                     android:id="@+id/msgProductCode"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
@@ -247,7 +248,18 @@
                     android:hint="Enter Product's Name "
                     android:inputType="text"
                     android:textSize="16sp" />
-
+                <TextView
+                    android:id="@+id/msgProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -280,7 +292,18 @@
                     android:hint="Enter Product's Manufacture "
                     android:inputType="text"
                     android:textSize="16sp" />
-
+                <TextView
+                    android:id="@+id/msgProductManufacture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -318,7 +341,7 @@
                     app:chipSpacing="0dp"
                     app:chipVerticalSpacing="3dp" />
                 <TextView
-                    android:id="@+id/msgIngredient"
+                    android:id="@+id/msgProductIngredient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
@@ -327,6 +350,7 @@
                     android:text="Please Write Code"
                     android:textColor="@color/red_500"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     android:textStyle="normal" />
 
             </RelativeLayout>

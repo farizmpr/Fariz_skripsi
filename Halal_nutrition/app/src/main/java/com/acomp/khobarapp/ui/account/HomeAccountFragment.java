@@ -54,6 +54,7 @@ public class HomeAccountFragment extends Fragment {
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             AccountFragmentSignUp accountFragment = new AccountFragmentSignUp();
+            accountFragment.strFromFragmentCode = "homeLogin";
             fragmentTransaction.replace(R.id.fragment_content, accountFragment);
             fragmentTransaction.commit();
         }

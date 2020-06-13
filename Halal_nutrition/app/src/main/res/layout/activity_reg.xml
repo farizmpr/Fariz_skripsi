@@ -106,7 +106,18 @@
                     android:layout_gravity="center"
                     android:id="@+id/registerFieldFullname"
                     />
-
+                <TextView
+                    android:id="@+id/msgFullname"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/tv_date"
@@ -137,7 +148,18 @@
                     android:layout_marginTop="25dp"
                     android:layout_gravity="center"
                     />
-
+                <TextView
+                    android:id="@+id/msgEmail"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -169,7 +191,18 @@
                     android:layout_gravity="center"
                     android:id="@+id/registerFieldAddress"
                     />
-
+                <TextView
+                    android:id="@+id/msgAddress"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -201,7 +234,18 @@
                     android:layout_gravity="center"
                     android:id="@+id/registerFieldPassword"
                     />
-
+                <TextView
+                    android:id="@+id/msgPassword"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="65dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Please Write Code"
+                    android:textColor="@color/red_500"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
             </RelativeLayout>
 
         </RelativeLayout>

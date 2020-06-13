@@ -33,6 +33,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -92,16 +94,34 @@ public class AccountFragment1 extends Fragment {
         progressDoalog.setMessage("Loading....");
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         EditText usernameText = (EditText) getActivity().findViewById(R.id.username_login);
+        TextView msgEmailAddress = (TextView) getActivity().findViewById(R.id.msgEmailAddress);
         String username = usernameText.getText().toString();
-        if (username.matches("")) {
-            Toast.makeText(getActivity(), "You did not enter a email", Toast.LENGTH_SHORT).show();
+        if(!validateEmail(username)){
+            usernameText.requestFocus();
+            msgEmailAddress.setVisibility(View.VISIBLE);
+            msgEmailAddress.setText("Email is not valid");
             return;
+        }
+        if (username.matches("")) {
+            usernameText.requestFocus();
+            msgEmailAddress.setVisibility(View.VISIBLE);
+            msgEmailAddress.setText("You did not enter a Email");
+            return;
+        } else {
+            msgEmailAddress.setVisibility(View.GONE);
+            msgEmailAddress.setText("");
         }
         EditText passwordText = (EditText) getActivity().findViewById(R.id.password_login);
         String password = passwordText.getText().toString();
+        TextView msgPassword = (TextView) getActivity().findViewById(R.id.msgPassword);
         if (password.matches("")) {
-            Toast.makeText(getActivity(), "You did not enter a username", Toast.LENGTH_SHORT).show();
+            passwordText.requestFocus();
+            msgPassword.setVisibility(View.VISIBLE);
+            msgPassword.setText("You did not enter a Password");
             return;
+        } else {
+            msgPassword.setVisibility(View.GONE);
+            msgPassword.setText("");
         }
         progressDoalog.show();
         GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -155,5 +175,11 @@ public class AccountFragment1 extends Fragment {
         super.onResume();
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    public static boolean validateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
+    }
 }

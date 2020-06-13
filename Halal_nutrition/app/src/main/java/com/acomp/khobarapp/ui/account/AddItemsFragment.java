@@ -194,7 +194,7 @@ public class AddItemsFragment extends Fragment {
         itemsModel.setManufacture(foodManufacture);
         itemsModel.setIngredient(ingredientTxt);
         ListView lv1 = (ListView) rootView.findViewById(R.id.listItemCertificate);
-        lv1.setAdapter(new MyCustomBaseAdapter(getActivity(), listCertificateRowModel, getActivity(),itemsModel));
+        lv1.setAdapter(new MyCustomBaseAdapter(getActivity(), listCertificateRowModel, getActivity(), itemsModel));
         return rootView;
     }
 
@@ -207,48 +207,93 @@ public class AddItemsFragment extends Fragment {
 
     private View.OnClickListener sendItemsListener = new View.OnClickListener() {
         public void onClick(View v) {
-            EditText foodCodeText = (EditText) getActivity().findViewById(R.id.foodCodeText);
-            String foodCode = foodCodeText.getText().toString();
-            if (foodCode.matches("")) {
-                foodCodeText.requestFocus();
-                return;
+            if(formValidationAddItems()){
+                DialogForm(foodCode, foodName, foodManufacture, foodIngredient);
             }
-            EditText foodNameText = (EditText) getActivity().findViewById(R.id.foodNameText);
-            String foodName = foodNameText.getText().toString();
-            if (foodName.matches("")) {
-                foodNameText.requestFocus();
-                return;
-            }
-            EditText foodManufactureText = (EditText) getActivity().findViewById(R.id.foodManufactureText);
-            String foodManufacture = foodManufactureText.getText().toString();
-            if (foodManufacture.matches("")) {
-                foodManufactureText.requestFocus();
-                return;
-            }
-//            NachoTextView foodIngredientText = (NachoTextView) getActivity().findViewById(R.id.foodIngredientText);
-//            String foodIngredient = foodIngredientText.getText().toString();
-//            if (foodIngredient.matches("")) {
-//                foodIngredientText.requestFocus();
-//                return;
-//            }
-            String ingredientTxt = "";
-            for (Chip chip : mChipsView.getAllChips()) {
-                CharSequence text = chip.getText();
-                ingredientTxt += text.toString() + ";";
-                Object data = chip.getData();
-            }
-            if (ingredientTxt == "") {
-                mChipsView.requestFocus();
-                return;
-            }
-            foodIngredient = method(ingredientTxt);
-            if (listCertificateRowModel.size() == 0) {
-                Toast.makeText(getActivity(), "Please Add Certificate", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            DialogForm(foodCode, foodName, foodManufacture, foodIngredient);
         }
     };
+
+    public Boolean formValidationAddItems() {
+        EditText foodCodeText = (EditText) getActivity().findViewById(R.id.foodCodeText);
+        TextView msgProductCode = (TextView) getActivity().findViewById(R.id.msgProductCode);
+        String foodCode = foodCodeText.getText().toString();
+        if (foodCode.length() >= 8 && foodCode.length() <= 13) {
+
+        } else {
+            foodCodeText.requestFocus();
+            msgProductCode.setVisibility(View.VISIBLE);
+            msgProductCode.setText("Product Code must be more than 8 characters and less than 13 characters");
+            return false;
+        }
+        if (foodCode.matches("")) {
+            foodCodeText.requestFocus();
+            msgProductCode.setVisibility(View.VISIBLE);
+            msgProductCode.setText("Product Code is Required");
+            return false;
+        } else {
+            msgProductCode.setVisibility(View.GONE);
+            msgProductCode.setText("");
+        }
+
+        EditText foodNameText = (EditText) getActivity().findViewById(R.id.foodNameText);
+        TextView msgProductName = (TextView) getActivity().findViewById(R.id.msgProductName);
+        String foodName = foodNameText.getText().toString();
+        if (foodName.matches("")) {
+            foodNameText.requestFocus();
+            msgProductName.setVisibility(View.VISIBLE);
+            msgProductName.setText("Product Name is Required");
+            return false;
+        } else {
+            msgProductName.setVisibility(View.GONE);
+            msgProductName.setText("");
+        }
+        EditText foodManufactureText = (EditText) getActivity().findViewById(R.id.foodManufactureText);
+        TextView msgProductManufacture = (TextView) getActivity().findViewById(R.id.msgProductManufacture);
+        String foodManufacture = foodManufactureText.getText().toString();
+        if (foodManufacture.matches("")) {
+            foodManufactureText.requestFocus();
+            msgProductManufacture.setVisibility(View.VISIBLE);
+            msgProductManufacture.setText("Product Manufacture is Required");
+            return false;
+        } else {
+            msgProductManufacture.setVisibility(View.GONE);
+            msgProductManufacture.setText("");
+        }
+        TextView msgProductIngredient = (TextView) getActivity().findViewById(R.id.msgProductIngredient);
+        String ingredientTxt = "";
+        Integer totalProductIngredient = 0;
+        for (Chip chip : mChipsView.getAllChips()) {
+            totalProductIngredient += 1;
+            CharSequence text = chip.getText();
+            ingredientTxt += text.toString() + ";";
+            Object data = chip.getData();
+        }
+//        Enter At Least Two Ingredients
+        if (totalProductIngredient >= 2) {
+            msgProductIngredient.setVisibility(View.GONE);
+            msgProductIngredient.setText("");
+        } else {
+            mChipsView.requestFocus();
+            msgProductIngredient.setVisibility(View.VISIBLE);
+            msgProductIngredient.setText("Please Enter At Least Two Ingredients");
+            return false;
+        }
+        if (ingredientTxt == "") {
+            mChipsView.requestFocus();
+            msgProductIngredient.setVisibility(View.VISIBLE);
+            msgProductIngredient.setText("Product Ingredient is Required");
+            return false;
+        } else {
+            msgProductIngredient.setVisibility(View.GONE);
+            msgProductIngredient.setText("");
+        }
+        foodIngredient = method(ingredientTxt);
+        if (listCertificateRowModel.size() == 0) {
+            Toast.makeText(getActivity(), "Please Add Certificate", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 
     private Integer sendInsertItems(String foodCode, String foodName, String foodManufacture, String foodIngredient) {
         progressDoalog = new ProgressDialog(getActivity());
@@ -393,7 +438,7 @@ public class AddItemsFragment extends Fragment {
         Button btnAddPhoto = (Button) dialogView.findViewById(R.id.btnAddPhoto);
         btnAddPhoto.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (getActivity().checkSelfPermission(listPermission[0]) != PackageManager.PERMISSION_DENIED ) {
+                if (getActivity().checkSelfPermission(listPermission[0]) != PackageManager.PERMISSION_DENIED) {
                     verifyStoragePermissions(getActivity());
                     Log.d("CHOOSE CAMERA", "OK");
                     Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
