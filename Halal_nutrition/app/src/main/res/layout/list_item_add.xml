@@ -42,7 +42,6 @@
                 android:textSize="20sp"
                 android:text="Add Items"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"/>
 

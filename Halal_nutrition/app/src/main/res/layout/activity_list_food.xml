@@ -30,8 +30,8 @@
                 android:layout_weight="2">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
                     android:tint="@color/white" />
@@ -42,11 +42,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
                 android:layout_marginRight="25dp"
                 android:layout_weight="6"
-                android:fontFamily="@font/fontsfreenetproximanovabold"
-                android:gravity="center"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Halal Items"
                 android:textColor="@color/white"
                 android:textSize="20sp" />

@@ -15,9 +15,9 @@
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:id="@+id/txtTakeaPhoto"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/roboto_mmedium"
         android:textColor="#000"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textStyle="bold"/>
     <TextView
         android:layout_width="wrap_content"
@@ -26,17 +26,20 @@
         android:layout_gravity="center"
         android:id="@+id/txtTakeaPhotoDesc"
         android:layout_below="@id/txtTakeaPhoto"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/roboto_regular"
         android:textColor="#999"
-        android:textSize="15dp"/>
+        android:textSize="16dp"/>
     <Button
         android:id="@+id/btnAddPhoto"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="55dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="16sp"
         android:layout_gravity="center"
-        android:text="Add Photos"
+        android:text="Add a Photo"
         android:textAllCaps="false"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_below="@id/txtTakeaPhotoDesc"
         android:background="@drawable/btn"
         android:textColor="@color/white"
@@ -44,13 +47,16 @@
     <Button
         android:id="@+id/btnWithoutPhoto"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
-        android:text="Save Without Photo"
+        android:stateListAnimator="@null"
+        android:text="Add Without Photo"
         android:textAllCaps="false"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="16sp"
         android:layout_below="@id/btnAddPhoto"
         android:background="@drawable/round_outline"
-        android:textColor="@color/white"
+        style="@style/AppTheme.RoundedCornerOutlineMaterialButton"
+        android:textColor="@color/halal"
         />
 </RelativeLayout>

@@ -11,7 +11,7 @@
         <LinearLayout
             android:id="@+id/toolbar_items"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/halal"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,12 +26,12 @@
                 android:layout_weight="2">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/GoBackIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
                     android:tint="@color/white" />
-
             </RelativeLayout>
 
             <LinearLayout
@@ -49,6 +49,7 @@
                     android:backgroundTint="@color/halal"
                     app:strokeColor="@color/white"
                     android:textColor="@color/white"
+                    android:layout_gravity="center"
                     app:cardElevation="2dp"
                     app:shapeAppearance="@style/allLeftRadiusBtn"
                     android:text="Barcode" />
@@ -61,6 +62,7 @@
                     android:backgroundTint="@color/white"
                     android:textColor="@color/halal"
                     app:strokeColor="@color/halal"
+                    android:layout_gravity="center"
                     app:shapeAppearance="@style/allRightRadiusBtn"
                     android:text="Product" />
             </LinearLayout>
@@ -75,18 +77,19 @@
 
 
 
-                    <ImageView
-                        android:id="@+id/btnFlashCamera"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/white"
-                        android:background="@drawable/ic_flash_off_black_24dp" />
-                    <!--                            <ImageView-->
-                    <!--                                android:layout_width="20dp"-->
-                    <!--                                android:layout_height="20dp"-->
-                    <!--                                android:layout_centerInParent="true"-->
-                    <!--                                android:src="@drawable/ic_search_black_24dp"-->
-                    <!--                                android:tint="@color/white" />-->
+                <ImageView
+                    android:id="@+id/btnFlashCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/white"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ic_flash_off_black_24dp" />
+                <!--                            <ImageView-->
+                <!--                                android:layout_width="20dp"-->
+                <!--                                android:layout_height="20dp"-->
+                <!--                                android:layout_centerInParent="true"-->
+                <!--                                android:src="@drawable/ic_search_black_24dp"-->
+                <!--                                android:tint="@color/white" />-->
 
 
 

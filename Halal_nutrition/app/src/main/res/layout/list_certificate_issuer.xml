@@ -4,7 +4,7 @@
     android:id="@+id/layCertificateIssuer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="25dp"
+    android:layout_marginLeft="15dp"
     android:layout_marginTop="10dp">
 
     <RelativeLayout
@@ -14,10 +14,16 @@
 
         <ImageView
             android:id="@+id/mtrl_list_item_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_certif" />
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/ic_certif"
+            android:layout_centerVertical="true"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/mtrl_list_item_icon">
         <TextView
             android:id="@+id/certificateIssuerName"
             android:layout_width="match_parent"
@@ -26,9 +32,9 @@
             android:layout_toEndOf="@id/mtrl_list_item_icon"
             android:fontFamily="@font/roboto_regular"
             android:maxLines="1"
-            android:paddingStart="10dp"
+            android:paddingStart="8dp"
             android:text="Halal Food Authority"
-            android:textColor="@color/name_transprant"
+            android:textColor="@color/black"
             android:textSize="16dp" />
 
         <TextView
@@ -41,9 +47,10 @@
             android:layout_toEndOf="@id/mtrl_list_item_icon"
             android:fontFamily="@font/roboto_regular"
             android:maxLines="2"
-            android:paddingStart="10dp"
+            android:paddingStart="8dp"
             android:text="Due Sep 10, 2022"
             android:textColor="@color/name_transprant"
             android:textSize="12dp" />
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

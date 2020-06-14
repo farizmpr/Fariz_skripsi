@@ -14,9 +14,13 @@
         <LinearLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/halal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_items">
 
             <RelativeLayout
                 android:id="@+id/back"
@@ -31,7 +35,6 @@
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
                     android:tint="@color/white" />
-
             </RelativeLayout>
 
             <TextView
@@ -39,27 +42,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="8"
+                android:layout_marginRight="25dp"
+                android:layout_weight="10"
                 android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
                 android:text="Cheeseburger"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
-            <RelativeLayout
-                android:id="@+id/lnl_share"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2">
 
-                <ImageView
-                    android:id="@+id/ic_favorite"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_centerInParent="true"
-                    android:tint="@color/white" />
 
-            </RelativeLayout>
 
         </LinearLayout>
 
@@ -112,9 +103,9 @@
                             android:id="@+id/item_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginLeft="20dp"
                             android:layout_marginTop="20dp"
-                            android:layout_marginRight="25dp"
+                            android:layout_marginRight="20dp"
                             android:fontFamily="@font/roboto_bold"
                             android:text="Cheeseburger"
                             android:textColor="@color/black"
@@ -125,14 +116,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/item_name"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"
                                 android:fontFamily="@font/roboto_regular"
                                 android:text="Certificate Issuer"
                                 android:textColor="@color/black"
@@ -140,7 +132,7 @@
 
                             <View
                                 android:id="@+id/view_sertif"
-                                android:layout_width="332dp"
+                                android:layout_width="320dp"
                                 android:layout_height="1dp"
                                 android:layout_alignStart="@+id/item_name"
                                 android:layout_alignLeft="@+id/item_name"
@@ -168,7 +160,7 @@
 
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/roboto_regular"
                                 android:text="Manufacture"
@@ -177,7 +169,7 @@
 
                             <View
                                 android:id="@+id/view_mmanufacture"
-                                android:layout_width="324dp"
+                                android:layout_width="320dp"
                                 android:layout_height="1dp"
                                 android:layout_alignStart="@+id/item_name"
                                 android:layout_alignLeft="@+id/item_name"
@@ -188,12 +180,12 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="10dp">
 
                                 <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
                                     android:src="@drawable/ic_manufacture" />
 
                                 <TextView
@@ -204,9 +196,9 @@
                                     android:layout_marginEnd="20dp"
                                     android:fontFamily="@font/roboto_regular"
                                     android:maxLines="1"
-                                    android:paddingStart="10dp"
+                                    android:paddingStart="8dp"
                                     android:text="Esteria Cosmetik, CV"
-                                    android:textColor="@color/name_transprant"
+                                    android:textColor="@color/black"
                                     android:textSize="16dp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -223,7 +215,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/roboto_regular"
                                 android:text="Ingredients"
@@ -243,7 +235,7 @@
 
                             <View
                                 android:id="@+id/view_ingredient"
-                                android:layout_width="324dp"
+                                android:layout_width="320dp"
                                 android:layout_height="1dp"
                                 android:layout_alignStart="@+id/item_name"
                                 android:layout_alignLeft="@+id/item_name"
@@ -262,7 +254,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="10dp">
 
                                 <TextView
@@ -304,7 +296,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/fontsfreenetproximanovaregwebfont"
                                 android:text="Nutrition Facts"
@@ -313,7 +305,7 @@
 
                             <View
                                 android:id="@+id/view_nutrition"
-                                android:layout_width="324dp"
+                                android:layout_width="320dp"
                                 android:layout_height="1dp"
                                 android:layout_alignStart="@+id/item_name"
                                 android:layout_alignLeft="@+id/item_name"
@@ -324,7 +316,6 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
                                 android:layout_marginTop="10dp"
                                 android:orientation="horizontal">
 

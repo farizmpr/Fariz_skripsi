@@ -9,9 +9,13 @@
     <LinearLayout
         android:id="@+id/cover"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/halal"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_items">
 
         <RelativeLayout
             android:id="@+id/back"
@@ -21,26 +25,25 @@
 
             <ImageView
                 android:id="@+id/GoBackIcon"
-                android:layout_width="20dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_back_white"
                 android:tint="@color/white" />
-
         </RelativeLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="2dp"
             android:layout_marginRight="25dp"
-            android:layout_weight="8"
-            android:fontFamily="@font/fontsfreenetproximanovabold"
-            android:gravity="left"
+            android:layout_weight="10"
+            android:fontFamily="@font/roboto_bold"
             android:text="News"
             android:textColor="@color/white"
             android:textSize="20sp" />
+
+
 
 
     </LinearLayout>
@@ -61,7 +64,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_bold"
                 android:padding="12dp"
+                android:paddingStart="20dp"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -74,16 +79,19 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="9"
-                android:paddingStart="12dp"
+                android:paddingStart="20dp"
+                android:fontFamily="@font/roboto_regular"
                 android:paddingEnd="12dp"
                 android:textColor="#707070"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:text="12/10/10"
                 />
             <androidx.cardview.widget.CardView
                 android:layout_margin="18dp"
-                android:layout_width="283dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="188dp"
                 android:scaleType="fitXY"
                 android:layout_gravity="center"
