@@ -64,6 +64,7 @@
                         <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/profile_image"
                             android:layout_width="80dp"
+                            android:layout_centerVertical="true"
                             android:layout_height="80dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="26dp"
@@ -77,11 +78,11 @@
                         <RelativeLayout
                             android:id="@+id/halal_quest"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginTop="10dp"
                             android:layout_toRightOf="@+id/profile_image"
-                            android:gravity="center">
+                            android:layout_centerVertical="true">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -366,7 +367,7 @@
                 <Button
                     android:id="@+id/logoutBtnLinear"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="55dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"

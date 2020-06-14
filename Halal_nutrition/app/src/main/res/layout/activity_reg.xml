@@ -81,9 +81,7 @@
             <RelativeLayout
                 android:id="@+id/name_text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -123,9 +121,7 @@
                 android:id="@+id/tv_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@+id/name_text_input"
-                android:layout_marginRight="10dp">
+                android:layout_below="@+id/name_text_input">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -166,9 +162,7 @@
                 android:id="@+id/addres_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@+id/tv_date"
-                android:layout_marginRight="10dp">
+                android:layout_below="@+id/tv_date">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -209,9 +203,7 @@
                 android:id="@+id/layout_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@+id/addres_edit"
-                android:layout_marginRight="10dp">
+                android:layout_below="@+id/addres_edit">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -258,11 +250,11 @@
         <Button
             android:id="@+id/btnSaveSignUp"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:text="Sign Up"
             style="@style/AppTheme.RoundedCornerMaterialButton"
 

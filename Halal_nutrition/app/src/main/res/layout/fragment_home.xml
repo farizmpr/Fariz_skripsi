@@ -222,6 +222,15 @@
             <!--        </FrameLayout>-->
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="News"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="15dp"
+                />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_rv_regular"
                 android:layout_width="match_parent"

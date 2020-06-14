@@ -75,6 +75,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
                     android:layout_marginTop="26dp"
                     android:src="@drawable/sample_avatar"
                     app:civ_border_color="@color/halal"
@@ -85,11 +86,11 @@
                 <RelativeLayout
                     android:id="@+id/layUpdatePhotoProfile"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@+id/profile_image"
-                    android:layout_marginLeft="30dp"
-                    android:gravity="center">
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -104,7 +105,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
 
             <RelativeLayout
                 android:id="@+id/name_text_input"
@@ -218,7 +219,7 @@
                 android:layout_marginLeft="20dp"
                 android:id="@+id/btnUpdateProfile"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:text="Save"
                 style="@style/AppTheme.RoundedCornerMaterialButton"
