@@ -96,6 +96,7 @@
                         android:layout_height="wrap_content"
                         android:text="Perbarui Foto Profil"
                         android:textStyle="bold"
+                        android:fontFamily="@font/roboto_bold"
                         android:textSize="16dp"
                         android:textColor="@color/halal"/>
                 </RelativeLayout>

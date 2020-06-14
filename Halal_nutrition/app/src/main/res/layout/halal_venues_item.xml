@@ -10,6 +10,7 @@
     app:cardCornerRadius="10dp">
 
     <androidx.cardview.widget.CardView
+        android:layout_marginLeft="10dp"
         android:id="@+id/cardImagePoster"
         android:layout_width="120dp"
         android:layout_height="100dp"
@@ -41,7 +42,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
-        android:fontFamily="@font/roboto_medium"
+        android:fontFamily="@font/roboto_bold"
         android:maxLines="3"
         android:textColor="@android:color/black"
         android:textSize="16sp"

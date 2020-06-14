@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/toolbar_items"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:fadeScrollbars="false"
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintEnd_toEndOf="@id/toolbar_items"
