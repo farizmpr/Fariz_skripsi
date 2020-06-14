@@ -132,7 +132,7 @@
         <item name="colorPrimary">@color/halal</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">36dp</item>
-        <item name="textAllCaps">true</item>
+        
         <item name="fontFamily">@font/roboto_bold</item>
         <item name="backgroundTint">@color/halal</item>
         <item name="android:textColor">@color/white</item>
@@ -143,7 +143,7 @@
         <item name="cornerRadius">36dp</item>
         <item name="strokeColor">@color/halal</item>
         <item name="strokeWidth">2dp</item>
-        <item name="textAllCaps">true</item>
+        
         <item name="fontFamily">@font/roboto_bold</item>
         <item name="backgroundTint">@color/transparent</item>
         <item name="android:textColor">@color/white</item>
