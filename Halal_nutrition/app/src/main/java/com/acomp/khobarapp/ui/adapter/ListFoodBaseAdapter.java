@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.model.AttachmentModel;
+import com.acomp.khobarapp.model.CertificateRowModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.ui.items.HalalItemsDetailFragment;
@@ -64,11 +65,18 @@ public class ListFoodBaseAdapter extends RecyclerView.Adapter<ListFoodBaseAdapte
 
         // My example assumes CustomClass objects have getFirstText() and getSecondText() methods
         String firstText = object.getName();
-        String ingredientText = object.getIngredient();
+//        String ingredientText = object.getIngredient();
+//        ArrayList<CertificateRowModel> certificateRowModel = object.getCertificateRowModels();
+        String certificateType = "";
+        for (CertificateRowModel certificateRowModel: object.getCertificateRowModels()) {
+            certificateType += certificateRowModel+",";
+        }
+//        String str = "kushalhs, mayurvm, narendrabz, ";
+        certificateType = certificateType.replaceAll(",$", "");
         String statusHalalText = "Halal";
         FragmentTransaction fragmentTransaction = context.getSupportFragmentManager().beginTransaction();
         holder.txtTitleRow.setText(firstText);
-        holder.txtIngredient.setText("Tipe : " + ingredientText);
+        holder.txtIngredient.setText("Tipe : " + certificateType);
         holder.txtStatusHalal.setText("Status : " + statusHalalText);
 
 //        ArrayList<AttachmentModel> attachmentModels = object.getAttachmentModels();

@@ -87,7 +87,7 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
         MaterialButton tabsOCRBtn = (MaterialButton) rootView.findViewById(R.id.tabsOCR);
         tabsOCRBtn.setOnClickListener(tabsOCRBtnListener);
 //        mScannerView.startCamera();
-        RelativeLayout layFlashCamera = (RelativeLayout) rootView.findViewById(R.id.layFlashCamera);
+        ImageView layFlashCamera = (ImageView) rootView.findViewById(R.id.btnFlashCamera);
         layFlashCamera.setOnClickListener(layFlashCameraListener);
 
         layScanNotFound  = (RelativeLayout) rootView.findViewById(R.id.layScanNotFound);
@@ -200,10 +200,12 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
 
             if (mScannerView.getFlash() == true) {
                 mScannerView.setFlash(false);
-                btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_off_black_24dp));
+                btnFlashCamera.setImageResource(R.drawable.ic_flash_off_black_24dp);
+//                btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_off_black_24dp));
             } else {
                 mScannerView.setFlash(true);
-                btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_on_black_24dp));
+                btnFlashCamera.setImageResource(R.drawable.ic_flash_on_black_24dp);
+//                btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_on_black_24dp));
             }
 
         }

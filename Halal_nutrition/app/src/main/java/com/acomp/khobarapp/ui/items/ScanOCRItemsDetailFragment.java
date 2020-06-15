@@ -100,7 +100,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
         tabsBarcodeBtn.setOnClickListener(tabsBarcodeBtnListener);
 //        mScannerView.startCamera();
         startCameraSource();
-        RelativeLayout layFlashCamera = (RelativeLayout) rootView.findViewById(R.id.layFlashCamera);
+        ImageView layFlashCamera = (ImageView) rootView.findViewById(R.id.btnFlashCamera);
         layFlashCamera.setOnClickListener(layFlashCameraListener);
         BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
         navBar.setVisibility(View.GONE);
@@ -292,12 +292,13 @@ public class ScanOCRItemsDetailFragment extends Fragment {
                     flashmode = !flashmode;
                     if(flashmode){
 //                        showToast("Flash Switched ON");
-                        btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_on_black_24dp));
+//                        btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_on_black_24dp));
+                        btnFlashCamera.setImageResource(R.drawable.ic_flash_on_black_24dp);
                     }
                     else {
 //                        showToast("Flash Switched Off");
-                        btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_off_black_24dp));
-
+//                        btnFlashCamera.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ic_flash_off_black_24dp));
+                        btnFlashCamera.setImageResource(R.drawable.ic_flash_off_black_24dp);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

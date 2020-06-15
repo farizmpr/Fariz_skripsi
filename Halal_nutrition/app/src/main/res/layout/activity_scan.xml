@@ -6,16 +6,17 @@
     android:layout_height="match_parent">
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_toStartOf="@+id/right"
-            android:layout_toLeftOf="@id/right"
-            android:layout_toEndOf="@+id/left"
-            android:layout_toRightOf="@id/left"
-            android:background="@drawable/ic_viewfinder"
-            android:orientation="horizontal">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_toStartOf="@+id/right"
+        android:layout_toLeftOf="@id/right"
+        android:layout_toEndOf="@+id/left"
+        android:layout_toRightOf="@id/left"
+        android:background="@drawable/ic_viewfinder"
+        android:orientation="horizontal">
+
         <RelativeLayout
             android:id="@+id/scannerLayout"
             android:layout_width="match_parent"
@@ -25,108 +26,87 @@
             android:orientation="horizontal">
 
         </RelativeLayout>
-            <include
-                layout="@layout/layout_bottom_sheet_scan"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteY="8dp"
-                tools:layout_editor_absoluteX="8dp" />
 
-            <!--            <View-->
-            <!--                android:id="@+id/scannerBar"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="50dp"-->
-            <!--                android:background="@drawable/scannbar"/>-->
-
-
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/toolbar_items"
+        <include
+            layout="@layout/layout_bottom_sheet_scan"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#00ffffff"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_items">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp" />
 
-            <ImageView
-                android:id="@+id/GoBackIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/rounded_black_transparent"
-                android:padding="7dp"
-                android:src="@drawable/ic_back_white"
-                android:tint="@color/white" />
+        <!--            <View-->
+        <!--                android:id="@+id/scannerBar"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="50dp"-->
+        <!--                android:background="@drawable/scannbar"/>-->
 
-            <LinearLayout
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/toolbar_items"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#00ffffff"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_items">
+
+        <ImageView
+            android:id="@+id/GoBackIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_black_transparent"
+            android:padding="7dp"
+            android:src="@drawable/ic_back_white"
+            android:tint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="6"
+            android:gravity="center_horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tabsBarcode"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                >
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/white"
+                android:text="Barcode"
+                android:textColor="@color/halal"
+                app:cardElevation="2dp"
+                app:shapeAppearance="@style/allLeftRadiusBtn"
+                app:strokeColor="@color/halal" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/tabsBarcode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    app:strokeColor="@color/halal"
-                    android:layout_gravity="center"
-                    android:textColor="@color/halal"
-                    app:cardElevation="2dp"
-                    app:shapeAppearance="@style/allLeftRadiusBtn"
-                    android:text="Barcode" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/tabsOCR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg_stroke"
-                    android:backgroundTint="@color/halal"
-                    app:strokeColor="@color/white"
-                    android:layout_gravity="center"
-                    app:shapeAppearance="@style/allRightRadiusBtn"
-                    android:text="Product" />
-            </LinearLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/layFlashCamera"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center_vertical|center">
-
-
-
-                <ImageView
-                    android:id="@+id/btnFlashCamera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/white"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/ic_flash_off_black_24dp" />
-                <!--                            <ImageView-->
-                <!--                                android:layout_width="20dp"-->
-                <!--                                android:layout_height="20dp"-->
-                <!--                                android:layout_centerInParent="true"-->
-                <!--                                android:src="@drawable/ic_search_black_24dp"-->
-                <!--                                android:tint="@color/white" />-->
-
-
-
-            </RelativeLayout>
-
-
-
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tabsOCR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bg_stroke"
+                android:backgroundTint="@color/halal"
+                android:text="Product"
+                app:shapeAppearance="@style/allRightRadiusBtn"
+                app:strokeColor="@color/white" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/btnFlashCamera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_black_transparent"
+            android:padding="7dp"
+            android:src="@drawable/ic_flash_off_black_24dp"
+            android:tint="@color/white" />
+    </LinearLayout>
 
 
 </FrameLayout>
