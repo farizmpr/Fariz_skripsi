@@ -69,7 +69,7 @@ public class ListFoodBaseAdapter extends RecyclerView.Adapter<ListFoodBaseAdapte
 //        ArrayList<CertificateRowModel> certificateRowModel = object.getCertificateRowModels();
         String certificateType = "";
         for (CertificateRowModel certificateRowModel: object.getCertificateRowModels()) {
-            certificateType += certificateRowModel+",";
+            certificateType += certificateRowModel.getType()+",";
         }
 //        String str = "kushalhs, mayurvm, narendrabz, ";
         certificateType = certificateType.replaceAll(",$", "");
