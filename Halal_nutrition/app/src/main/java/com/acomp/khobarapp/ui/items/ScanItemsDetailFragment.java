@@ -75,7 +75,7 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_scan, container, false);
-        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
+        ImageView closeBtn = (ImageView) rootView.findViewById(R.id.GoBackIcon);
         closeBtn.setOnClickListener(goBackListener);
         if (!checkPermission()) {
             requestPermission();

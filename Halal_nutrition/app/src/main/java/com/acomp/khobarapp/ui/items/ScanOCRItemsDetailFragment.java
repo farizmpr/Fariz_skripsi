@@ -85,7 +85,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_scan_ocr, container, false);
-        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
+        ImageView closeBtn = (ImageView) rootView.findViewById(R.id.GoBackIcon);
         closeBtn.setOnClickListener(goBackListener);
         if (!checkPermission()) {
             requestPermission();

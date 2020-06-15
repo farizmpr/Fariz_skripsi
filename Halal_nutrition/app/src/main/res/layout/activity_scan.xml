@@ -4,23 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--    <me.dm7.barcodescanner.zxing.ZXingScannerView-->
-    <!--        android:id="@+id/cameraView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        />-->
-    <!--    <SurfaceView-->
-    <!--        android:id="@+id/cameraView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent" >-->
 
-    <!--    </SurfaceView>-->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/right"
+            android:layout_toLeftOf="@id/right"
+            android:layout_toEndOf="@+id/left"
+            android:layout_toRightOf="@id/left"
+            android:background="@drawable/ic_viewfinder"
+            android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/scannerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_viewfinder"
+            android:orientation="horizontal">
 
+        </RelativeLayout>
+            <include
+                layout="@layout/layout_bottom_sheet_scan"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="8dp"
+                tools:layout_editor_absoluteX="8dp" />
+
+            <!--            <View-->
+            <!--                android:id="@+id/scannerBar"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="50dp"-->
+            <!--                android:background="@drawable/scannbar"/>-->
+
+
+        </RelativeLayout>
         <LinearLayout
             android:id="@+id/toolbar_items"
             android:layout_width="match_parent"
@@ -32,21 +52,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_items">
 
-            <RelativeLayout
-                android:id="@+id/back"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4">
-
-                <ImageView
-                    android:id="@+id/GoBackIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_back_white"
-                    android:background="@drawable/circle"
-                    android:tint="@color/white" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/GoBackIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/rounded_black_transparent"
+                android:padding="7dp"
+                android:src="@drawable/ic_back_white"
+                android:tint="@color/white" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -113,44 +127,6 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_toStartOf="@+id/right"
-            android:layout_toLeftOf="@id/right"
-            android:layout_toEndOf="@+id/left"
-            android:layout_toRightOf="@id/left"
-            android:background="@drawable/ic_viewfinder"
-            android:orientation="horizontal">
-        <RelativeLayout
-            android:id="@+id/scannerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="@drawable/ic_viewfinder"
-            android:orientation="horizontal">
-
-        </RelativeLayout>
-            <include
-                layout="@layout/layout_bottom_sheet_scan"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteY="8dp"
-                tools:layout_editor_absoluteX="8dp" />
-
-            <!--            <View-->
-            <!--                android:id="@+id/scannerBar"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="50dp"-->
-            <!--                android:background="@drawable/scannbar"/>-->
-
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
 
 
 </FrameLayout>
