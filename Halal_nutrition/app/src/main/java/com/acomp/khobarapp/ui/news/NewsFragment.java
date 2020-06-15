@@ -160,14 +160,14 @@ public class NewsFragment extends Fragment {
             }
         });
 
-        pullToRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.pullToRefresh);
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//        pullToRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.pullToRefresh);
+//        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             //            int Refreshcounter = 1; //Counting how many times user have refreshed the layout
-            @Override
-            public void onRefresh() {
-                pullToRefresh.setRefreshing(false);
-            }
-        });
+//            @Override
+//            public void onRefresh() {
+//                pullToRefresh.setRefreshing(false);
+//            }
+//        });
         getNestedScroll(rootView);
         if (type == 0) {
             bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);

@@ -62,14 +62,14 @@ public class HalalItemsDetailFragment extends Fragment {
         ImageView closeBtn = (ImageView) rootView.findViewById(R.id.GoBackIcon);
         closeBtn.setOnClickListener(goBackListener);
 
-        TextView tvTitle = (TextView) rootView.findViewById(R.id.tv_title);
-        tvTitle.setText(itemsModel.getName());
+//        TextView tvTitle = (TextView) rootView.findViewById(R.id.tv_title);
+//        tvTitle.setText(itemsModel.getName());
 
         TextView txtItemName = (TextView) rootView.findViewById(R.id.item_name);
         txtItemName.setText(itemsModel.getName());
 
         TextView tvManufacture = (TextView) rootView.findViewById(R.id.manufacture);
-        tvManufacture.setText("\u25CF " + itemsModel.getManufacture());
+        tvManufacture.setText(itemsModel.getManufacture());
 //        TextView tvIngredient = (TextView) rootView.findViewById(R.id.ingredient_list);
 //        String ingredient = itemsModel.getIngredient();
 //        ingredient = ingredient.replace("\\\n", System.getProperty("line.separator"));
@@ -150,7 +150,8 @@ public class HalalItemsDetailFragment extends Fragment {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
 //            imageView.setImageResource(sampleImages[position]);
-            Picasso.get().load(mImages.get(position)).into(imageView);
+//            Picasso.get().load(mImages.get(position)).into(imageView);
+            Picasso.get().load(mImages.get(position)).fit().centerCrop().into(imageView);
         }
     };
 

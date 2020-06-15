@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.LocationManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,7 +77,7 @@ public class HalalVenuesDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_detil_venue, container, false);
-        RelativeLayout closeBtn = (RelativeLayout) rootView.findViewById(R.id.back);
+        ImageView closeBtn = (ImageView) rootView.findViewById(R.id.GoBackIcon);
         closeBtn.setOnClickListener(goBackListener);
 
         LinearLayout venuesCallPhone = (LinearLayout) rootView.findViewById(R.id.venuesCallPhone);
@@ -85,8 +86,8 @@ public class HalalVenuesDetailFragment extends Fragment {
         LinearLayout venuesMaps = (LinearLayout) rootView.findViewById(R.id.venuesMaps);
         venuesMaps.setOnClickListener(venuesMapsListener);
 
-        TextView tvTitleHead = (TextView) rootView.findViewById(R.id.venuesTitleHead);
-        tvTitleHead.setText(venuesModel.getName());
+//        TextView tvTitleHead = (TextView) rootView.findViewById(R.id.venuesTitleHead);
+//        tvTitleHead.setText(venuesModel.getName());
         TextView tvTitle = (TextView) rootView.findViewById(R.id.venuesTitle);
         tvTitle.setText(venuesModel.getName());
         TextView venuesAddress = (TextView) rootView.findViewById(R.id.venuesAddress);
