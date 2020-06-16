@@ -69,6 +69,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/featured"
             android:layout_marginTop="10dp"
+            android:elevation="0dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:background="@null"
             tools:listitem="@layout/list_history_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
