@@ -64,6 +64,8 @@
                     android:gravity="right"
                     android:layoutDirection="rtl"
                     android:tint="@color/halal"
+                    app:theme="@style/SearchViewStyle"
+                    app:closeIcon="@drawable/ic_close_black_24dp"
                     app:searchIcon="@drawable/ic_search_color_halal_24dp" />
                 <!--                <AutoCompleteTextView-->
                 <!--                    android:id="@+id/autoCompleteSearch"-->

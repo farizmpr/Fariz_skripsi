@@ -7,11 +7,11 @@
     <color name="tembus">#00ffffff</color>
     <color name="status_d">#FF1818</color>
     <color name="grey_certif">#F8F8F8</color>
-    <color name="colorPrimary">#FA554F</color>
+    <color name="colorPrimary">#4FBA6E</color>
     <color name="colorPrimaryDark">#FA554F</color>
 
     <color name="black">#000000</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#4FBA6E</color>
 
     <color name="titleColor">#262628</color>
     <color name="subtitle">#B8BBC6</color>
@@ -19,6 +19,8 @@
     <color name="white">#FFFFFF</color>
 
     <color name="halal">#4FBA6E</color>
+    <color name="halal_tembus">#734FBA6E</color>
+
 
 
     <color name="colorPrimarySecondary">#FAFAFA</color>

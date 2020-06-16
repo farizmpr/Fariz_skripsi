@@ -8,7 +8,10 @@
     android:layout_gravity="center"
     android:padding="5dp"
     app:cardCornerRadius="10dp">
-
+    <LinearLayout
+        android:id="@+id/beritaa"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
     <androidx.cardview.widget.CardView
         android:layout_marginLeft="10dp"
         android:id="@+id/cardImagePoster"
@@ -34,10 +37,18 @@
             tools:background="@drawable/round_outline"
             tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bacaan"
+            app:layout_constraintStart_toEndOf="@id/cardImagePoster"
+            app:layout_constraintTop_toTopOf="@id/cardImagePoster"
+            android:layout_gravity="center_vertical"
+            >
 
     <TextView
         android:id="@+id/venuesTitle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -48,15 +59,14 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/cardImagePoster"
-        app:layout_constraintTop_toTopOf="@id/cardImagePoster"
         tools:text="Tertiary Butylhydroquinone " />
 
     <TextView
         android:id="@+id/restaurantType"
         android:layout_width="wrap_content"
+        android:layout_below="@id/venuesTitle"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="@id/venuesTitle"
         app:layout_constraintTop_toBottomOf="@id/venuesTitle"
         tools:text="Type : Indgredient" />
@@ -64,8 +74,9 @@
     <TextView
         android:id="@+id/venuesStatus"
         android:layout_width="wrap_content"
+        android:layout_below="@id/restaurantType"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="@id/restaurantType"
         app:layout_constraintTop_toBottomOf="@id/restaurantType"
         tools:text="Halal status : Halal" />
@@ -74,9 +85,27 @@
         android:id="@+id/venuesAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_below="@id/venuesStatus"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="@id/venuesStatus"
         app:layout_constraintTop_toBottomOf="@id/venuesStatus"
         tools:text="Halal status : Halal" />
+        </RelativeLayout>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/beritaa"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="right">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12sp"
+            android:background="@color/grey_40"
+            android:foregroundGravity="right"
+            />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

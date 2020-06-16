@@ -171,7 +171,7 @@ public class TabHomeSearchAllFragment extends Fragment {
             tabSearchAllFragment.isConnect = 0;
         }
         tabSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
-        adapter.addFragment(tabSearchAllFragment, "Search All");
+        adapter.addFragment(tabSearchAllFragment, "All");
 
         TabSearchAllFragment tabSearchAllFragment2 = new TabSearchAllFragment();
         tabSearchAllFragment2.setDefaultTextSearch(defaultTextSearch);
@@ -244,11 +244,11 @@ public class TabHomeSearchAllFragment extends Fragment {
 //                    tabHomeSearchAllFragment.adapter = adapter;
 //                    tabHomeSearchAllFragment.viewPager = viewPager;
                 tabHomeSearchAllFragment.listRemoveTab = listRemoveTab;
-                if (text == "Search All") {
+                if (text == "All") {
                     tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
 
                     tabHomeSearchAllFragment.defaultTabsPage = 0;
-                    tabHomeSearchAllFragment.defaultTabsPageText = "Search All";
+                    tabHomeSearchAllFragment.defaultTabsPageText = "All";
                     tabHomeSearchAllFragment.tabLayout = tabLayout;
                     fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                     fragmentTransaction.commit();

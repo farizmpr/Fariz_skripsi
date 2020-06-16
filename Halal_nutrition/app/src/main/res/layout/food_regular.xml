@@ -9,6 +9,10 @@
     android:padding="5dp"
     app:cardCornerRadius="10dp">
 
+    <LinearLayout
+        android:id="@+id/beritaa"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImagePoster"
         android:layout_width="120dp"
@@ -35,9 +39,17 @@
             tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
 
-    <TextView
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/bacaan"
+            app:layout_constraintStart_toEndOf="@id/cardImagePoster"
+            app:layout_constraintTop_toTopOf="@id/cardImagePoster"
+            android:gravity="center_vertical"
+            >
+        <TextView
         android:id="@+id/tv_title"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -48,28 +60,45 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/cardImagePoster"
-        app:layout_constraintTop_toTopOf="@id/cardImagePoster"
         tools:text="Tertiary Butylhydroquinone " />
 
     <TextView
         android:id="@+id/tv_source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/tv_title"
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:text="Type : Indgredient" />
 
     <TextView
         android:id="@+id/status_halal"
+        android:layout_below="@id/tv_source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@android:color/black"
         android:textSize="14sp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="@id/tv_source"
         app:layout_constraintTop_toBottomOf="@id/tv_source"
         tools:text="Halal status : Halal" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/beritaa"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="right">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12sp"
+            android:background="@color/grey_40"
+            android:foregroundGravity="right"
+            />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

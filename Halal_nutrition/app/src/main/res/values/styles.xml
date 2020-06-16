@@ -9,6 +9,10 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
     <style name="Widget.BottomNavigationView"
         parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/roboto_regular</item>
@@ -60,9 +64,12 @@
         <!-- Gets rid of the search icon -->
         <!-- Gets rid of the "underline" in the text -->
         <!-- Gets rid of the search icon when the SearchView is expanded -->
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="android:hint">@color/white</item>
+        <item name="android:textColorPrimary">@color/halal</item>
+        <item name="android:textColorHint">@color/halal</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:hint">@color/halal_tembus</item>
+        <item name="android:textColor">@color/halal</item>
         <!-- The hint text that appears when the user has not typed anything -->
         <item name="queryHint">Please Search Your Items</item>
     </style>
@@ -85,6 +92,7 @@
         <item name="android:textColorPrimary">@color/halal</item>
         <item name="android:textColorHint">@color/halal</item>
         <item name="android:hint">@color/halal</item>
+        <item name="android:textColor">@color/halal</item>
         <!-- The hint text that appears when the user has not typed anything -->
         <item name="queryHint">Please Search Your Items</item>
     </style>

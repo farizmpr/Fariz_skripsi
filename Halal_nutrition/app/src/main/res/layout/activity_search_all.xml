@@ -16,7 +16,7 @@
             android:id="@+id/toolbar_items"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/halal"
+            android:background="@color/white"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
@@ -35,7 +35,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
-                    android:tint="@color/white" />
+                    android:tint="@color/halal" />
             </RelativeLayout>
 
 
@@ -58,7 +58,8 @@
                         android:layoutDirection="rtl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:tint="@color/white"
+                        android:tint="@color/halal"
+                        app:theme="@style/SearchViewStyle"
                         app:closeIcon="@drawable/ic_close_black_24dp"
                         app:searchIcon="@drawable/ic_search_black_24dp" />
                     <!--                            <ImageView-->
@@ -89,15 +90,16 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/halal"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/white"
                     android:minHeight="?actionBarSize"
-                    app:tabBackground="@color/halal"
+                    app:tabBackground="@color/white"
                     app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorColor="@color/halal"
+                    app:tabTextAppearance="@style/tab_text"
                     app:tabIndicatorHeight="4dp"
                     app:tabMode="fixed"
-                    app:tabSelectedTextColor="@color/white"
+                    app:tabSelectedTextColor="@color/halal"
                     app:tabTextColor="@color/grey_20"></com.google.android.material.tabs.TabLayout>
 
                 <androidx.viewpager.widget.ViewPager

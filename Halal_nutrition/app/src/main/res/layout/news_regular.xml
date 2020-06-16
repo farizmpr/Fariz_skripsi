@@ -9,6 +9,10 @@
     android:padding="5dp"
     app:cardCornerRadius="10dp">
 
+    <LinearLayout
+        android:id="@+id/beritaa"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImagePoster"
         android:layout_width="120dp"
@@ -32,9 +36,17 @@
             tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bacaan"
+        app:layout_constraintStart_toEndOf="@id/cardImagePoster"
+        app:layout_constraintTop_toTopOf="@id/cardImagePoster"
+        android:layout_gravity="center_vertical"
+        >
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -45,18 +57,35 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/cardImagePoster"
-        app:layout_constraintTop_toTopOf="@id/cardImagePoster"
         tools:text="@string/news_name" />
 
     <TextView
         android:id="@+id/tv_source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_below="@id/tv_title"
         android:textSize="14dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/roboto_regular"
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:text="CNN Indonesia" />
+    </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/beritaa"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="right">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12sp"
+        android:background="@color/grey_40"
+        android:foregroundGravity="right"
+        />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
