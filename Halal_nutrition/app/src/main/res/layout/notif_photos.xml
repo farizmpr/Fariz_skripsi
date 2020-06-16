@@ -22,41 +22,64 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="In products or Ingredient photo help us to verify your submission."
+        android:text="A product photo will help us to verify your submission."
         android:layout_gravity="center"
         android:id="@+id/txtTakeaPhotoDesc"
         android:layout_below="@id/txtTakeaPhoto"
         android:fontFamily="@font/roboto_regular"
         android:textColor="#999"
         android:textSize="16dp"/>
-    <Button
-        android:id="@+id/btnAddPhoto"
+    <FrameLayout
+        android:id="@+id/fbbb"
+        android:layout_below="@+id/txtTakeaPhotoDesc"
         android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
-        android:layout_height="55dp"
-        android:fontFamily="@font/roboto_regular"
-        android:textSize="16sp"
-        android:layout_gravity="center"
-        android:text="Add a Photo"
-        android:textAllCaps="false"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
-        android:layout_below="@id/txtTakeaPhotoDesc"
-        android:background="@drawable/btn"
-        android:textColor="@color/white"
-        />
-    <Button
-        android:id="@+id/btnWithoutPhoto"
+        android:background="@drawable/add_photo" >
+
+        <Button
+            android:id="@+id/btnAddPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto_regular"
+            android:minHeight="0dp"
+            android:textSize="16sp"
+            android:minWidth="0dp"
+            android:text="Add a Photo"
+            style="?android:attr/borderlessButtonStyle"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/nooo"
+        android:layout_below="@+id/fbbb"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="center"
-        android:stateListAnimator="@null"
-        android:text="Add Without Photo"
-        android:textAllCaps="false"
-        android:fontFamily="@font/roboto_regular"
-        android:textSize="16sp"
-        android:layout_below="@id/btnAddPhoto"
-        android:background="@drawable/round_outline"
-        style="@style/AppTheme.RoundedCornerOutlineMaterialButton"
-        android:textColor="@color/halal"
-        />
+        android:layout_height="45dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/no_photo" >
+
+        <Button
+            android:id="@+id/btnWithoutPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:gravity="center"
+            android:fontFamily="@font/roboto_regular"
+            android:minHeight="0dp"
+            android:textSize="16sp"
+            android:minWidth="0dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="No"
+            android:backgroundTint="@color/white"
+            android:textAllCaps="false"
+            android:textColor="@color/halal" />
+    </FrameLayout>
+
 </RelativeLayout>
