@@ -84,6 +84,7 @@
         <!-- Gets rid of the search icon when the SearchView is expanded -->
         <item name="android:textColorPrimary">@color/halal</item>
         <item name="android:textColorHint">@color/halal</item>
+        <item name="android:editTextColor">@color/halal</item>
         <item name="android:hint">@color/halal</item>
         <!-- The hint text that appears when the user has not typed anything -->
         <item name="queryHint">Please Search Your Items</item>
