@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <stroke
-        android:width="4sp"
+        android:width="2sp"
         android:color="@color/amber_400"
         />
     <corners
