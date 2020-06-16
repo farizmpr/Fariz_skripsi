@@ -5,7 +5,7 @@
     android:id="@+id/acivity_list_food"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryTernary">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +15,7 @@
         <LinearLayout
             android:id="@+id/toolbar_items"
             android:layout_width="match_parent"
+            android:elevation="1dp"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             android:orientation="horizontal"

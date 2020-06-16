@@ -166,22 +166,21 @@
 
                     <TextView
                         android:id="@+id/account_favorite_foods"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="6"
                         android:layout_marginLeft="18dp"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto_bold"
                         android:text="Add Item"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="16dp"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="230dp"
                         android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
                 </LinearLayout>
 
@@ -216,22 +215,21 @@
 
                     <TextView
                         android:id="@+id/account_favorite_restaurants"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="18dp"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto_bold"
                         android:text="History Item"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="16dp"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="204.5dp"
                         android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
                 </LinearLayout>
 
@@ -265,11 +263,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="Account"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Setting"
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -289,22 +286,21 @@
 
                     <TextView
                         android:id="@+id/edit_profile"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="18dp"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto_bold"
                         android:text="Edit Profile"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="16dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="215dp"
                         android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
                 </LinearLayout>
 
@@ -339,22 +335,21 @@
 
                     <TextView
                         android:id="@+id/change_password_teks"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="18dp"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto_bold"
                         android:text="Change Password"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="16dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="162dp"
                         android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
                 </LinearLayout>
             </RelativeLayout>
