@@ -126,7 +126,10 @@
     <style name="allRightRadiusBtn">
         <item name="cornerSizeTopRight">13dp</item>
         <item name="cornerSizeBottomRight">13dp</item>
-
+    </style>
+    <style name="maps_location">
+        <item name="android:topRightRadius">13dp</item>
+        <item name="android:topLeftRadius">13dp</item>
     </style>
     <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
         <item name="cornerFamily">rounded</item>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fafafa"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
+        android:elevation="1dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:textSize="20sp"
-            android:text="History Contribute"
+            android:text="Product Submission"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/halal"/>

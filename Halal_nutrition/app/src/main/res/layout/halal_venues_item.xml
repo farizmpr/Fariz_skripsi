@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:padding="5dp"
+    android:layout_marginTop="3dp"
     app:cardCornerRadius="10dp">
     <LinearLayout
         android:id="@+id/beritaa"
@@ -67,6 +68,8 @@
         android:layout_below="@id/venuesTitle"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/venuesTitle"
         app:layout_constraintTop_toBottomOf="@id/venuesTitle"
         tools:text="Type : Indgredient" />
@@ -76,6 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_below="@id/restaurantType"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="14sp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="@id/restaurantType"
         app:layout_constraintTop_toBottomOf="@id/restaurantType"
@@ -86,6 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/venuesStatus"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="14sp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="@id/venuesStatus"
         app:layout_constraintTop_toBottomOf="@id/venuesStatus"
@@ -104,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="12sp"
-            android:background="@color/grey_40"
+            android:background="@color/grey_3"
             android:foregroundGravity="right"
             />
     </LinearLayout>

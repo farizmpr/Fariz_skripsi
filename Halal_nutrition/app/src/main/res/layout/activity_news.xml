@@ -130,6 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@id/rv_headline"
+                        android:layout_marginTop="5dp"
                         android:fadeScrollbars="true"
                         android:nestedScrollingEnabled="true"
                         app:layout_constraintStart_toStartOf="@id/rv_headline"

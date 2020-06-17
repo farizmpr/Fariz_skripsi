@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:padding="5dp"
+    android:layout_marginTop="3dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
@@ -64,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/roboto_regular"
         app:layout_constraintStart_toStartOf="@id/tv_title"
@@ -84,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="12sp"
-        android:background="@color/grey_40"
+        android:background="@color/grey_3"
         android:foregroundGravity="right"
         />
     </LinearLayout>

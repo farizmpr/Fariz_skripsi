@@ -19,6 +19,7 @@
             android:background="@color/white"
             android:orientation="horizontal"
             android:elevation="1dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_weight="6"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Halal Products !"
+                android:text="Halal Products"
                 android:textColor="@color/halal"
                 android:textSize="20sp" />
 

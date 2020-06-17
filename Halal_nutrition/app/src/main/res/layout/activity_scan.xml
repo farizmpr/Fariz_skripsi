@@ -74,9 +74,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/tabsBarcode"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15dp"
+                android:textAllCaps="false"
                 android:backgroundTint="@color/white"
                 android:text="Barcode"
                 android:textColor="@color/halal"
@@ -86,12 +89,15 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/tabsOCR"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15dp"
+                android:textAllCaps="false"
                 android:layout_gravity="center"
                 android:background="@drawable/btn_bg_stroke"
                 android:backgroundTint="@color/halal"
-                android:text="Product"
+                android:text="Text"
                 app:shapeAppearance="@style/allRightRadiusBtn"
                 app:strokeColor="@color/white" />
         </LinearLayout>
