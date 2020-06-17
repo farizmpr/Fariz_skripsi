@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_horizontal"
-        android:text="No Result Found"
+        android:text="No Result Found !"
         android:textColor="@color/black"
         android:textSize="20dp" />
 

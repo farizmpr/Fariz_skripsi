@@ -119,8 +119,8 @@
                     android:id="@+id/btnSearchItems"
                     android:layout_width="0dp"
                     android:layout_height="88dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="9dp"
                     android:layout_weight="5"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="2dp"
@@ -136,14 +136,15 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
-                            android:src="@drawable/search_new" />
+                            android:src="@drawable/search_halal" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
                             android:gravity="center"
-                            android:text="Search Items"
+                            android:text="Find Product"
+                            android:layout_weight="6"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -153,8 +154,8 @@
                     android:id="@+id/btnScanItems"
                     android:layout_width="0dp"
                     android:layout_height="88dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="9dp"
                     android:layout_weight="5"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="2dp"
@@ -170,7 +171,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
-                            android:src="@drawable/scan_new" />
+                            android:src="@drawable/scanner" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -178,6 +179,7 @@
                             android:fontFamily="@font/roboto_regular"
                             android:gravity="center"
                             android:text="Scan Product"
+                            android:layout_weight="6"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -187,8 +189,8 @@
                     android:id="@+id/btnHalalVenues"
                     android:layout_width="0dp"
                     android:layout_height="88dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="9dp"
                     android:layout_weight="5"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="2dp"
@@ -204,14 +206,15 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
-                            android:src="@drawable/location_new" />
+                            android:src="@drawable/dinner_new" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
                             android:gravity="center"
-                            android:text="Halal Venues"
+                            android:text="Find Restaurant"
+                            android:layout_weight="6"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>

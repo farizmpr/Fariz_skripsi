@@ -172,7 +172,7 @@
                         android:layout_weight="6"
                         android:layout_marginLeft="18dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="Add Item"
+                        android:text="Add Product"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
                         android:textSize="16dp"/>
@@ -221,7 +221,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="18dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="History Item"
+                        android:text="History Contribute"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
                         android:textSize="16dp"/>
