@@ -65,13 +65,41 @@
         <!-- Gets rid of the "underline" in the text -->
         <!-- Gets rid of the search icon when the SearchView is expanded -->
         <item name="android:textColorPrimary">@color/halal</item>
-        <item name="android:textColorHint">@color/halal</item>
+        <item name="android:textColorHint">@color/halal_tembus</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:hint">@color/halal_tembus</item>
         <item name="android:textColor">@color/halal</item>
         <!-- The hint text that appears when the user has not typed anything -->
-        <item name="queryHint">Please Search Your Items</item>
+        <item name="queryHint">Search Here</item>
+    </style>
+
+    <style name="SearchViewStyleRestaurant" parent="Widget.AppCompat.Light.SearchView">
+    <!-- Gets rid of the search icon -->
+    <!-- Gets rid of the "underline" in the text -->
+    <!-- Gets rid of the search icon when the SearchView is expanded -->
+    <item name="android:textColorPrimary">@color/halal</item>
+    <item name="android:textColorHint">@color/halal_tembus</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+    <item name="android:textSize">20sp</item>
+    <item name="android:hint">@color/halal_tembus</item>
+    <item name="android:textColor">@color/halal</item>
+    <!-- The hint text that appears when the user has not typed anything -->
+    <item name="queryHint">Search Restaurant...</item>
+</style>
+
+    <style name="SearchViewStyleFood" parent="Widget.AppCompat.Light.SearchView">
+        <!-- Gets rid of the search icon -->
+        <!-- Gets rid of the "underline" in the text -->
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="android:textColorPrimary">@color/halal</item>
+        <item name="android:textColorHint">@color/halal_tembus</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:hint">@color/halal_tembus</item>
+        <item name="android:textColor">@color/halal</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">Search Product...</item>
     </style>
 
     <style name="SearchViewStyleBlack" parent="Widget.AppCompat.Light.SearchView">
@@ -94,7 +122,7 @@
         <item name="android:hint">@color/halal</item>
         <item name="android:textColor">@color/halal</item>
         <!-- The hint text that appears when the user has not typed anything -->
-        <item name="queryHint">Please Search Your Items</item>
+        <item name="queryHint">Search Here</item>
     </style>
     <style name="MyToolbarThemeSearchAll"
         parent="@style/ThemeOverlay.AppCompat.Dark">

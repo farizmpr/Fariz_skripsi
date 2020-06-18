@@ -95,11 +95,9 @@
                     android:layout_marginLeft="15dp"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="26dp"
-                    android:src="@drawable/sample_avatar"
-                    app:civ_border_color="@color/halal"
+                    android:src="@drawable/ava"
+                    app:civ_border_color="@color/grey_3"
                     app:civ_border_width="1dp"
-                    app:civ_shadow="true"
-                    app:civ_shadow_color="#8BC34A"
                     app:civ_shadow_radius="10"/>
                 <RelativeLayout
                     android:id="@+id/layUpdatePhotoProfile"

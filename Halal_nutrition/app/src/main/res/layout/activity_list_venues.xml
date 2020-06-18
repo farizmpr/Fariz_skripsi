@@ -67,8 +67,8 @@
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/btnViewSearchAllItems"
-                        style="@style/SearchViewStyle"
-                        app:theme="@style/SearchViewStyle"
+                        style="@style/SearchViewStyleRestaurant"
+                        app:theme="@style/SearchViewStyleRestaurant"
                         android:layoutDirection="rtl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -98,7 +98,8 @@
             <include
                 layout="@layout/not_found_search"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
