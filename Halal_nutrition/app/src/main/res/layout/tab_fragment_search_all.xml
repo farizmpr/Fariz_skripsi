@@ -30,7 +30,7 @@
                 android:paddingBottom="15dp"
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center"
-                android:text="Items"
+                android:text="Product"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -184,7 +184,7 @@
                 android:paddingBottom="15dp"
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center"
-                android:text="Venues"
+                android:text="Restaurant"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -196,7 +196,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="25dp"
-            android:layout_weight="6"
+            android:layout_weight="2"
             android:fontFamily="@font/fontsfreenetproximanovabold"
             android:gravity="center"
             android:text=""
@@ -209,7 +209,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="end"
-            android:layout_weight="4">
+            android:layout_weight="2.5">
             <TextView
                 android:id="@+id/titleVenuesShowSearchAll"
                 android:layout_width="wrap_content"

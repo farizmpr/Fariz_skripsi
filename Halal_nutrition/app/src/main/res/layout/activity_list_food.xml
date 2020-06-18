@@ -47,7 +47,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_weight="6"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Halal Products"
+                android:text="Halal Product"
                 android:textColor="@color/halal"
                 android:textSize="20sp" />
 

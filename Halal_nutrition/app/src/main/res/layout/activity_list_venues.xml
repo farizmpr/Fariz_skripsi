@@ -47,7 +47,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_weight="8"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Halal Restaurants"
+                android:text="Halal Restaurant"
                 android:textColor="@color/halal"
                 android:textSize="20sp" />
 

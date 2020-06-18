@@ -184,7 +184,7 @@ public class TabHomeSearchAllFragment extends Fragment {
         }
         Boolean isRemove2 = tabSearchAllFragment2.isRemove();
         Log.d("REMOVE 2", "IS=" + isRemove2);
-        adapter.addFragment(tabSearchAllFragment2, "Items");
+        adapter.addFragment(tabSearchAllFragment2, "Product");
 
         TabSearchAllFragment tabSearchAllFragment3 = new TabSearchAllFragment();
         tabSearchAllFragment3.setDefaultTextSearch(defaultTextSearch);
@@ -210,7 +210,7 @@ public class TabHomeSearchAllFragment extends Fragment {
         }
         Boolean isRemove4 = tabSearchAllFragment4.isRemove();
         Log.d("REMOVE 4", "IS=" + isRemove4);
-        adapter.addFragment(tabSearchAllFragment4, "Venues");
+        adapter.addFragment(tabSearchAllFragment4, "Restaurant");
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);
@@ -252,10 +252,10 @@ public class TabHomeSearchAllFragment extends Fragment {
                     tabHomeSearchAllFragment.tabLayout = tabLayout;
                     fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                     fragmentTransaction.commit();
-                } else if (text == "Items") {
+                } else if (text == "Product") {
                     tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
                     tabHomeSearchAllFragment.defaultTabsPage = 1;
-                    tabHomeSearchAllFragment.defaultTabsPageText = "Items";
+                    tabHomeSearchAllFragment.defaultTabsPageText = "Product";
                     tabHomeSearchAllFragment.tabLayout = tabLayout;
                     fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                     fragmentTransaction.commit();
@@ -266,10 +266,10 @@ public class TabHomeSearchAllFragment extends Fragment {
                     tabHomeSearchAllFragment.tabLayout = tabLayout;
                     fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                     fragmentTransaction.commit();
-                } else if (text == "Venues") {
+                } else if (text == "Restaurant") {
                     tabHomeSearchAllFragment.setDefaultTextSearch(defaultTextSearch);
                     tabHomeSearchAllFragment.defaultTabsPage = 3;
-                    tabHomeSearchAllFragment.defaultTabsPageText = "Venues";
+                    tabHomeSearchAllFragment.defaultTabsPageText = "Restaurant";
                     tabHomeSearchAllFragment.tabLayout = tabLayout;
                     fragmentTransaction.replace(R.id.fragment_content, tabHomeSearchAllFragment);
                     fragmentTransaction.commit();
