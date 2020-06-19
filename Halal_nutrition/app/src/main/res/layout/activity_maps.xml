@@ -12,11 +12,11 @@
 
         <LinearLayout
             android:id="@+id/toolbar"
+            android:elevation="1dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/halal"
-            android:orientation="horizontal"
-            >
+            android:background="@color/white"
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/back"
@@ -29,46 +29,22 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_back_white"
-                    android:tint="@color/white" />
+                    android:tint="@color/halal" />
+
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/titleHeadCertificate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="25dp"
-                android:layout_weight="6"
-                android:fontFamily="@font/roboto_bold"
+                android:layout_weight="10"
+                android:textSize="20sp"
                 android:text="Location "
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/halal"/>
 
 
-            <RelativeLayout
-                android:id="@+id/lnl_favorite"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:scaleType="fitStart"
-                android:gravity="end">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_centerInParent="true">
-
-
-                    <!--                            <ImageView-->
-                    <!--                                android:layout_width="20dp"-->
-                    <!--                                android:layout_height="20dp"-->
-                    <!--                                android:layout_centerInParent="true"-->
-                    <!--                                android:src="@drawable/ic_search_black_24dp"-->
-                    <!--                                android:tint="@color/white" />-->
-
-
-                </RelativeLayout>
-
-            </RelativeLayout>
 
         </LinearLayout>
 
@@ -94,16 +70,18 @@
             android:layout_width="match_parent"
             android:layout_height="123dp"
             android:orientation="vertical"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            >
 
             <TextView
                 android:id="@+id/addressOnMaps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/fontsfreenetproximanovabold"
-                android:gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="left"
+                android:paddingLeft="10dp"
                 android:text="Address"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,19 +101,21 @@
                         android:id="@+id/txtHeadTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:fontFamily="@font/roboto_bold"
                         android:gravity="left"
-                        android:text="TIME"
+                        android:text="Time"
+                        android:textAllCaps="false"
                         android:paddingBottom="10dp"
                         android:textSize="14sp" />
                     <TextView
                         android:id="@+id/txtSubTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:fontFamily="@font/roboto_bold"
                         android:gravity="left"
                         android:layout_below="@+id/txtHeadTime"
-                        android:text="25 MIN"
+                        android:text="25 Min"
+                        android:textAllCaps="false"
                         android:textSize="16sp" />
                 </RelativeLayout>
 
@@ -151,16 +131,16 @@
                         android:id="@+id/txtHeadDistance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:fontFamily="@font/roboto_bold"
                         android:gravity="left"
-                        android:text="DISTANCE"
+                        android:text="Distance"
                         android:paddingBottom="10dp"
                         android:textSize="14sp" />
                     <TextView
                         android:id="@+id/txtSubDistance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:fontFamily="@font/roboto_bold"
                         android:gravity="left"
                         android:layout_below="@+id/txtHeadDistance"
                         android:text="9.4 mi"
@@ -179,16 +159,17 @@
                         android:id="@+id/txtHeadMethod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:fontFamily="@font/roboto_bold"
                         android:gravity="left"
-                        android:text="METHOD"
+                        android:text="Method"
+                        android:textAllCaps="false"
                         android:paddingBottom="10dp"
                         android:textSize="14sp" />
                     <TextView
                         android:id="@+id/txtSubMethod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/fontsfreenetproximanovabold"
+                        android:fontFamily="@font/roboto_bold"
                         android:gravity="left"
                         android:layout_below="@+id/txtHeadMethod"
                         android:text="Car"

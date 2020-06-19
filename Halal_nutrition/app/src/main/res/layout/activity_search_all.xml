@@ -100,6 +100,8 @@
                     app:tabTextAppearance="@style/tab_text"
                     app:tabIndicatorHeight="4dp"
                     app:tabMode="fixed"
+                    app:tabPaddingStart="-3dp"
+                    app:tabPaddingEnd="-0.5dp"
                     app:tabSelectedTextColor="@color/halal"
                     app:tabTextColor="@color/grey_20"></com.google.android.material.tabs.TabLayout>
 
