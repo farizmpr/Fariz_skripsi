@@ -13,7 +13,8 @@
     <LinearLayout
         android:id="@+id/beritaa"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
         <androidx.cardview.widget.CardView
             android:id="@+id/cardImagePoster"
             android:layout_width="120dp"
@@ -42,7 +43,7 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/bacaan"
             app:layout_constraintStart_toEndOf="@id/cardImagePoster"
             app:layout_constraintTop_toTopOf="@id/cardImagePoster"

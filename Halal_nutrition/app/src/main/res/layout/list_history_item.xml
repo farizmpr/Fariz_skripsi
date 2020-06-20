@@ -5,7 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/cardview_default_elevation"
+    android:paddingTop="@dimen/cardview_default_elevation"
     >
 
     <androidx.cardview.widget.CardView
@@ -29,55 +32,73 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="12dp"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            >
+            <LinearLayout
+                android:id="@+id/atasCard"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="0.015"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
 
             <TextView
                 android:id="@+id/historyItemsTitle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Harvvest Snaps"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:fontFamily="@font/roboto_bold"
                 android:textSize="16dp"
                 android:layout_marginStart="12dp"
+                app:layout_constraintVertical_weight="3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/desc" />
+                app:layout_constraintBottom_toTopOf="@+id/historyItemsSubtitle" />
 
             <TextView
                 android:id="@+id/historyItemsSubtitle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PT. Calbee"
-                android:fontFamily="@font/roboto_mmedium"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto_regular"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#8A000000"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="@+id/historyItemsTitle"
                 app:layout_constraintTop_toBottomOf="@+id/historyItemsTitle" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="0.01"
+                    app:layout_constraintVertical_weight="3"
+                    app:layout_constraintLeft_toRightOf="@+id/atasCard">
+
+                    <TextView
+                        android:id="@+id/lblStatus"
+                        android:layout_width="70dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="2dp"
+                        android:text="Approved"
+                        android:textSize="10dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textStyle="bold"
+                        android:background="@drawable/border"
+                        android:textColor="@color/halal"
+                        android:gravity="center" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:gravity="center"
-                app:layout_constraintLeft_toRightOf="@+id/name"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="150dp">
-
-                <TextView
-                    android:id="@+id/lblStatus"
-                    android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:text="Approved"
-                    android:textSize="10dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textStyle="bold"
-                    android:background="@drawable/border"
-                    android:textColor="@color/halal"
-                    android:gravity="center" />
-
-            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/historyItemsArrowBtn"
@@ -92,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/expandableView"
-                app:layout_constraintTop_toBottomOf="@+id/historyItemsSubtitle"
+                app:layout_constraintTop_toBottomOf="@+id/atasCard"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -120,8 +141,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Majelis Ulama Indonesia"
-                        android:fontFamily="@font/roboto_mmedium"
-                        android:textSize="12dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14dp"
                         android:textColor="#8A000000"
                         style="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintStart_toStartOf="@+id/phoneNumber"
@@ -148,8 +169,8 @@
                         android:layout_height="wrap_content"
                         android:text="aosenutritionnelle"
                         android:textColor="#8A000000"
-                        android:fontFamily="@font/roboto_mmedium"
-                        android:textSize="12dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14dp"
                         style="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintStart_toStartOf="@+id/mailNumber"
                         app:layout_constraintTop_toBottomOf="@+id/mailNumber" />

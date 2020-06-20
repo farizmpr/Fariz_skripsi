@@ -234,7 +234,7 @@
                         <RelativeLayout
                             android:id="@+id/call"
                             android:layout_width="50dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:background="@drawable/circle_call"
                             android:layout_marginLeft="10dp"
                             android:gravity="center">
@@ -279,7 +279,7 @@
                         <RelativeLayout
                             android:id="@+id/location"
                             android:layout_width="50dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:background="@drawable/circle_location"
                             android:layout_marginLeft="10dp"
                             android:gravity="center">
@@ -371,7 +371,7 @@
                         android:textSize="16sp"
                         android:textColor="@color/grey_40"
                         android:layout_marginRight="10dp"
-                        app:fontFamily="@font/roboto_medium" />
+                        app:fontFamily="@font/roboto_regular" />
 
                 </LinearLayout>
 
