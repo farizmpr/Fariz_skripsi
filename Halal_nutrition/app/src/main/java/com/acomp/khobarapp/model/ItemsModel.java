@@ -9,9 +9,27 @@ public class ItemsModel {
     private String ingredient = "";
     private String status;
     private String organization = "";
+    private Integer isIngredient = 0;
     private ArrayList<AttachmentModel> attachmentModels = new ArrayList<AttachmentModel>();
     private ArrayList<CertificateRowModel> certificateRowModels = new ArrayList<CertificateRowModel>();
+    private ArrayList<IngredientDetailModel> ingredientDetailModels = new ArrayList<IngredientDetailModel>();
     private NutritionModel nutrition = new NutritionModel();
+
+    public Integer getIsIngredient() {
+        return isIngredient;
+    }
+
+    public void setIsIngredient(Integer isIngredient) {
+        this.isIngredient = isIngredient;
+    }
+
+    public ArrayList<IngredientDetailModel> getIngredientDetailModels() {
+        return ingredientDetailModels;
+    }
+
+    public void setIngredientDetailModels(ArrayList<IngredientDetailModel> ingredientDetailModels) {
+        this.ingredientDetailModels = ingredientDetailModels;
+    }
 
     public NutritionModel getNutrition() {
         return nutrition;

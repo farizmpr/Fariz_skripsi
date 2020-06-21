@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ import com.acomp.khobarapp.ui.adapter.ListCertificateIssuerAdapter;
 import com.acomp.khobarapp.ui.adapter.ListCircleNutritionAdapter;
 import com.acomp.khobarapp.ui.adapter.ListDetailIngredientAdapter;
 import com.acomp.khobarapp.ui.adapter.ListFoodVenuesBaseAdapter;
+import com.acomp.khobarapp.ui.adapter.ListIngredientDetailAdapter;
 import com.acomp.khobarapp.ui.news.NewsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
@@ -52,8 +54,9 @@ public class HalalItemsDetailFragment extends Fragment {
     ArrayList<NutritionDetailModel> nutritionDetailModels = null;
     ListDetailIngredientAdapter listDetailIngredientAdapter = null;
     TextView btnShowMoreIngredient, btnHideMoreIngredient;
-    RecyclerView recyclerViewIngredient, recyclerViewCertificateIssuer;
+    RecyclerView recyclerViewIngredient, recyclerViewCertificateIssuer,recyclerViewIngDetail;
     ListCertificateIssuerAdapter listCertificateIssuerAdapter = null;
+    ListIngredientDetailAdapter listIngredientDetailAdapter = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -127,6 +130,14 @@ public class HalalItemsDetailFragment extends Fragment {
         getListCircleNutrition(rootView);
         getListDetailIngredient(rootView);
         getListCertificateIssuer(rootView);
+Log.d("IS INGREDIENT",itemsModel.getIsIngredient().toString());
+        Log.d("IS INGREDIENT DETAIL","SIZE"+itemsModel.getIngredientDetailModels().size());
+        if(itemsModel.getIsIngredient() == 1){
+            if(itemsModel.getIngredientDetailModels().size() > 0){
+                this.getListIngredientDetail(rootView);
+            }
+        }
+
 //        TextView btnViewMore = (TextView) rootView.findViewById(R.id.btnViewMore);
 //        btnViewMore.setOnClickListener(btnViewMoreListener);
 
@@ -264,6 +275,33 @@ public class HalalItemsDetailFragment extends Fragment {
         listCertificateIssuerAdapter = new ListCertificateIssuerAdapter(getActivity(), itemsModel.getCertificateRowModels(), null);
 
         recyclerViewCertificateIssuer.setAdapter(listCertificateIssuerAdapter);
+        if(itemsModel.getCertificateRowModels().size() > 0){
+            Integer type = itemsModel.getCertificateRowModels().get(0).getTypeId();
+            if(type == 3){
+                LinearLayout nutrition = (LinearLayout) view.findViewById(R.id.Nutrition);
+                nutrition.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    public void getListIngredientDetail(View view) {
+        Log.d("MASUK","MASUK HIDE INGREDIENT");
+        LinearLayout detailIngredients = view.findViewById(R.id.detailIngredients);
+        detailIngredients.setVisibility(View.VISIBLE);
+        LinearLayout nutrition = view.findViewById(R.id.Nutrition);
+        nutrition.setVisibility(View.GONE);
+
+        recyclerViewIngDetail = (RecyclerView) view.findViewById(R.id.listIngredientDetail);
+        assert recyclerViewIngDetail != null;
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewIngDetail.setLayoutManager(mLayoutManager);
+        listIngredientDetailAdapter = new ListIngredientDetailAdapter(getActivity(), itemsModel.getIngredientDetailModels(), null);
+
+        recyclerViewIngDetail.setAdapter(listIngredientDetailAdapter);
+
+
     }
 
 

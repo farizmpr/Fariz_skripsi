@@ -34,6 +34,7 @@ import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.model.AttachmentModel;
 import com.acomp.khobarapp.model.CertificateRowModel;
+import com.acomp.khobarapp.model.IngredientDetailModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NewsModel;
 import com.acomp.khobarapp.model.NutritionDetailModel;
@@ -253,6 +254,10 @@ public class HalalItemsFragment extends Fragment {
                                 JSONObject objects = jsonObject.getJSONArray("data").optJSONObject(i);
 //                            mapStatusCert.put(objects.getString("name"), objects.getInt("id"));
                                 String ingredient = objects.getString("ingredient");
+                                Integer isIngredient = 0;
+                                if (!objects.isNull("is_ingredient")) {
+                                    isIngredient = objects.getInt("is_ingredient");
+                                }
                                 String code = objects.getString("code");
                                 String name = objects.getString("name");
                                 String manufacture = objects.getString("manufacture");
@@ -280,6 +285,32 @@ public class HalalItemsFragment extends Fragment {
                                         attach.setMime(mime);
                                         attach.setUrl(url);
                                         attachmentModels.add(attach);
+                                    }
+                                }
+
+                                JSONArray jsArrayIngDetail = objects.getJSONArray("ingredient_detail");
+                                ArrayList<IngredientDetailModel> ingredientDetailModels = new ArrayList<IngredientDetailModel>();
+                                if (jsArrayIngDetail.length() > 0) {
+                                    IngredientDetailModel ingredientDetailModel = null;
+                                    for (int i5 = 0; i5 < jsArrayIngDetail.length(); i5++) {
+                                        JSONObject objectIngDetail = jsArrayIngDetail.optJSONObject(i5);
+                                        String ingTitle = "";
+                                        if (!objectIngDetail.isNull("title")) {
+                                            ingTitle = objectIngDetail.getString("title");
+                                        }
+                                        String ingType = "";
+                                        if (!objectIngDetail.isNull("type")) {
+                                            ingType = objectIngDetail.getString("type");
+                                        }
+                                        String ingDesc = "";
+                                        if (!objectIngDetail.isNull("description")) {
+                                            ingDesc = objectIngDetail.getString("description");
+                                        }
+                                        ingredientDetailModel = new IngredientDetailModel();
+                                        ingredientDetailModel.setTitle(ingTitle);
+                                        ingredientDetailModel.setType(ingType);
+                                        ingredientDetailModel.setDescription(ingDesc);
+                                        ingredientDetailModels.add(ingredientDetailModel);
                                     }
                                 }
                                 JSONArray jsArrayCert = objects.getJSONArray("certificate");
@@ -518,8 +549,10 @@ public class HalalItemsFragment extends Fragment {
                                 sr1.setCode(code);
                                 sr1.setIngredient(ingredient);
                                 sr1.setManufacture(manufacture);
+                                sr1.setIsIngredient(isIngredient);
                                 sr1.setOrganization(manufacture);
                                 sr1.setAttachmentModels(attachmentModels);
+                                sr1.setIngredientDetailModels(ingredientDetailModels);
                                 sr1.setCertificateRowModels(certificateRowModels);
                                 sr1.setNutrition(nutritionModel);
 //                            if(objects.getJSONArray("certificate").length() >= 1){

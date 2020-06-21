@@ -251,13 +251,51 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:id="@+id/detailIngredients"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ingredients"
+                            android:layout_margin="5dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
 
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="Status"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                            <View
+                                android:id="@+id/view_status"
+                                android:layout_width="320dp"
+                                android:layout_height="1dp"
+                                android:layout_alignStart="@+id/item_name"
+                                android:layout_alignLeft="@+id/item_name"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/subtitle"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/listIngredientDetail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/featured"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                tools:listitem="@layout/layout_status_ingredients" />
+                        </LinearLayout>
                         <LinearLayout
                             android:id="@+id/Nutrition"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/ingredients"
                             android:layout_margin="5dp"
+                            android:visibility="visible"
                             android:orientation="vertical">
 
                             <TextView

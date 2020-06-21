@@ -34,6 +34,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.api.GetDataService;
@@ -122,31 +124,32 @@ public class AddItemsFragment extends Fragment {
         btnCertificate.setOnClickListener(btnCertificateListener);
 
 
-        ListView listItemCertificate = (ListView) rootView.findViewById(R.id.listItemCertificate);
+        RecyclerView listItemCertificate = (RecyclerView) rootView.findViewById(R.id.listItemCertificate);
         Button btnAddCertificate = (Button) rootView.findViewById(R.id.btnAddCertificate);
         RelativeLayout layAddCert = (RelativeLayout) rootView.findViewById(R.id.certificate);
-        LinearLayout btnBottomAddCertificate = (LinearLayout) rootView.findViewById(R.id.btnBottomAddCertificate);
+        LinearLayout layBtnBottomAddCertificate = (LinearLayout) rootView.findViewById(R.id.layBtnBottomAddCertificate);
         TextView titleCertificate = (TextView) rootView.findViewById(R.id.titleCertificate);
         RelativeLayout itemCertificate = (RelativeLayout) rootView.findViewById(R.id.itemCertificate);
-        RelativeLayout layTitleCertificate = (RelativeLayout) rootView.findViewById(R.id.layTitleCertificate);
+        ImageView btnAddCertificateBottom = (ImageView) rootView.findViewById(R.id.btnAddCertificateBottom);
+//        RelativeLayout layTitleCertificate = (RelativeLayout) rootView.findViewById(R.id.layTitleCertificate);
 
         if (isShowHideBtnAddItem == true) {
             layAddCert.setVisibility(View.VISIBLE);
-            btnBottomAddCertificate.setVisibility(View.GONE);
+            layBtnBottomAddCertificate.setVisibility(View.GONE);
             listItemCertificate.setVisibility(View.GONE);
             titleCertificate.setVisibility(View.GONE);
             itemCertificate.setVisibility(View.GONE);
-            layTitleCertificate.setVisibility(View.GONE);
+//            layTitleCertificate.setVisibility(View.GONE);
         } else {
             listItemCertificate.setVisibility(View.VISIBLE);
             layAddCert.setVisibility(View.GONE);
             titleCertificate.setVisibility(View.VISIBLE);
-            btnBottomAddCertificate.setVisibility(View.VISIBLE);
+            layBtnBottomAddCertificate.setVisibility(View.VISIBLE);
             itemCertificate.setVisibility(View.VISIBLE);
-            layTitleCertificate.setVisibility(View.VISIBLE);
+//            layTitleCertificate.setVisibility(View.VISIBLE);
         }
         btnAddCertificate.setOnClickListener(btnCertificateListener);
-        btnBottomAddCertificate.setOnClickListener(btnCertificateListener);
+        btnAddCertificateBottom.setOnClickListener(btnCertificateListener);
 
 
         ImageView btnSendItems = (ImageView) rootView.findViewById(R.id.btnSendItems);
@@ -193,7 +196,10 @@ public class AddItemsFragment extends Fragment {
         itemsModel.setName(foodName);
         itemsModel.setManufacture(foodManufacture);
         itemsModel.setIngredient(ingredientTxt);
-        ListView lv1 = (ListView) rootView.findViewById(R.id.listItemCertificate);
+        RecyclerView lv1 = (RecyclerView) rootView.findViewById(R.id.listItemCertificate);
+        LinearLayoutManager mLayoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        lv1.setLayoutManager(mLayoutManager);
         lv1.setAdapter(new MyCustomBaseAdapter(getActivity(), listCertificateRowModel, getActivity(), itemsModel));
         return rootView;
     }

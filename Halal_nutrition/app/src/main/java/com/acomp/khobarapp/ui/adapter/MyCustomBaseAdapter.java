@@ -15,12 +15,15 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.model.CertificateRowModel;
 import com.acomp.khobarapp.model.ItemsModel;
+import com.acomp.khobarapp.model.VenuesModel;
 import com.acomp.khobarapp.ui.account.AddItemsCertificateFragment;
 import com.acomp.khobarapp.ui.account.AddItemsFragment;
 import com.acomp.khobarapp.ui.account.HistoryItemsFragment;
@@ -29,7 +32,7 @@ import com.hootsuite.nachos.chip.Chip;
 
 import java.util.ArrayList;
 
-public class MyCustomBaseAdapter extends BaseAdapter {
+public class MyCustomBaseAdapter extends RecyclerView.Adapter<MyCustomBaseAdapter.ViewHolder> {
     private static ArrayList<CertificateRowModel> searchArrayList;
 
     private LayoutInflater mInflater;
@@ -43,57 +46,40 @@ public class MyCustomBaseAdapter extends BaseAdapter {
         itemsModel = itemsModel1;
     }
 
-    public int getCount() {
-        return searchArrayList.size();
+
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_row_certificate, parent, false);
+        return new MyCustomBaseAdapter.ViewHolder(view);
     }
 
-    public Object getItem(int position) {
-        return searchArrayList.get(position);
-    }
-
-    public long getItemId(int position) {
-        return position;
-    }
-
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.add_row_certificate, null);
-            holder = new ViewHolder();
-            holder.txtTitleRow = (TextView) convertView.findViewById(R.id.titleRowCertificate);
-            holder.txtTypeRow = (TextView) convertView.findViewById(R.id.typeRowCertificate);
-            holder.txtHalalStatusRow = (TextView) convertView.findViewById(R.id.halalStatusRowCertificate);
-            holder.btnRemoveCertificate = (Button) convertView.findViewById(R.id.btnRemoveCertificate);
-//            holder.btnEditCertificate = (Button) convertView.findViewById(R.id.btnEditCertificate);
-            holder.btnEditCertificate = (Button) convertView.findViewById(R.id.btnEditCertificate);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        CertificateRowModel object = searchArrayList.get(position);
         holder.txtTitleRow.setText(searchArrayList.get(position).getTitle());
         holder.txtTypeRow.setText("Tipe : " + searchArrayList.get(position).getType());
         holder.txtHalalStatusRow.setText("Halal Status : " + searchArrayList.get(position).getHalalStatus());
-        View finalConvertView = convertView;
         holder.btnRemoveCertificate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchArrayList.remove(position);
                 notifyDataSetChanged();
                 if (searchArrayList.size() == 0) {
-                    ListView listItemCertificate = (ListView) fragmentActivity.findViewById(R.id.listItemCertificate);
+                    RecyclerView listItemCertificate = (RecyclerView) fragmentActivity.findViewById(R.id.listItemCertificate);
                     Button btnAddCertificate = (Button) fragmentActivity.findViewById(R.id.btnAddCertificate);
                     RelativeLayout layAddCert = (RelativeLayout) fragmentActivity.findViewById(R.id.certificate);
-                    LinearLayout btnBottomAddCertificate = (LinearLayout) fragmentActivity.findViewById(R.id.btnBottomAddCertificate);
+                    LinearLayout layBtnBottomAddCertificate = (LinearLayout) fragmentActivity.findViewById(R.id.layBtnBottomAddCertificate);
                     TextView titleCertificate = (TextView) fragmentActivity.findViewById(R.id.titleCertificate);
                     RelativeLayout itemCertificate = (RelativeLayout) fragmentActivity.findViewById(R.id.itemCertificate);
-                    RelativeLayout layTitleCertificate = (RelativeLayout) fragmentActivity.findViewById(R.id.layTitleCertificate);
+//                    RelativeLayout layTitleCertificate = (RelativeLayout) fragmentActivity.findViewById(R.id.layTitleCertificate);
                     layAddCert.setVisibility(View.VISIBLE);
-                    btnBottomAddCertificate.setVisibility(View.GONE);
+                    layBtnBottomAddCertificate.setVisibility(View.GONE);
                     listItemCertificate.setVisibility(View.GONE);
                     titleCertificate.setVisibility(View.GONE);
                     itemCertificate.setVisibility(View.GONE);
-                    layTitleCertificate.setVisibility(View.GONE);
+//                    layTitleCertificate.setVisibility(View.GONE);
                 }
             }
 
@@ -142,12 +128,18 @@ public class MyCustomBaseAdapter extends BaseAdapter {
                 fragmentTransaction.replace(R.id.fragment_content, addItemsCertificateFragment);
                 fragmentTransaction.commit();
                 notifyDataSetChanged();
-
             }
-
         });
+    }
 
-        return finalConvertView;
+
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemCount() {
+        return searchArrayList.size();
     }
 
     public String method(String str) {
@@ -158,11 +150,22 @@ public class MyCustomBaseAdapter extends BaseAdapter {
     }
 
 
-    static class ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitleRow;
         TextView txtTypeRow;
         TextView txtHalalStatusRow;
         Button btnRemoveCertificate;
         Button btnEditCertificate;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+//            txtTitleRow = (TextView) itemView.findViewById(R.id.venuesTitle);
+            txtTitleRow = (TextView) itemView.findViewById(R.id.titleRowCertificate);
+            txtTypeRow = (TextView) itemView.findViewById(R.id.typeRowCertificate);
+            txtHalalStatusRow = (TextView) itemView.findViewById(R.id.halalStatusRowCertificate);
+            btnRemoveCertificate = (Button) itemView.findViewById(R.id.btnRemoveCertificate);
+//            holder.btnEditCertificate = (Button) convertView.findViewById(R.id.btnEditCertificate);
+            btnEditCertificate = (Button) itemView.findViewById(R.id.btnEditCertificate);
+        }
     }
 }
