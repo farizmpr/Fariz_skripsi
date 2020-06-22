@@ -5,235 +5,253 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/head_items_search_all"
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewHalalItems"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/grey_3"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/head_items_search_all">
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_items">
 
-        <RelativeLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/layoutAll"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4">
-            <TextView
-                android:id="@+id/titleItemsSearchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingLeft="20dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="Product"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </RelativeLayout>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/titleMenuBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="25dp"
-            android:layout_weight="6"
-            android:fontFamily="@font/fontsfreenetproximanovabold"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            <LinearLayout
+                android:id="@+id/head_items_search_all"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/grey_3"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_items_search_all">
 
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4">
 
-        <RelativeLayout
-            android:id="@+id/btnShowAllItems"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:layout_weight="4">
-            <TextView
-                android:id="@+id/titleNewsShowSearchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingRight="20dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="Show All"
-                android:textColor="@color/halal"
-                android:textSize="14sp" />
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/titleItemsSearchAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="15dp"
+                        android:text="Product"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
 
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fragment_search_all_items"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        >
+                <TextView
+                    android:id="@+id/titleMenuBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/fontsfreenetproximanovabold"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
 
-    </FrameLayout>
-    <LinearLayout
-        android:id="@+id/head_news_search_all"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/grey_3"
-        android:layout_below="@+id/scrollViewListItems"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/head_items_search_all">
+                <RelativeLayout
+                    android:id="@+id/btnShowAllItems"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="end">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4">
-            <TextView
-                android:id="@+id/titleNewsSearchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingLeft="20dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="News"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/titleNewsShowSearchAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:paddingTop="14dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="15dp"
+                        android:text="Show All"
+                        android:textColor="@color/halal"
+                        android:textSize="14sp" />
+                </RelativeLayout>
 
-        <TextView
-            android:id="@+id/titleNewsMenuBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="25dp"
-            android:layout_weight="6"
-            android:fontFamily="@font/fontsfreenetproximanovabold"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fragment_search_all_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-        <RelativeLayout
-            android:id="@+id/btnShowAllNews"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:layout_weight="4">
-            <TextView
-                android:id="@+id/titleItemsShowSearchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingRight="20dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="Show All"
-                android:textColor="@color/halal"
-                android:textSize="14sp" />
-        </RelativeLayout>
+            </FrameLayout>
 
-    </LinearLayout>
-    <FrameLayout
-        android:id="@+id/fragment_search_all_news"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        >
+            <LinearLayout
+                android:id="@+id/head_news_search_all"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/scrollViewListItems"
+                android:background="@color/grey_3"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_items_search_all">
 
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4">
 
-    </FrameLayout>
-    <LinearLayout
-        android:id="@+id/head_venues_search_all"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/grey_3"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/head_venues_search_all">
+                    <TextView
+                        android:id="@+id/titleNewsSearchAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="15dp"
+                        android:text="News"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4">
-            <TextView
-                android:id="@+id/titleVenuesSearchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingLeft="20dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="Restaurant"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/titleVenuesMenuBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="25dp"
-            android:layout_weight="2"
-            android:fontFamily="@font/fontsfreenetproximanovabold"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/titleNewsMenuBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/fontsfreenetproximanovabold"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
 
-        <RelativeLayout
-            android:id="@+id/btnShowAllVenues"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:layout_weight="2.5">
-            <TextView
-                android:id="@+id/titleVenuesShowSearchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingRight="20dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="Show All"
-                android:textColor="@color/halal"
-                android:textSize="14sp" />
-        </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/btnShowAllNews"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="end">
 
-    </LinearLayout>
-    <FrameLayout
-        android:id="@+id/fragment_search_all_venues"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        >
+                    <TextView
+                        android:id="@+id/titleItemsShowSearchAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:paddingTop="14dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="15dp"
+                        android:text="Show All"
+                        android:textColor="@color/halal"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fragment_search_all_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-    </FrameLayout>
+            </FrameLayout>
 
+            <LinearLayout
+                android:id="@+id/head_venues_search_all"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/grey_3"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_venues_search_all">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4">
+
+                    <TextView
+                        android:id="@+id/titleVenuesSearchAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="15dp"
+                        android:text="Restaurant"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/titleVenuesMenuBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/fontsfreenetproximanovabold"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+
+                <RelativeLayout
+                    android:id="@+id/btnShowAllVenues"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:gravity="end">
+
+                    <TextView
+                        android:id="@+id/titleVenuesShowSearchAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:paddingTop="14dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="15dp"
+                        android:text="Show All"
+                        android:textColor="@color/halal"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fragment_search_all_venues"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </FrameLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

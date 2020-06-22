@@ -109,9 +109,11 @@ public class HalalItemsFragment extends Fragment {
         LinearLayout.LayoutParams paramsLnlFav = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.MATCH_PARENT);
         LinearLayout layoutAll = (LinearLayout) rootView.findViewById(R.id.layoutAll);
+        NestedScrollView scrollViewHalalItems = (NestedScrollView) rootView.findViewById(R.id.scrollViewHalalItems);
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("OPEN EXPANDABLE","OPEN");
 //                closeBtn.setVisibility(View.GONE);
                 //do what you want when search view expended
                 paramsBack.weight = 1.0f;
@@ -119,8 +121,28 @@ public class HalalItemsFragment extends Fragment {
                 closeBtn.setLayoutParams(paramsBack);
                 lnlFav.setLayoutParams(paramsLnlFav);
                 titleMenuBar.setVisibility(View.GONE);
-                layoutAll.setVisibility(View.GONE);
+                LinearLayout layoutAlls = (LinearLayout) getActivity().findViewById(R.id.layoutAll);
+                layoutAlls.setVisibility(View.GONE);
+                scrollViewHalalItems.setVisibility(View.GONE);
 //                closeBtn.setGravity();
+            }
+        });
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+//                    paramsBack.weight = 1.0f;
+//                    paramsLnlFav.weight = 8.0f;
+//                    closeBtn.setLayoutParams(paramsBack);
+//                    lnlFav.setLayoutParams(paramsLnlFav);
+//                    titleMenuBar.setVisibility(View.GONE);
+//                    LinearLayout layoutAlls = (LinearLayout) getActivity().findViewById(R.id.layoutAll);
+//                    layoutAlls.setVisibility(View.GONE);
+                    scrollViewHalalItems.setVisibility(View.GONE);
+                    // searchView expanded
+                } else {
+                    // searchView not expanded
+                }
             }
         });
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
@@ -132,7 +154,9 @@ public class HalalItemsFragment extends Fragment {
                 closeBtn.setLayoutParams(paramsBack);
                 lnlFav.setLayoutParams(paramsLnlFav);
                 titleMenuBar.setVisibility(View.VISIBLE);
-                layoutAll.setVisibility(View.VISIBLE);
+                LinearLayout layoutAlls = (LinearLayout) getActivity().findViewById(R.id.layoutAll);
+                layoutAlls.setVisibility(View.VISIBLE);
+                scrollViewHalalItems.setVisibility(View.VISIBLE);
                 //do what you want  searchview is not expanded
                 return false;
             }
@@ -142,6 +166,7 @@ public class HalalItemsFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 layoutAll.setVisibility(View.VISIBLE);
+                scrollViewHalalItems.setVisibility(View.VISIBLE);
                 if(isScrollChanged == true) {
                     querySearch = s;
                     page = 1;
@@ -151,8 +176,10 @@ public class HalalItemsFragment extends Fragment {
                     homeFragment.saveSuggest("suggestSearchAll", s);
                     getListFood(page, querySearch);
                     Log.d("QUERY Submit", "QueryTextSubmit: " + s);
+
+
                 }
-                return false;
+                return true;
             }
 
             @Override

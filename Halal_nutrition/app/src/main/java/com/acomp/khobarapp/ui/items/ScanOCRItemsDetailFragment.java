@@ -35,6 +35,7 @@ import com.acomp.khobarapp.ZXingScannerView;
 import com.acomp.khobarapp.api.GetDataService;
 import com.acomp.khobarapp.model.AttachmentModel;
 import com.acomp.khobarapp.model.CertificateRowModel;
+import com.acomp.khobarapp.model.IngredientDetailModel;
 import com.acomp.khobarapp.model.ItemsModel;
 import com.acomp.khobarapp.model.NutritionDetailModel;
 import com.acomp.khobarapp.model.NutritionModel;
@@ -362,6 +363,10 @@ public class ScanOCRItemsDetailFragment extends Fragment {
 //                            mapStatusCert.put(objects.getString("name"), objects.getInt("id"));
                                 String ingredient = objects.getString("ingredient");
                                 String code = objects.getString("code");
+                                Integer isIngredient = 0;
+                                if(objects.isNull("is_ingredient")){
+                                    isIngredient = objects.getInt("is_ingredient");
+                                }
                                 String name = objects.getString("name");
                                 String manufacture = objects.getString("manufacture");
                                 JSONArray jsArrayAt = objects.getJSONArray("image");
@@ -584,6 +589,33 @@ public class ScanOCRItemsDetailFragment extends Fragment {
 
                                     }
                                 }
+
+                                JSONArray jsArrayIngDetail = objects.getJSONArray("ingredient_detail");
+                                ArrayList<IngredientDetailModel> ingredientDetailModels = new ArrayList<IngredientDetailModel>();
+                                if (jsArrayIngDetail.length() > 0) {
+                                    IngredientDetailModel ingredientDetailModel = null;
+                                    for (int i5 = 0; i5 < jsArrayIngDetail.length(); i5++) {
+                                        JSONObject objectIngDetail = jsArrayIngDetail.optJSONObject(i5);
+                                        String ingTitle = "";
+                                        if (!objectIngDetail.isNull("title")) {
+                                            ingTitle = objectIngDetail.getString("title");
+                                        }
+                                        String ingType = "";
+                                        if (!objectIngDetail.isNull("type")) {
+                                            ingType = objectIngDetail.getString("type");
+                                        }
+                                        String ingDesc = "";
+                                        if (!objectIngDetail.isNull("description")) {
+                                            ingDesc = objectIngDetail.getString("description");
+                                        }
+                                        ingredientDetailModel = new IngredientDetailModel();
+                                        ingredientDetailModel.setTitle(ingTitle);
+                                        ingredientDetailModel.setType(ingType);
+                                        ingredientDetailModel.setDescription(ingDesc);
+                                        ingredientDetailModels.add(ingredientDetailModel);
+                                    }
+                                }
+
                                 NutritionDetailModel nuDeModChildDaiMore = new NutritionDetailModel();
                                 nuDeModChildDaiMore.setType("more");
                                 nutritionDetailModelsDai.add(nuDeModChildDaiMore);
@@ -593,6 +625,8 @@ public class ScanOCRItemsDetailFragment extends Fragment {
                                 sr1 = new ItemsModel();
                                 sr1.setName(name);
                                 sr1.setCode(code);
+                                sr1.setIsIngredient(isIngredient);
+                                sr1.setIngredientDetailModels(ingredientDetailModels);
                                 sr1.setIngredient(ingredient);
                                 sr1.setManufacture(manufacture);
                                 sr1.setOrganization(manufacture);

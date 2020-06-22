@@ -280,6 +280,8 @@ Log.d("IS INGREDIENT",itemsModel.getIsIngredient().toString());
             if(type == 3){
                 LinearLayout nutrition = (LinearLayout) view.findViewById(R.id.Nutrition);
                 nutrition.setVisibility(View.GONE);
+
+
             }
         }
     }
@@ -290,6 +292,8 @@ Log.d("IS INGREDIENT",itemsModel.getIsIngredient().toString());
         detailIngredients.setVisibility(View.VISIBLE);
         LinearLayout nutrition = view.findViewById(R.id.Nutrition);
         nutrition.setVisibility(View.GONE);
+        LinearLayout ingredients = (LinearLayout) view.findViewById(R.id.ingredients);
+        ingredients.setVisibility(View.GONE);
 
         recyclerViewIngDetail = (RecyclerView) view.findViewById(R.id.listIngredientDetail);
         assert recyclerViewIngDetail != null;
