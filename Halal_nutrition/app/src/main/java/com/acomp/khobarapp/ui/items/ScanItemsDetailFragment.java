@@ -271,7 +271,7 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
                             String ingredient = objects.getString("ingredient");
                             String code = objects.getString("code");
                             Integer isIngredient = 0;
-                            if(objects.isNull("is_ingredient")){
+                            if(!objects.isNull("is_ingredient")){
                                 isIngredient = objects.getInt("is_ingredient");
                             }
                             String name = objects.getString("name");
@@ -325,15 +325,40 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
                                         expiredDate = objectCert.getString("expired_date");
                                     }
 
+                                    Integer certificateStatusId = null;
+                                    if (!objectCert.isNull("certificate_status_id")) {
+                                        certificateStatusId = objectCert.getInt("certificate_status_id");
+                                    }
 
+                                    String certificateStatus = "";
+                                    if (!objectCert.isNull("certificate_status")) {
+                                        JSONObject jsonObjectCertificateStatus = objectCert.getJSONObject("certificate_status");
+                                        if (!jsonObjectCertificateStatus.isNull("name")) {
+                                            certificateStatus = jsonObjectCertificateStatus.getString("name");
+                                        }
+                                    }
+
+                                    Integer certificateTypeId = null;
+                                    if (!objectCert.isNull("certificate_type_id")) {
+                                        certificateTypeId = objectCert.getInt("certificate_type_id");
+                                    }
+
+                                    String certificateType = "";
+                                    if (!objectCert.isNull("certificate_type")) {
+                                        JSONObject jsonObjectCertificateType = objectCert.getJSONObject("certificate_type");
+                                        if (!jsonObjectCertificateType.isNull("name")) {
+                                            certificateType = jsonObjectCertificateType.getString("name");
+                                        }
+                                    }
 
                                     certMod = new CertificateRowModel();
                                     certMod.setCode(codeCert);
                                     certMod.setTitle(organizationName);
                                     certMod.setExpiredDate(expiredDate);
-//                                    attach.setType(type);
-//                                    attach.setMime(mime);
-//                                    attach.setUrl(url);
+                                    certMod.setTypeId(certificateTypeId);
+                                    certMod.setHalalStatus(certificateStatus);
+                                    certMod.setStatusId(certificateStatusId);
+                                    certMod.setType(certificateType);
                                     certificateRowModels.add(certMod);
                                 }
                             }
