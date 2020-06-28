@@ -71,6 +71,7 @@
                         app:theme="@style/SearchViewStyleFood"
                         android:layoutDirection="rtl"
                         android:layout_width="match_parent"
+                        android:launchMode="singleTop"
                         android:layout_height="match_parent"
                         android:tint="@color/white"
                         app:closeIcon="@drawable/ic_close_black_24dp"

@@ -171,13 +171,15 @@ public class HalalItemsFragment extends Fragment {
                     querySearch = s;
                     page = 1;
                     listFoodModel.clear();
+
                     HomeFragment homeFragment = new HomeFragment();
                     homeFragment.setActivity(getActivity());
                     homeFragment.saveSuggest("suggestSearchAll", s);
                     getListFood(page, querySearch);
                     Log.d("QUERY Submit", "QueryTextSubmit: " + s);
-
-
+//                    searchView.setIconified(false);
+//                    searchView.setQuery(querySearch, false);
+                    searchView.clearFocus();
                 }
                 return true;
             }

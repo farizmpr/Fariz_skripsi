@@ -147,6 +147,7 @@ public class NewsFragment extends Fragment {
                     homeFragment.setActivity(getActivity());
                     homeFragment.saveSuggest("suggestSearchAll", s);
                     searchHomeAll(s);
+                    searchView.clearFocus();
 //                    getListNews(page);
 //                    Log.d("QUERY Submit", "QueryTextSubmit: " + s);
                 }
