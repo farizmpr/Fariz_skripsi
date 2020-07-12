@@ -172,6 +172,11 @@ Log.d("IS INGREDIENT",itemsModel.getIsIngredient().toString());
         return this.itemsModel;
     }
 
+    public String setBeforeFragment(String beforeFragment){
+        this.beforeFragment = beforeFragment;
+        return this.beforeFragment;
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
