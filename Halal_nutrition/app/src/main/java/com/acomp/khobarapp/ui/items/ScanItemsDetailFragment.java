@@ -570,6 +570,7 @@ public class ScanItemsDetailFragment extends Fragment implements ZXingScannerVie
 
                             HalalItemsDetailFragment halalItemsFragment = new HalalItemsDetailFragment();
                             halalItemsFragment.setItemsModel(sr1);
+                            halalItemsFragment.beforeFragment = "scanBarcode";
                             fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
                             fragmentTransaction.commit();
                         } else {

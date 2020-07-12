@@ -57,6 +57,7 @@ public class HalalItemsDetailFragment extends Fragment {
     RecyclerView recyclerViewIngredient, recyclerViewCertificateIssuer,recyclerViewIngDetail;
     ListCertificateIssuerAdapter listCertificateIssuerAdapter = null;
     ListIngredientDetailAdapter listIngredientDetailAdapter = null;
+    public String beforeFragment = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -191,8 +192,16 @@ Log.d("IS INGREDIENT",itemsModel.getIsIngredient().toString());
         @Override
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            HalalItemsFragment accountFragment = new HalalItemsFragment();
-            fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+            if(beforeFragment == "scanOCR"){
+                ScanOCRItemsDetailFragment scanOCRItemsDetailFragment = new ScanOCRItemsDetailFragment();
+                fragmentTransaction.replace(R.id.fragment_content, scanOCRItemsDetailFragment);
+            } else if(beforeFragment == "scanBarcode"){
+                ScanItemsDetailFragment scanItemsDetailFragment = new ScanItemsDetailFragment();
+                fragmentTransaction.replace(R.id.fragment_content, scanItemsDetailFragment);
+            } else {
+                HalalItemsFragment accountFragment = new HalalItemsFragment();
+                fragmentTransaction.replace(R.id.fragment_content, accountFragment);
+            }
             fragmentTransaction.commit();
         }
     };

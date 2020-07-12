@@ -662,6 +662,7 @@ public class ScanOCRItemsDetailFragment extends Fragment {
                                 sr1.setNutrition(nutritionModel);
                                 HalalItemsDetailFragment halalItemsFragment = new HalalItemsDetailFragment();
                                 halalItemsFragment.setItemsModel(sr1);
+                                halalItemsFragment.beforeFragment = "scanOCR";
                                 fragmentTransaction.replace(R.id.fragment_content, halalItemsFragment);
                                 fragmentTransaction.commit();
                             } else {
